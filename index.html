@@ -1,32 +1,16 @@
-10/10/25 morning
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Corrected Version: October 10, 2025 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOMADS</title>
-    
-    
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Nomads Menu">
-    <meta name="application-name" content="Nomads Menu">
-    <link rel="apple-touch-icon" href="https://placehold.co/180x180/111827/f59e0b?text=N">
-    <link rel="icon" sizes="192x192" href="https://placehold.co/192x192/111827/f59e0b?text=N">
-    <link rel="icon" sizes="512x512" href="https://placehold.co/512x512/111827/f59e0b?text=N">
-
+    <title>NOMADS 11 - Interactive Cocktail Menu</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Roboto+Condensed:ital,wght@0,700;1,400&family=Roboto:ital,wght@0,400;0,500;1,700&family=Rye&family=Bangers&family=Creepster&family=Metal+Mania&family=Nosifier&family=UnifrakturMaguntia&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Metal+Mania&family=Roboto+Condensed:ital,wght@0,700;1,400&family=Roboto:ital,wght@0,400;0,500;1,700&family=Rye&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-      
         html {
             scroll-behavior: smooth;
         }
@@ -300,564 +284,55 @@
         @media (min-width: 1280px) {
             #arrow-left { left: calc(50vw - 600px); }
             #arrow-right { right: calc(50vw - 600px); }
-        }
-<style>
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #1a110a; /* Dark wood fallback */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('https://www.transparenttextures.com/patterns/worn-dots.png');
-            background-attachment: fixed;
-        }
-        
-        h2, h3 {
-            font-family: 'Black Ops One', cursive;
-            text-shadow: 1px 1px 0 #000, 2px 2px 0 #333;
-            letter-spacing: 0.05em;
-        }
-        .drink-card h3, .modal h2, #gemini-drink-output h3 {
-            font-family: 'Rye', cursive;
-            text-shadow: 2px 2px 0 #000;
-            letter-spacing: normal;
-        }
-        
-        .drink-card-logo-area {
-            position: relative;
-            min-height: 240px;
-            background-color: #111827;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border-top-left-radius: 0.375rem;
-            border-top-right-radius: 0.375rem;
-        }
-        .drink-card-title-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .title-loader {
-            border: 3px solid #4b5563;
-            border-top: 3px solid #f59e0b;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
-        }
-        .drink-card-logo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .drink-card-title-fallback {
-            font-family: 'Rye', cursive;
-            text-shadow: 2px 2px 0 #000;
-            font-size: 2rem;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-        }
-        .retry-logo-btn {
-            background: none;
-            border: none;
-            color: #9ca3af;
-            cursor: pointer;
-            font-size: 1rem;
-            padding: 0.5rem;
-            margin-left: 0.5rem;
-            transition: all 0.2s ease-in-out;
-        }
-        .retry-logo-btn:hover {
-            color: #f59e0b;
-            transform: rotate(90deg);
-        }
-        
-        .card-icon-group {
-            display: flex;
-            gap: 0.75rem;
-            align-items: center;
-        }
-        .category-icons {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-        .category-icons i {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            text-shadow: 1px 1px 2px #000;
-        }
-
-        .font-condensed { font-family: 'Roboto Condensed', sans-serif; }
-        .font-rye { font-family: 'Rye', cursive; line-height: 1.6; }
-        .font-black-ops { font-family: 'Black Ops One', cursive; }
-
-        .recipe-list { list-style: disc; margin-left: 1.5rem; line-height: 1.4; }
-        .modal { transition: opacity 0.3s ease-in-out; }
-        
-        /* --- STYLES FOR FLIP CARDS & "POP" --- */
-        .drink-card {
-            perspective: 1000px;
-            background-color: transparent;
-            min-height: 480px; /* Increased height */
-            cursor: pointer;
-        }
-        .drink-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 10px 20px rgba(0,0,0,0.7);
-            border-radius: 0.375rem; /* rounded-md */
-        }
-        .drink-card.is-flipped .drink-card-inner {
-            transform: rotateY(180deg);
-        }
-        .drink-card-front, .drink-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            border-radius: 0.375rem; /* rounded-md */
-            background-color: #1f2937;
-            border: 1px solid #4b5563;
-        }
-        .drink-card-front {
-            display: flex;
-            flex-direction: column;
-        }
-        .drink-card-back {
-            transform: rotateY(180deg);
-            padding: 1rem;
-            overflow-y: auto;
-        }
-        .drink-card.is-active-card .drink-card-inner {
-             box-shadow: 0 0 15px 4px #f59e0b, 0 10px 20px rgba(0,0,0,0.7); /* amber-500 glow */
-        }
-        .drink-card-front .recipe-list { list-style: none; padding-left: 0; }
-        
-        .drink-image-container {
-            min-height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: rgba(0,0,0,0.2);
-            border-radius: 0.375rem;
-        }
-
-        /* --- Scroll Snap for Drink Cards --- */
-        #menu-grid {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-padding: 1rem;
-            -webkit-overflow-scrolling: touch;
-            padding: 1rem;
-            scrollbar-width: none; /* Firefox */
-        }
-        #menu-grid::-webkit-scrollbar { 
-            display: none; /* Safari and Chrome */
-        }
-        
-        #menu-grid > .drink-card { flex: 0 0 90%; scroll-snap-align: center; }
-        @media (min-width: 768px) { #menu-grid > .drink-card { flex-basis: 45%; } }
-        @media (min-width: 1024px) { #menu-grid > .drink-card { flex-basis: 31%; } }
-
-        /* --- Gemini & UI Button Styles --- */
-        .choice-btn, .gemini-btn { transition: all 0.2s ease-in-out; }
-        .choice-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.4); }
-        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #4F46E5; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes ride { 0%, 100% { transform: translateY(0) rotate(-10deg); } 50% { transform: translateY(-3px) rotate(-5deg); } }
-        @keyframes roll { 0% { transform: rotate(0deg) scale(1); } 100% { transform: rotate(360deg) scale(1); } }
-        .rolling-die { animation: roll 0.4s linear infinite; }
-
-        /* --- Filter Button Styles --- */
-        .filter-btn, .flavor-filter-btn {
-            font-family: 'Roboto Condensed', sans-serif; font-weight: 700; text-transform: uppercase; background-color: #1a202c; border: 2px solid #111827;
-            border-bottom-color: #4a5568; color: #a0aec0; padding: 0.5rem 1rem; border-radius: 0.375rem;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.6), 0 1px 1px rgba(255,255,255,0.1); transition: all 0.15s ease-out; flex-shrink: 0;
-        }
-        .filter-btn:hover, .flavor-filter-btn:hover { background-color: #2d3748; color: #e2e8f0; }
-        .filter-btn.active-filter, .flavor-filter-btn.active-filter {
-            background-color: #f59e0b; color: #1a202c; border-color: #dd6b20; border-top-color: #f6ad55;
-            transform: translateY(1px); box-shadow: inset 0 3px 6px rgba(0,0,0,0.4); text-shadow: 0 1px 1px rgba(255,255,255,0.2);
-        }
-        .filter-btn.active-filter i, .flavor-filter-btn.active-filter i { color: #1a202c !important; }
-        .filter-btn i, .flavor-filter-btn i { transition: color 0.15s ease-out; }
-
-        /* --- Toggle Switch Styles --- */
-        .toggle-text { font-family: 'Black Ops One', cursive; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; letter-spacing: 1px; position: absolute; left: 0; right: 0; text-align: right; padding-right: 12px; pointer-events: none; z-index: 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); transition: color 0.2s ease-in-out; }
-        .toggle-switch.on .toggle-text { color: #f59e0b; }
-        .toggle-switch { width: 160px; height: 44px; background-image: linear-gradient(to top, #1a202c, #2d3748); border-radius: 6px; padding: 4px; cursor: pointer; border: 2px solid #111827; border-bottom-color: #4a5568; box-shadow: inset 0 2px 4px rgba(0,0,0,0.6), 0 1px 1px rgba(255,255,255,0.1); position: relative; display: flex; align-items: center; justify-content: flex-start; }
-        .toggle-switch .toggle-nub { width: 32px; height: 32px; border-radius: 4px; background-image: linear-gradient(to top, #6b7280, #e5e7eb, #6b7280); box-shadow: 0 2px 4px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.2); transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55); display: flex; align-items: center; justify-content: center; position: relative; z-index: 10; }
-        .toggle-switch.on .toggle-nub { transform: translateX(120px); }
-        .toggle-switch .toggle-nub i { font-size: 1rem; color: #1a202c; text-shadow: 0 1px 0 rgba(255,255,255,0.2); transition: transform 0.2s ease-in-out; }
-        #bar-stock-toggle.on .toggle-nub i { animation: ride 0.5s ease-in-out infinite; }
-        #suggest-drink-toggle.on .toggle-nub i { animation: roll 0.4s linear; }
-
-        #create-drink-btn { background-image: linear-gradient(to top, #000000, #1f2d37); border: 1px solid #000; text-shadow: 1px 1px 2px rgba(0,0,0,0.6); box-shadow: inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -2px 3px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.5); transition: all 0.2s ease-in-out; }
-        #create-drink-btn:hover { background-image: linear-gradient(to top, #1f2d37, #4b5563); transform: translateY(-2px); box-shadow: inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -2px 3px rgba(0,0,0,0.6), 0 4px 6px rgba(0,0,0,0.5); }
-        
-        #show-story-link { font-family: 'Rye', cursive; color: #f59e0b; cursor: pointer; transition: all 0.2s ease-in-out; text-shadow: 1px 1px 2px #000; font-size: 1rem; line-height: 1; }
-        #show-story-link:hover { color: #fcd34d; transform: scale(1.05); }
-
-        /* --- UPDATED HEADER PATCH STYLE --- */
-        .header-patch {
-            background-image: linear-gradient(to top, #111827, #2c3547);
-            border-radius: 1rem;
-            padding: 1rem;
-            margin: 0 auto;
-            max-width: 900px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.7), inset 0 0 15px rgba(0,0,0,0.8), inset 0 2px 2px rgba(255,255,255,0.1);
-            position: relative;
-            border: 2px solid;
-            border-image-slice: 1;
-            border-image-source: linear-gradient(to bottom, #6b7280, #4b5563);
-        }
-        
-        .sticky-filter-bar { position: sticky; bottom: 0; z-index: 40; background-color: #111827; background-image: linear-gradient(to top, rgba(17, 24, 39, 1) 50%, rgba(17, 24, 39, 0.9)); box-shadow: 0 -10px 20px rgba(0,0,0,0.5); border-top: 2px solid #374151; }
-        #category-filter-nav, #flavor-filter-nav { display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; padding: 0.5rem 1rem; }
-        #flavor-filter-nav { border-bottom: 1px solid #374151; padding-top: 0.25rem; padding-bottom: 0.25rem; }
-        #category-filter-nav::-webkit-scrollbar, #flavor-filter-nav::-webkit-scrollbar { display: none; }
-        #category-filter-nav, #flavor-filter-nav { -ms-overflow-style: none; scrollbar-width: none; }
-        footer { padding-bottom: 120px; }
-
-        .ingredient-btn.out-of-stock { opacity: 0.5; background-color: #374151; text-decoration: line-through; }
-        .ingredient-btn.out-of-stock:hover { background-color: #4b5563; }
-
-        /* --- STRENGTH METER & FLAVOR ICONS --- */
-        .strength-meter, .flavor-icons { display: flex; justify-content: center; gap: 0.5rem; }
-        .flavor-icons { height: 20px; }
-        .strength-meter i, .flavor-icons i { font-size: 1.25rem; }
-        .strength-meter .filled { color: #f59e0b; text-shadow: 0 0 5px #f59e0b; }
-        .strength-meter .empty { color: #4b5563; opacity: 0.7; }
-        .flavor-icons i { transition: transform 0.2s ease-in-out; }
-        .flavor-icons i:hover { transform: scale(1.2); }
-        .fa-candy-cane{color:#ffb8c1}.fa-lemon{color:#fde047}.fa-pepper-hot{color:#ef4444}.fa-seedling{color:#84cc16}.fa-cloud{color:#f1f5f9}.fa-mug-hot{color:#854d0e}.fa-coffee{color:#a16207}.fa-fan{color:#a855f7}.fa-star-of-life{color:#7dd3fc}.fa-bolt{color:#facc15}.fa-snowflake{color:#67e8f9}.fa-water{color:#38bdf8}.fa-umbrella-beach{color:#f97316}.fa-apple-whole{color:#dc2626}.fa-fist-raised{color:#b91c1c}.fa-wave-square{color:#60a5fa}.fa-leaf{color:#57534e}.fa-moon{color:#4338ca}.fa-cookie-bite{color:#d4a373}.fa-icicles{color:#e0f2fe}.fa-dumbbell{color:#6b7280}.fa-circle{color:#d1d5db}.fa-cube{color:#3730a3}.fa-wind{color:#9ca3af}.fa-cactus{color:#85a23d}.fa-circle-dot{color:#fed7aa}.fa-mortar-pestle{color:#c084fc}
-
-        /* --- Navigation Arrows --- */
-        .nav-arrow {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(17, 24, 39, 0.5);
-            color: #d1d5db;
-            border: 2px solid #4b5563;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 35;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease-in-out;
-        }
-        .nav-arrow:hover {
-            background-color: rgba(245, 158, 11, 0.8);
-            color: #111827;
-            border-color: #f59e0b;
-        }
-        #arrow-left { left: 10px; }
-        #arrow-right { right: 10px; }
-        @media (min-width: 1280px) {
-            #arrow-left { left: calc(50vw - 600px); }
-            #arrow-right { right: calc(50vw - 600px); }
-        }
-
-    </style>
-    
-        html, body {
-            height: 100%;
-            overflow: hidden; /* Prevent body from scrolling */
-        }
-        body {
-            margin: 0; 
-            font-family: 'Roboto', sans-serif;
-            background-color: #1a110a; 
-            background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('https://www.transparenttextures.com/patterns/worn-dots.png');
-            background-attachment: fixed;
-        }
-
-        #app-container {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            height: 100dvh; 
-        }
-
-        main {
-            flex-grow: 1; 
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            min-height: 0; 
-        }
-        
-        h2 {
-            font-family: 'Black Ops One', cursive;
-            text-shadow: 1px 1px 0 #000, 2px 2px 0 #333;
-            letter-spacing: 0.05em;
-        }
-        .drink-card h3, .modal h2 {
-            font-family: 'Rye', cursive;
-            text-shadow: 2px 2px 0 #000;
-            letter-spacing: normal;
-        }
-         .drink-card-front h3 {
-            text-shadow: 1px 1px 0 #000, 0 0 8px currentColor; 
-        }
-        
-        .font-condensed { font-family: 'Roboto Condensed', sans-serif; }
-        .font-rye { font-family: 'Rye', cursive; line-height: 1.6; }
-        .font-black-ops { font-family: 'Black Ops One', cursive; }
-        .font-handwriting { font-family: 'Permanent Marker', cursive; }
-
-        .recipe-list { list-style: none; padding-left: 0; line-height: 1.6; font-family: 'Roboto Condensed', sans-serif; letter-spacing: 0.02em; }
-        .modal { transition: opacity 0.3s ease-in-out; }
-        
-        .drink-card { perspective: 1000px; background-color: transparent; cursor: pointer; }
-        .drink-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 10px 20px rgba(0,0,0,0.7);
-            border-radius: 0.5rem; 
-        }
-        .drink-card.is-flipped .drink-card-inner { transform: rotateY(180deg); }
-        .drink-card-front, .drink-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            background-color: #1a202c;
-            border: 1px solid #4b5563;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.7);
-            border-radius: 0.5rem;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden; 
-        }
-        .drink-card-back { 
-            transform: rotateY(180deg); 
-            background-image: linear-gradient(to bottom right, #2d3748, #1a202c), url('https://www.transparenttextures.com/patterns/worn-dots.png');
-        }
-        .drink-card.is-active-card .drink-card-inner { box-shadow: 0 0 15px 4px #f59e0b, 0 10px 20px rgba(0,0,0,0.7); }
-
-        #menu-grid {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-padding: 1rem;
-            -webkit-overflow-scrolling: touch;
-            padding: 1rem;
-            scrollbar-width: none; 
-            flex-grow: 1;
-        }
-        #menu-grid::-webkit-scrollbar { display: none; }
-        #menu-grid.hide-unavailable .is-unavailable { display: none; }
-        
-        #menu-grid > .drink-card { flex: 0 0 90%; scroll-snap-align: center; }
-        @media (min-width: 768px) { #menu-grid > .drink-card { flex-basis: 45%; } }
-        @media (min-width: 1024px) { #menu-grid > .drink-card { flex-basis: 31%; } }
-
-        .filter-btn, .flavor-filter-btn {
-            font-family: 'Roboto Condensed', sans-serif; font-weight: 700; text-transform: uppercase; background-color: #1a202c; border: 2px solid #111827;
-            border-bottom-color: #4a5568; color: #a0aec0; padding: 0.25rem 0.75rem; border-radius: 0.375rem;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.6), 0 1px 1px rgba(255,255,255,0.1); transition: all 0.15s ease-out; flex-shrink: 0;
-            font-size: 0.75rem;
-        }
-        .filter-btn:hover, .flavor-filter-btn:hover { background-color: #2d3748; color: #e2e8f0; }
-        .filter-btn.active-filter, .flavor-filter-btn.active-filter {
-            background-color: #f59e0b; color: #1a202c; border-color: #dd6b20; border-top-color: #f6ad55;
-            transform: translateY(1px); box-shadow: inset 0 3px 6px rgba(0,0,0,0.4); text-shadow: 0 1px 1px rgba(255,255,255,0.2);
-        }
-        .filter-btn.active-filter i, .flavor-filter-btn.active-filter i { color: #1a202c !important; }
-        .filter-btn i, .flavor-filter-btn i { transition: color 0.15s ease-out; }
-        
-        .sticky-filter-bar { 
-            background-color: #111827; 
-            background-image: linear-gradient(to top, rgba(17, 24, 39, 1) 50%, rgba(17, 24, 39, 0.9)); 
-            position: relative;
-            z-index: 40; 
-            box-shadow: 0 -10px 20px rgba(0,0,0,0.5); 
-            border-top: 2px solid #374151; 
-            flex-shrink: 0;
-        }
-        
-        #category-filter-nav, #flavor-filter-nav { 
-            display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; 
-            padding: 0.25rem 1rem; align-items: center; height: 45px; 
-            flex-shrink: 0; box-sizing: border-box; 
-        }
-        #flavor-filter-nav { border-bottom: 1px solid #374151; }
-        #category-filter-nav::-webkit-scrollbar, #flavor-filter-nav::-webkit-scrollbar { display: none; }
-        #category-filter-nav, #flavor-filter-nav { -ms-overflow-style: none; scrollbar-width: none; }
-
-        .drink-card.is-unavailable {
-            opacity: 0.4; filter: grayscale(80%); pointer-events: none; position: relative;
-        }
-        .drink-card.is-unavailable::before {
-            content: 'UNAVAILABLE'; position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%) rotate(-15deg); background-color: rgba(185, 28, 28, 0.8);
-            color: white; padding: 0.5rem 1.5rem; border-radius: 0.25rem;
-            font-family: 'Black Ops One', cursive; font-size: 1.5rem; z-index: 10;
-            border: 2px solid white; text-shadow: 2px 2px 4px #000;
-        }
-        
-        .nav-arrow {
-            position: fixed; top: 50%; transform: translateY(-50%);
-            background-color: rgba(17, 24, 39, 0.5); color: #d1d5db;
-            border: 2px solid #4b5563; border-radius: 50%;
-            width: 40px; height: 40px; font-size: 1.25rem; cursor: pointer;
-            z-index: 35; display: flex; align-items: center; justify-content: center;
-            transition: all 0.2s ease-in-out;
-        }
-        .nav-arrow:hover { background-color: rgba(245, 158, 11, 0.8); color: #111827; border-color: #f59e0b; }
-        #arrow-left { left: 5px; }
-        #arrow-right { right: 5px; }
-        @media (min-width: 1280px) {
-            #arrow-left { left: calc(50vw - 620px); }
-            #arrow-right { right: calc(50vw - 620px); }
-        }
-        
-        #header-logo-container {
-            position: relative;
-            background-image: url('https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/560249362_1334414134750721_6442249990351217830_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=CM3uAcZwDy0Q7kNvwH9N7J1&_nc_oc=Adm6pra2I-wIN54zlYEGN-q1sFOLdiKIZ7soVqhrp2gPTB4Mju67Q2FgLk0jjRLpvlg&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=DjeS81jUBoCZUFrHpc9egw&oh=00_Afcu7dpsQ4ErpnKzS14njbcjQ0neAcvcnI0k3pCVDbdJQg&oe=68EBA766');
-            background-size: cover; background-position: left top; background-repeat: no-repeat;
-            border-radius: 0.5rem; box-shadow: 0 8px 16px rgba(0,0,0,0.8);
-            overflow: hidden; 
-        }
-        #header-logo-container::before {
-            content: ''; position: absolute; inset: 0;
-            background-color: rgba(0, 0, 0, 0.5); 
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
-            border: 2px solid #4b5563; border-radius: 0.5rem;
-            outline: 2px solid rgba(245, 158, 11, 0.2); 
-            outline-offset: -5px; 
-            filter: drop-shadow(0 0 5px rgba(245, 158, 11, 0.3)); 
-        }
-        #header-logo-container h1 {
-            position: relative; font-family: 'Black Ops One', cursive;
-            font-size: 2.5rem; color: #f59e0b; 
-            text-shadow: 4px 4px 8px rgba(0,0,0,0.9), 0 0 15px #f59e0b;
-            letter-spacing: 0.1em; z-index: 10; line-height: 1; 
-        }
-        @media (max-width: 480px) { #header-logo-container h1 { font-size: 2rem; } }
-
-        .review-quote {
-            background-color: rgba(0,0,0,0.2); border-left: 4px solid #f59e0b;
-            padding: 0.75rem; border-radius: 0 0.25rem 0.25rem 0; margin-bottom: 0.75rem;
-        }
-        
-        /* Drink Finder Styles */
-        #drink-finder-results {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 0.75rem;
-        }
-        .drink-finder-item {
-            background-color: #2d3748; /* bg-gray-700 */
-            border: 1px solid #4a5568; /* border-gray-600 */
-            border-radius: 0.375rem; /* rounded-md */
-            padding: 0.75rem; /* p-3 */
-            text-align: left;
-            transition: all 0.2s ease-in-out;
-            cursor: pointer;
-        }
-        .drink-finder-item:hover {
-            background-color: #4a5568; /* bg-gray-600 */
-            border-color: #f59e0b; /* border-amber-500 */
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-        }
-        .drink-finder-item-title {
-            font-family: 'Roboto Condensed', sans-serif;
-            font-weight: 700;
-            color: #f59e0b; /* text-amber-500 */
-            margin-bottom: 0.5rem; /* mb-2 */
-            font-size: 0.875rem;
-            line-height: 1.2;
-        }
-        .drink-finder-item-ingredients {
-            list-style: none;
-            padding-left: 0;
-        }
-        .drink-finder-item-ingredients li {
-            margin-top: 0.375rem;
-        }
-        
-        /* Bar Stock Interaction Styles */
-        .stock-button {
-            position: relative;
-            padding-right: 2.25rem !important; /* pr-9 */
-        }
-        .stock-button .search-icon {
-            position: absolute;
-            right: 0.5rem; /* pr-2 */
-            top: 50%;
-            transform: translateY(-50%);
-            color: #9ca3af; /* gray-400 */
-            cursor: pointer;
-            transition: color 0.2s, transform 0.2s;
-            padding: 4px; /* for easier clicking */
-        }
-        .stock-button .search-icon:hover {
-            color: #f59e0b; /* amber-500 */
-            transform: translateY(-50%) scale(1.2);
         }
 
     </style>
 </head>
 <body class="text-gray-300">
 
-<div id="app-container">
-    <header class="container mx-auto px-4 pt-4 max-w-7xl flex-shrink-0">
-        <div class="text-center z-40 bg-transparent">
-            <div id="header-logo-container" class="h-24 md:h-28 w-full max-w-3xl mx-auto flex items-center justify-center">
-                 <h1 class="drop-shadow-lg">NOMADS</h1>
-            </div>
-        </div>
-        <div id="filter-status" class="text-center my-2"></div>
-    </header>
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
 
-    <main class="container mx-auto px-4 max-w-7xl relative">
-        <div id="menu-grid" class="gap-4"></div>
-    </main>
-    
-    <button id="arrow-left" class="nav-arrow"><i class="fas fa-chevron-left"></i></button>
-    <button id="arrow-right" class="nav-arrow"><i class="fas fa-chevron-right"></i></button>
+        <header class="text-center z-40 bg-[#1a110a] py-2">
+            <div class="header-patch">
+                <div class="flex flex-col items-center">
+                    <div id="header-logo-container" class="h-24 md:h-32 w-full max-w-2xl md:max-w-5xl mx-auto flex items-center justify-center bg-black/20 rounded-lg">
+                        <div class="title-loader"></div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <p id="show-story-link">The Legend of Cowboy</p>
+                    </div>
+                    <div class="flex justify-center items-center gap-x-4 mt-3">
+                        <div id="bar-stock-toggle" class="toggle-switch">
+                            <div class="toggle-nub"><i class="fas fa-motorcycle"></i></div>
+                            <span class="toggle-text">Bar Stock</span>
+                        </div>
+                        <div id="suggest-drink-toggle" class="toggle-switch">
+                            <div class="toggle-nub"><i class="fas fa-dice"></i></div>
+                            <span class="toggle-text">Roll Dice</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div id="filter-status" class="text-center my-4"></div>
+
+        <main>
+            <div id="menu-grid" class="gap-6 md:gap-8 mt-4"></div>
+        </main>
+        
+        <button id="arrow-left" class="nav-arrow"><i class="fas fa-chevron-left"></i></button>
+        <button id="arrow-right" class="nav-arrow"><i class="fas fa-chevron-right"></i></button>
+
+        <footer class="mt-12 md:mt-20 pt-8 text-center">
+            <!-- Footer content removed -->
+        </footer>
+
+    </div>
     
     <div class="sticky-filter-bar">
         <nav id="flavor-filter-nav" class="gap-2"></nav>
         <nav id="category-filter-nav" class="gap-2">
-            <p class="font-rye text-sm text-gray-400 mr-4 flex-shrink-0">Bikers Welcome</p>
-            <button id="bar-stock-btn" class="filter-btn"><i class="fas fa-motorcycle mr-2 text-gray-400"></i>Bar Stock</button>
-            <div class="h-6 border-l border-gray-600 mx-2 flex-shrink-0"></div>
-            <div class="flex items-center space-x-2 flex-shrink-0" title="Toggle visibility of out-of-stock drinks">
-                <label for="hide-unavailable-toggle" class="text-xs font-condensed uppercase text-gray-400">HIDE OOS</label>
-                <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" id="hide-unavailable-toggle" class="sr-only peer">
-                    <div class="w-9 h-5 bg-gray-600 rounded-full peer peer-focus:ring-2 peer-focus:ring-amber-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-600"></div>
-                </label>
-            </div>
-            <button id="clear-filters-btn" class="filter-btn" title="Clear all category and flavor filters"><i class="fas fa-times-circle mr-2 text-gray-400"></i>Clear</button>
-            <div class="h-6 border-l border-gray-600 mx-2 flex-shrink-0"></div>
             <button data-category="all" class="filter-btn active-filter">All</button>
             <button data-category="signature" class="filter-btn"><i class="fas fa-skull mr-2 text-amber-400"></i>Signature</button>
             <button data-category="classics" class="filter-btn"><i class="fas fa-trophy mr-2 text-yellow-500"></i>Classics</button>
@@ -870,60 +345,117 @@
             <button data-category="schnapps" class="filter-btn"><i class="fas fa-mortar-pestle mr-2 text-purple-400"></i>Liqueurs</button>
         </nav>
     </div>
-</div>
 
-    
-<div id="bar-stock-modal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 hidden opacity-0 z-50">
-        <div class="bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl max-h-[95vh] flex flex-col border border-gray-600">
-            <div class="p-6 border-b border-gray-600">
-                <div class="flex justify-between items-center">
-                    <h2 class="text-2xl font-bold text-white">Bar Stock</h2>
-                    <div class="flex items-center gap-4">
-                        <button id="reset-stock-btn" class="text-sm text-amber-500 hover:text-amber-300 transition-colors">Reset Stock</button>
-                        <button class="close-modal-btn text-gray-400 hover:text-white text-3xl">&times;</button>
+    <!-- Modals -->
+    <div id="story-modal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 hidden opacity-0 z-50">
+        <div class="bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl max-h-[95vh] overflow-y-auto border border-gray-600">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-white">The Legend of Cowboy</h2>
+                    <button class="close-modal-btn text-gray-400 hover:text-white text-3xl">&times;</button>
+                </div>
+                <div class="patch border-2 border-gray-600 p-6 rounded-lg mx-auto bg-gray-900/50">
+                    <p class="text-gray-400 font-rye text-lg leading-relaxed">
+                        They say a man named Cowboy, built like a mountain and quiet as a shadow, rode a Harley that sounded like thunder breaking over a graveyard. He’d show up just when a traveler was broken down, wrench on the engine, share a swig from his flask, and be gone before you could properly thank him. Some say he’s a ghost, others say he’s a nomad. We say he’s a damn good reason to keep a bottle of the good stuff ready.
+                    </p>
+                    <div class="border-t-2 border-dashed border-gray-600 my-6"></div>
+                    <p class="text-gray-400 italic mb-4 text-center">Every rider has a story. What's yours?</p>
+                    <div class="text-center">
+                        <button id="create-drink-btn" class="text-white font-condensed uppercase tracking-wider font-bold py-3 px-6 rounded-md">✨ Create Your Own Legend</button>
                     </div>
                 </div>
-            </div>
-            <div id="bar-stock-content" class="p-6 text-gray-300 overflow-y-auto">
-                <div id="drink-finder-section" class="mb-6">
-                    <h2 class="text-xl text-amber-400 mb-2">Drink Finder</h2>
-                    <p class="text-sm text-gray-400 mb-3">Based on your current stock, you can make these. Search by name or ingredient.</p>
-                    <input type="text" id="drink-finder-input" placeholder="Search makeable drinks..." class="w-full bg-gray-900 border border-gray-600 rounded p-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                    <div id="drink-finder-results" class="mt-3 max-h-60 overflow-y-auto space-y-1 p-1"></div>
-                </div>
-                <div class="border-t-2 border-dashed border-gray-600 my-6"></div>
-                <div><h2 class="text-xl text-green-400 mb-4">IN STOCK</h2><div id="in-stock-lists"></div></div>
-                <div class="border-t-2 border-dashed border-gray-600 my-6"></div>
-        <div id="out-of-stock-lists"></div>
             </div>
         </div>
     </div>
 
+    <div id="bar-stock-modal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 hidden opacity-0 z-50">
+        <div class="bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl max-h-[95vh] flex flex-col border border-gray-600">
+            <div class="p-6 border-b border-gray-600"><div class="flex justify-between items-center"><h2 class="text-2xl font-bold text-white">Bar Stock</h2><button class="close-modal-btn text-gray-400 hover:text-white text-3xl">&times;</button></div></div>
+            <div id="bar-stock-content" class="p-6 text-gray-300 overflow-y-auto">
+                <div><h2 class="text-xl text-green-400 mb-4">IN STOCK</h2><div id="in-stock-lists"></div></div>
+                <div class="border-t-2 border-dashed border-gray-600 my-6"></div>
+                <div><h2 class="text-xl text-red-400 mb-4">OUT OF STOCK</h2><div id="out-of-stock-lists"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="suggest-drink-modal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 hidden opacity-0 z-50">
+        <div class="bg-gray-800 rounded-lg shadow-xl w-full max-w-md text-center p-6 border border-gray-600">
+            <div class="flex justify-between items-start mb-4"><h2 class="text-2xl font-bold text-white">Roll the Dice</h2><button class="close-modal-btn text-gray-400 hover:text-white text-3xl -mt-2">&times;</button></div>
+            <div id="dice-roller-content"></div>
+        </div>
+    </div>
+
+    <div id="create-drink-modal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 hidden opacity-0 z-50">
+        <div class="bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl max-h-[95vh] flex flex-col border border-gray-600">
+            <div class="p-6 border-b border-gray-600"><div class="flex justify-between items-center"><h2 class="text-2xl font-bold text-white">Create Your Own Legend</h2><button class="close-modal-btn text-gray-400 hover:text-white text-3xl">&times;</button></div></div>
+            <div class="p-6 overflow-y-auto"><div id="gemini-drink-builder" class="mb-4"></div><div id="gemini-drink-output"></div></div>
+        </div>
+    </div>
+
     <script>
+        // --- Cocktail Data ---
         const cocktails = [
-            // Signature Drinks
-            { name: "Redheaded Trouble", category: ["signature", "schnapps"], flavorProfile: "Herbal & Peach", recipe: [{ name: "Jägermeister", amount: "1.5 oz" }, { name: "Peach Schnapps", amount: "1 oz" }, { name: "Orange Juice", amount: "Top Off" }], story: "A redhead named Roxy used to ride a custom Triumph. She'd order three of these at a time: one for her, one for 'the road,' and one for 'the trouble she was about to cause.' Last we saw her, she was out-running a sheriff on a gravel road, laughing the whole damn way.", reviews: [{reviewer: "Roxy 'The Rebel' Malone", text: "This drink is as fiery as its namesake. A perfect start to a wild night."}, {reviewer: "Road Dog Ricky", text: "Smooth, sweet, but with that herbal kick that sneaks up on you. Just like Roxy did."}] },
-            { name: "Caramel Apple Cruiser", category: ["signature", "schnapps"], flavorProfile: "Sweet, Tart & Spicy", recipe: [{ name: "Butterscotch Schnapps", amount: "1.5 oz" }, { name: "Apple Pucker", amount: "1.5 oz" }, { name: "Angostura Bitters", amount: "2 Dashes" }, { name: "Ginger Ale", amount: "Top Off" }], story: "This is for the guy on the candy-apple red cruiser that looks all show, no go. Then he takes it to the drag strip and leaves everyone in his dust. This drink is the same - looks innocent, but that spicy kick from the bitters will get you from zero to sixty before you know it.", reviews: [{reviewer: "Dragstrip Dale", text: "Thought this was gonna be some candy drink. That spicy finish straightened me right out. Respect."}, {reviewer: "Greaser Gus", text: "Tastes like winning a bet you were supposed to lose. Deceptively good."}] },
-            { name: "Irish Russian", category: ["signature", "vodka", "schnapps"], flavorProfile: "Creamy & Rich Coffee", recipe: [{ name: "Ketel One Vodka", amount: "1.5 oz" }, { name: "Kahlúa", amount: "1 oz" }, { name: "Baileys Irish Cream", amount: "1 oz" }, { name: "Simple Syrup", amount: "0.75 oz" }, { name: "Club Soda", amount: "Top Off" }], story: "We invented this for a biker from Boston who couldn't decide between his two heritages. He'd slam one down and say it was for 'the fightin' Irish and the cold-hearted Russian' in him. Said it was the only way to get them to agree on anything.", reviews: [{reviewer: "Boston Mike", text: "This one's got the punch of a bare-knuckle boxer and the smoothness of a brand new highway. Perfect."}, {reviewer: "Hammerin' Helen", text: "It's like a shot of coffee and a shot of courage all in one. Gets you ready for the long haul."}] },
-            { name: "Purple Hooter", category: ["signature", "vodka", "schnapps"], flavorProfile: "Sweet & Raspberry & Floral", recipe: [{ name: "Ketel One Vodka", amount: "2 oz" }, { name: "Raspberry Schnapps", amount: "1.25 oz" }, { name: "Peychaud's Bitters", amount: "2 Dashes" }, { name: "Lime Juice", amount: "1 oz" }, { name: "Club Soda", amount: "Top Off" }], story: "We only serve this after we've taken your keys. A group of riders came through once, had a few of these, and tried to pay with a live armadillo. They seemed to think it was a good idea at the time. The armadillo, and the sheriff, disagreed. The bitters are a reminder of that bitter regret.", reviews: [{reviewer: "Whiskey Wanda", text: "Don't let the color fool you, this ain't no sissy drink. It'll have you telling stories for years."}, {reviewer: "Wild Bill", text: "Tastes like a good time that you might not remember tomorrow. Worth it."}] },
-            { name: "The Ghost Rider", category: ["signature", "tequila", "schnapps"], flavorProfile: "Herbal Anise & Sharp", recipe: [{ name: "Pernod", amount: "1.25 oz" }, { name: "Jose Cuervo Silver Tequila", amount: "2 oz" }, { name: "Lime Juice", amount: "1 oz" }, { name: "Club Soda", amount: "Top Off" }], story: "Named for a mysterious rider on a flaming bike who only ever ordered one thing. It's sharp, herbal, and leaves an otherworldly impression, just like him.", reviews: [{reviewer: "Shadow Sam", text: "This drink has a kick like a shovelhead on a cold morning. Not for the faint of heart."}, {reviewer: "Mystic Mae", text: "Tastes like lightning in a glass. Woke me up better than a straight pipe exhaust."}] },
-            { name: "The Phantom Shift", category: ["signature", "gin", "schnapps"], flavorProfile: "Herbal Anise & Crisp", recipe: [{ name: "Pernod", amount: "1.25 oz" }, { name: "Tanqueray Gin", amount: "2 oz" }, { name: "Lime Juice", amount: "1 oz" }, { name: "Tonic Water", amount: "Top Off" }], story: "They say if you're on a lonely road at midnight, you can sometimes feel a bike shift gears right next to you, even when no one's there. This drink is for that feeling—anise-forward, sharp, and gone before you can place it. It's the taste of a legend riding alongside you.", reviews: [{reviewer: "Road Ghost Riley", text: "Clean, sharp, and unforgettable. It's the taste of a mystery you don't want to solve."}, {reviewer: "Midnight Mark", text: "Had one of these and swore I could hear my old panhead whispering to me. Good stuff."}] },
-            { name: "The White Liner", category: ["signature", "gin", "schnapps"], flavorProfile: "Clean, Crisp & Floral", recipe: [{ name: "Tanqueray Gin", amount: "2 oz" }, { name: "St-Germain", amount: "1.25 oz" }, { name: "Lemon Juice", amount: "1 oz" }, { name: "Orange Bitters", amount: "2 Dashes" }, { name: "Club Soda", amount: "Top Off" }], story: "For the rider who stays true to their path. This drink is just as clean and direct—a crisp, floral shot of gin and elderflower that keeps you on the straight and narrow. No detours, no distractions, just the pure taste of the open road ahead.", reviews: [{reviewer: "Straight-Edge Steve", text: "Smooth, straight, and no B.S. Just like the line on the highway. My new go-to."}, {reviewer: "Navigator Nancy", text: "A damn fine drink. Crisp as a fall morning ride through the mountains."}] },
-            { name: "The Blacktop Sunset", category: ["signature", "whiskey"], flavorProfile: "Sweet & Spicy", recipe: [{ name: "Jameson Irish Whiskey", amount: "1.5 oz" }, { name: "Southern Comfort", amount: "1.5 oz" }, { name: "Lime Juice", amount: "1 oz" }, { name: "Angostura Bitters", amount: "2 Dashes" }, { name: "Ginger Ale", amount: "Top Off" }], story: "For that moment the sun dips below the horizon and paints the blacktop gold. It's the taste of a successful haul—smooth whiskey, the sweet memory of the day, and a spicy kick to remind you that tomorrow's another ride.", reviews: [{reviewer: "Sunset Sally", text: "The perfect drink to end a long day's ride. Got the right amount of sweetness and a kick to keep you honest."}, {reviewer: "Asphalt Andy", text: "This tastes like freedom. Nothing better after putting the kickstand down."}] },
-            { name: "Storm Rider", category: ["signature", "rum"], flavorProfile: "Dark, Spiced & Strong", recipe: [{ name: "Kraken Black Spiced Rum", amount: "2 oz" }, { name: "Lime Juice", amount: "1.25 oz" }, { name: "Angostura Bitters", amount: "2 Dashes" }, { name: "Ginger Ale", amount: "Top Off" }], story: "This one's for the riders who don't pull over when the sky turns black. They lean into the wind and chase the storm. It’s dark, spicy, and has a kick that’ll rattle your bones.", reviews: [{reviewer: "Thunderbolt Ted", text: "Dark and mean, just like the storm clouds it's named after. This'll put hair on your chest."}, {reviewer: "Rainmaker Rita", text: "Had one of these during a downpour. Felt like I could ride through anything. A true rider's drink."}] },
-            // Dogs
-            { name: "The Bulldog", category: ["dogs", "whiskey"], flavorProfile: "Bold & Citrus", recipe: [{ name: "Maker's Mark", amount: "2 oz" }, { name: "Simple Syrup", amount: "0.5 oz" }, { name: "Angostura Bitters", amount: "2 Dashes" }, { name: "Orange Juice", amount: "1 oz" }], story: "Sturdy, dependable, and packs a surprising punch. This drink is for the old-timer in the corner with a bike that's more rust than chrome, but you know it'll start on the first kick, every single time. It's a classic, loyal companion.", reviews: [{reviewer: "Ol' Reliable Ron", text: "This is a proper drink. Strong, straightforward, with a bit of a bite. Just like my old panhead."}, {reviewer: "Sarge", text: "Reminds me of my first bike. Not flashy, but it never let me down. Solid."}] },
-            { name: "The Greyhound", category: ["dogs", "vodka"], flavorProfile: "Crisp & Lime", recipe: [{ name: "Ketel One Vodka", amount: "2 oz" }, { name: "Lime Juice", amount: "1 oz" }, { name: "Ginger Ale", amount: "Top Off" }], story: "For the rider on the sleek sport bike that vanishes down the highway before you can even get a good look. It's fast, sharp, and clean. One minute it's there, the next it's just a memory and the lingering taste of lime.", reviews: [{reviewer: "Speed Demon Sally", text: "Clean, fast, and refreshing. The perfect drink when you want to feel the wind in your hair."}, {reviewer: "Needlepoint Nick", text: "This thing is dangerously smooth. It'll get you up to speed in no time."}] },
-            { name: "The Junkyard Dog", category: ["dogs", "schnapps"], flavorProfile: "Herbal & Sweet", recipe: [{ name: "Jägermeister", amount: "1 oz" }, { name: "Southern Comfort", amount: "1 oz" }, { name: "Lime Juice", amount: "0.5 oz" }], story: "This drink is like a bike built from spare parts—it doesn't look like it should work, but somehow it runs like a beast. A little bit of this, a little bit of that, and a whole lot of attitude. It's surprisingly good, and it'll bite you if you don't respect it.", reviews: [{reviewer: "Scrapmetal Steve", text: "I didn't think these things went together, but damn if it ain't good. It's got character."}, {reviewer: "Grease Monkey Gina", text: "A perfect mix of mean and sweet. My new favorite for when I'm cleaning parts."}] },
-            // Classics
-            { name: "Old Fashioned", category: ["classics", "whiskey"], flavorProfile: "Bold, Sweet & Bitter", recipe: [{ name: "Maker's Mark", amount: "2 oz" }, { name: "Simple Syrup", amount: "0.75 oz" }, { name: "Orange Bitters", amount: "2 Dashes" }, { name: "Cherry Garnish", amount: "Garnish" }, { name: "Club Soda", amount: "Splash" }], story: "Old Man Hemlock only drinks this. He says, 'You don't need a thousand new parts to make a bike run true, and you don't need a thousand ingredients for a real drink.' It’s a testament to doing things the right way.", reviews: [{reviewer: "Old Man Hemlock", text: "They don't make 'em like they used to, but they still make this. Thank God. A true classic."}, {reviewer: "Wise Wanda", text: "This is what a real drink tastes like. No frills, all business. Just like my ride."}] },
-            { name: "Moscow Mule", category: ["classics", "vodka"], flavorProfile: "Spicy Ginger & Lime", recipe: [{ name: "Ketel One Vodka", amount: "2 oz" }, { name: "Lime Juice", amount: "1 oz" }, { name: "Angostura Bitters", amount: "2 Dashes" }, { name: "Ginger Ale", amount: "Top Off" }], story: "A prospect once complained his bike was kicking back on him. The club president handed him one of these and said, 'Now you've got something that kicks back even harder. One of 'em you'll learn to handle.' The kid learned to respect both.", reviews: [{reviewer: "Kickstart Kenny", text: "That ginger kick is no joke. Wakes you up and gets you ready to ride."}, {reviewer: "Road Queen Ruby", text: "Refreshing as hell after a hot day on the asphalt. The only kickback I actually enjoy."}] },
-            { name: "Long Island Iced Tea", category: ["classics", "vodka", "gin", "rum", "tequila", "schnapps"], flavorProfile: "Strong, Sweet & Sour", recipe: [{ name: "Ketel One Vodka", amount: "0.75 oz" }, { name: "Tanqueray Gin", amount: "0.75 oz" }, { name: "Rum", amount: "0.75 oz" }, { name: "Jose Cuervo Silver Tequila", amount: "0.75 oz" }, { name: "Triple Sec", amount: "0.75 oz" }, { name: "Lemon Juice", amount: "1 oz" }, { name: "Cola", amount: "Top Off" }], story: "A guy once bet he could build an engine after drinking three of these. He didn't build an engine, but he did try to use a jukebox as a telephone and offered to trade his leather jacket for a half-eaten plate of nachos. This drink has a way of rewriting your priorities.", reviews: [{reviewer: "Party Animal Pete", text: "This ain't a drink, it's a destination. One of these and you're feeling no pain."}, {reviewer: "Loose Lips Lucy", text: "Rides smooth, hits hard. Handle with care, or you'll end up trading your jacket for nachos too."}] },
-            { name: "Margarita", category: ["classics", "tequila"], flavorProfile: "Tart & Lime & Salty", recipe: [{ name: "Jose Cuervo Silver Tequila", amount: "2 oz"}, { name: "Triple Sec", amount: "1 oz"}, { name: "Lime Juice", amount: "1 oz"}, { name: "Salt Rim", amount: "Garnish"}], story: "For when the road gets hot and dusty. This drink is a sharp, cool relief. It's the taste of crossing the border after a long, hard ride. Freedom in a glass.", reviews: [{reviewer: "El Zorro", text: "The only thing better than the wind in your face is the salt on the rim of this glass. ¡Salud!"}, {reviewer: "Dusty Boots", text: "Cuts through the dust of the road like nothing else. A perfect end to a desert run."}] },
-            { name: "Dark 'n' Stormy", category: ["rum", "classics"], flavorProfile: "Spicy Ginger & Lime", recipe: [{ name: "Kraken Black Spiced Rum", amount: "2 oz"}, { name: "Ginger Ale", amount: "4 oz"}, { name: "Lime Juice", amount: "0.5 oz"}], story: "Named for a sky that every rider knows. It's dark, moody, and it's got a kick of lightning from the ginger. This is what you drink when you can hear the thunder rolling in.", reviews: [{reviewer: "Thunder", text: "Tastes like the calm before the storm. And the storm itself. Perfect."}, {reviewer: "Lightning", text: "That ginger spice is electric. My new favorite."}] }
+            { name: "Redheaded Trouble", strength: 2, category: ["signature", "schnapps"], flavorProfile: "Herbal & Peach", recipe: ["1 oz Jägermeister", "1 oz Peach Schnapps", "Fill a tall glass with Orange Juice"], story: "A redhead named Roxy used to ride a custom Triumph. She'd order three of these at a time: one for her, one for 'the road,' and one for 'the trouble she was about to cause.' Last we saw her, she was out-running a sheriff on a gravel road, laughing the whole damn way." },
+            { name: "Caramel Apple Cruiser", strength: 2, category: ["signature", "schnapps"], flavorProfile: "Sweet, Tart & Spicy", recipe: ["1 oz Butterscotch Schnapps", "1 oz Apple Pucker", "2 dashes Angostura Bitters", "Fill a tall glass with Ginger Ale"], story: "This is for the guy on the candy-apple red cruiser that looks all show, no go. Then he takes it to the drag strip and leaves everyone in his dust. This drink is the same - looks innocent, but that spicy kick from the bitters will get you from zero to sixty before you know it." },
+            { name: "Irish Russian", strength: 3, category: ["signature", "vodka", "schnapps"], flavorProfile: "Creamy & Rich Coffee", recipe: ["2 oz Ketel One Vodka", "1 oz Kahlúa", "1 oz Baileys Irish Cream", "0.25 oz Simple Syrup", "Fill a tall glass with Club Soda"], story: "We invented this for a biker from Boston who couldn't decide between his two heritages. He'd slam one down and say it was for 'the fightin' Irish and the cold-hearted Russian' in him. Said it was the only way to get them to agree on anything." },
+            { name: "Purple Hooter", strength: 2, category: ["signature", "vodka", "schnapps"], flavorProfile: "Sweet Raspberry & Floral", recipe: ["1 oz Ketel One Vodka", "1 oz Raspberry Schnapps", "2 dashes Peychaud's Bitters", "Splash Lime Juice", "Fill a tall glass with Club Soda"], story: "We only serve this after we've taken your keys. A group of riders came through once, had a few of these, and tried to pay with a live armadillo. They seemed to think it was a good idea at the time. The armadillo, and the sheriff, disagreed. The bitters are a reminder of that bitter regret." },
+            { name: "The Ghost Rider", strength: 4, category: ["signature", "tequila", "schnapps"], flavorProfile: "Herbal Anise & Sharp", recipe: ["1 oz Pernod", "2 oz Jose Cuervo Silver Tequila", "Fill a tall glass with Club Soda", "Splash of Lime Juice"], story: "Named for a mysterious rider on a flaming bike who only ever ordered one thing. It's sharp, herbal, and leaves an otherworldly impression, just like him." },
+            { name: "The Phantom Shift", strength: 4, category: ["signature", "gin", "schnapps"], flavorProfile: "Herbal Anise & Crisp", recipe: ["1 oz Pernod", "1 oz Tanqueray Gin", "0.5 oz Lime Juice", "Top with Tonic Water in a tall glass"], story: "They say if you're on a lonely road at midnight, you can sometimes feel a bike shift gears right next to you, even when no one's there. This drink is for that feeling—anise-forward, sharp, and gone before you can place it. It's the taste of a legend riding alongside you." },
+            { name: "The White Liner", strength: 3, category: ["signature", "gin", "schnapps"], flavorProfile: "Clean, Crisp & Floral", recipe: ["1.5 oz Tanqueray Gin", "0.75 oz St-Germain", "0.75 oz Lemon Juice", "2 dashes Orange Bitters", "Top with Club Soda in a tall glass"], story: "For the rider who stays true to their path. This drink is just as clean and direct—a crisp, floral shot of gin and elderflower that keeps you on the straight and narrow. No detours, no distractions, just the pure taste of the open road ahead." },
+            { name: "The Junk Drawer", strength: 2, category: ["signature", "schnapps"], flavorProfile: "Sweet, Sweet & Sweet", recipe: ["0.75 oz Raspberry Schnapps", "0.75 oz Butterscotch Schnapps", "0.75 oz Root Beer Schnapps", "Fill a tall glass with Club Soda"], story: "You know that drawer in your garage with all the leftover parts? This is the liquid version. It sounds like it shouldn't work, but one sip and you'll realize it's a custom build that's more than the sum of its parts." },
+            { name: "The Blue Lagoon's Ghost", strength: 3, category: ["signature", "rum", "schnapps"], flavorProfile: "Tropical & Sweet Cherry", recipe: ["1.5 oz Rum", "0.5 oz Blue Curacao", "0.5 oz Maraschino Liqueur", "Splash Lime Juice"], story: "A rider swore he saw a ghost ship on a moonlit ride along the coast. He came in and asked for a drink that tasted like the tropics, but with a haunting finish. This is it. Bright, fruity, and mysteriously complex." },
+            { name: "Two Kings", strength: 4, category: ["signature", "whiskey"], flavorProfile: "Bold & Smooth", recipe: ["1 oz Knob Creek", "1 oz Crown Royal", "Top with Club Soda in a tall glass"], story: "For when you can't decide which king to follow. This drink pays tribute to both the rugged power of Kentucky and the smooth royalty of the North. It's a simple, powerful statement." },
+            { name: "The Double Cross", strength: 5, category: ["signature", "whiskey", "schnapps"], flavorProfile: "Bitter, Sweet & Salty", recipe: ["2 oz Bulleit Bourbon", "1 oz Campari", "Half Salt, Half Sugar Rim"], story: "For the rider who plays both sides. It's a bitter pill to swallow, but the conflicting rim reminds you that every betrayal has its sweet and salty moments. Trust no one." },
+            { name: "The Blacktop Sunset", strength: 3, category: ["signature", "whiskey"], flavorProfile: "Sweet & Spicy", recipe: ["1 oz Jameson Irish Whiskey", "1 oz Southern Comfort", "0.5 oz Lime Juice", "2 dashes Angostura Bitters", "Fill a tall glass with Ginger Ale"], story: "For that moment the sun dips below the horizon and paints the blacktop gold. It's the taste of a successful haul—smooth whiskey, the sweet memory of the day, and a spicy kick to remind you that tomorrow's another ride." },
+            { name: "The Elderflower Nomad", strength: 3, category: ["signature", "gin", "schnapps"], flavorProfile: "Floral & Herbal", recipe: ["1.5 oz Tanqueray Gin", "0.75 oz St-Germain", "0.5 oz Lime Juice", "2 dashes Rosemary Lavender Bitters", "Top with Club Soda in a tall glass"], story: "For the rider who takes the scenic route, not the highway. It’s a complex, floral journey in a glass, a taste of wild elderflower fields discovered on a long-forgotten backroad. It doesn't rush." },
+            { name: "Finn's Orchard Kick", strength: 3, category: ["signature", "whiskey", "schnapps"], flavorProfile: "Smooth, Tart & Spicy", recipe: ["2 oz Jameson Irish Whiskey", "1 oz Apple Pucker", "2 dashes Angostura Bitters", "Top with Ginger Ale in a tall glass"], story: "An Irish rider named 'Finn' brought this idea in. Said it reminded him of home, but with an edge. The bitters give it a spiced, unexpected kick for those who look easy-going, but have a sharp turn if you cross them. Like Finn himself." },
+            { name: "The Apparition", strength: 3, category: ["vodka", "schnapps"], flavorProfile: "Floral & Spicy", recipe: ["2 oz Ketel One Vodka", "0.75 oz St-Germain", "0.5 oz Lime Juice", "Fill a tall glass with Ginger Ale"], story: "For the rider who seems to show up out of nowhere and disappear just as fast. It's smooth, with a floral note you can't quite place, and a spicy finish. By the time you figure it out, it's already a memory." },
+            { name: "Black-Top Burner", strength: 3, category: ["vodka", "schnapps"], flavorProfile: "Bold, Herbal & Sweet", recipe: ["1.5 oz Ketel One Vodka", "0.5 oz Jägermeister", "Fill a tall glass with Cola"], story: "Named for the burnout marks left by a local legend's panhead. It’s dark, aggressive, and leaves a lasting impression. It's not a drink for making friends, it's for making a statement." },
+            { name: "The Mechanic", strength: 3, category: ["vodka", "schnapps"], flavorProfile: "Citrus, Sweet & Sour", recipe: ["2 oz Stolichnaya Citros Vodka", "1 oz Blue Curacao", "2 dashes Orange Bitters", "Fill a tall glass with Sour Mix"], story: "An old-timer named Gus, who could fix a Harley with a paperclip and a prayer, used to drink this. Said the color reminded him of windshield washer fluid, but the bitters gave it the 'penetrating oil' kick it needed. It’s surprisingly effective and gets you running smoother than you have any right to." },
+            { name: "Redline Riot", strength: 2, category: ["vodka", "schnapps"], flavorProfile: "Sweet Cherry & Sour", recipe: ["1.5 oz Ketel One Vodka", "1 oz Cherry Schnapps", "Fill a tall glass with Sour Mix", "Splash of Lime Juice"], story: "You know that feeling when you push the engine to its limit, just before you shift? The vibration, the roar, the pure power? We bottled that feeling. This drink does not whisper. It's for when you want to feel the engine scream." },
+            { name: "The Kickstart", strength: 2, category: ["rum"], flavorProfile: "Spiced & Sharp Ginger", recipe: ["2 oz Captain Morgan Spiced Rum", "0.5 oz Lime Juice", "Fill a tall glass with Ginger Ale"], story: "For those cold mornings when the engine won't turn over. This ain't coffee. It's a jolt of spiced rum and ginger that'll kickstart your heart and get you back on the road. Guaranteed to fire on the first try." },
+            { name: "The Castaway", strength: 2, category: ["rum"], flavorProfile: "Tropical, Fruity & Spiced", recipe: ["2 oz Captain Morgan Spiced Rum", "1 oz Pineapple Juice", "0.5 oz Orange Juice", "2 dashes Angostura Bitters", "Splash of Grenadine", "Top with Club Soda in a tall glass"], story: "A guy who rode in from the coast, salty and sun-beaten, asked for something that tasted like being stranded in paradise. This is it. Sweet, fruity, and just a little bit dangerous—the bitters add that note of 'I survived a shipwreck to get here.' It’s a vacation in a glass." },
+            { name: "Storm Rider", strength: 3, category: ["rum"], flavorProfile: "Dark, Spiced & Strong", recipe: ["2 oz Kraken Black Spiced Rum", "0.5 oz Lime Juice", "2 dashes Angostura Bitters", "Fill a tall glass with Ginger Ale"], story: "This one's for the riders who don't pull over when the sky turns black. They lean into the wind and chase the storm. It’s dark, spicy, and has a kick that’ll rattle your bones. The Kraken rum adds the dark, mythical power of the deep, making this a taste of the storm itself." },
+            { name: "The Kraken's Grip", strength: 3, category: ["rum", "schnapps"], flavorProfile: "Dark, Sweet & Nutty", recipe: ["1.5 oz Kraken Black Spiced Rum", "1 oz Amaretto", "Fill a tall glass with Cola"], story: "A sailor-turned-biker with a kraken tattooed up his arm brought this recipe in. He said it was dark, mysterious, and had a grip that wouldn't let go, just like the beast on his skin. He wasn't wrong. Approach with caution." },
+            { name: "The Siren's Call", strength: 4, category: ["rum", "schnapps"], flavorProfile: "Sweet, Tropical & Bitter", recipe: ["1.5 oz Kraken Black Spiced Rum", "0.75 oz Campari", "1.5 oz Pineapple Juice", "0.5 oz Lime Juice"], story: "A salty old road dog who'd been a sailor in another life brought this one in. He said it tastes like a beautiful island that you know you should never land on. Sweet at first, but the bitter finish pulls you under. It's a beautiful trap." },
+            { name: "The Switchback", strength: 3, category: ["gin"], flavorProfile: "Sharp & Clean", recipe: ["2 oz Tanqueray Gin", "1 oz Lime Juice", "Fill a tall glass with Club Soda"], story: "Named for those tight, winding mountain roads that demand your full attention. This drink is just as sharp and clean. No nonsense, just a crisp, straightforward kick that'll wake you up. Underestimate it, and you'll end up in the weeds." },
+            { name: "The Long Haul", strength: 3, category: ["gin"], flavorProfile: "Crisp, Dry & Herbal", recipe: ["2 oz Tanqueray Gin", "0.5 oz Lime Juice", "Top with Tonic Water in a tall glass", "2 dashes Rosemary Lavender Bitters"], story: "This is the go-to for the old-timers who've seen every mile of Route 66. It's crisp and refreshing, but that herbal kick from the bitters is a reminder of the high-desert sagebrush you ride through. It's not a sprint, it's a marathon, and this is your fuel." },
+            { name: "The Barbed Wire", strength: 4, category: ["gin", "schnapps"], flavorProfile: "Herbal, Prickly & Bitter", recipe: ["1.5 oz Tanqueray Gin", "0.5 oz Jägermeister", "Fill a tall glass with Tonic Water"], story: "Some trails are best left untraveled. A grizzled old rider they called 'Barbs' used to drink this. Said it tasted like a shortcut through a rancher's fence—sharp, herbal, and you feel every bit of it. It's for when you know the easy way is the wrong way." },
+            { name: "The Rattlesnake", strength: 3, category: ["tequila", "schnapps"], flavorProfile: "Sweet Cherry & Tequila Bite", recipe: ["2 oz El Mayor Tequila", "0.5 oz Cherry Schnapps", "0.5 oz Lime Juice", "Top with Club Soda in a tall glass"], story: "You never hear the one that gets you. An old prospector-turned-biker brought this recipe in. Said it's like a desert rattler—brightly colored to warn you off, but if you get too close, the tequila bite is fast and the cherry venom follows. It demands respect." },
+            { name: "Dust Devil", strength: 3, category: ["tequila", "schnapps"], flavorProfile: "Sweet, Tropical & Bitter", recipe: ["2 oz Jose Cuervo Silver Tequila", "1 oz Pineapple Juice", "0.5 oz Maraschino Liqueur", "Dash of Orange Bitters", "Top with Club Soda in a tall glass"], story: "For those days when the road is long and the dust is thick. This drink is a whirlwind of sweet and bitter that'll pick you up, spin you around, and set you back down a little dazed but ready for more. It's a taste of the wild frontier." },
+            { name: "Desert Sunrise", strength: 2, category: ["tequila"], flavorProfile: "Sweet, Citrus & Fruity", recipe: ["2 oz El Mayor Tequila", "Fill a tall glass with Orange Juice", "2 dashes Orange Bitters", "0.5 oz Grenadine"], story: "For the rider who's seen the sun come up over the desert plains one too many times. It's a reminder that every long, dark night is followed by a blaze of glory. The bitters are like that first ray of sun—sharp and full of promise. Simple, potent, and gets you ready for another day's ride." },
+            { name: "The Gilded Serpent", strength: 4, category: ["tequila", "schnapps"], flavorProfile: "Sweet, Floral & Sharp", recipe: ["1.5 oz El Mayor Tequila", "0.75 oz St-Germain", "1 oz Pineapple Juice", "0.5 oz Lime Juice"], story: "Named after a custom gold-plated chopper that was beautiful but rumored to be cursed. This drink is the same—alluringly sweet and floral at first, but the tequila's bite is a sharp reminder that beauty can be deceiving. It's a beautiful risk." },
+            { name: "Mad Dog", strength: 3, category: ["dogs", "vodka"], flavorProfile: "Tart Cranberry & Salty", recipe: ["2 oz Ketel One Vodka", "Fill a tall glass with Cranberry Juice", "Salt Rim"], story: "The Salty Dog got put down. This is what's left. It's meaner, redder, and bites back twice as hard. It’s for the days when your engine seizes and your patience has seized right along with it. This won't fix your bike, but it'll make you not care for a while." },
+            { name: "The Switchblade", strength: 3, category: ["dogs", "vodka"], flavorProfile: "Sweet & Intensely Sour", recipe: ["2 oz Stolichnaya Citros Vodka", "1 oz Lemon Juice", "0.75 oz Simple Syrup", "Sugar Rim"], story: "A rider they called 'Showtime' used to order these. Looked like a pretty boy, rode like a demon. The drink is the same: starts sweet, but the sour kick hits you like a pothole at 90 mph. It's deceptively dangerous." },
+            { name: "Sidecar Mutt", strength: 3, category: ["dogs", "whiskey", "schnapps"], flavorProfile: "Sour, Sweet & Strong", recipe: ["1.5 oz Seagram's 7", "0.75 oz Triple Sec", "0.75 oz Lemon Juice", "Sugar Rim"], story: "This ain't your granddad's clean cognac Sidecar. We built this one with what we had in the shop - good old Seagram's. It's a little rougher around the edges, but it's got heart and gets you where you need to go, with a sweet finish to reward the ride." },
+            { name: "The Blackout", strength: 2, category: ["schnapps"], flavorProfile: "Herbal & Dark", recipe: ["1.5 oz Jägermeister", "Fill a tall glass with Cola"], story: "A rider named 'Crow' only drank this. Said it was simple, effective, and reminded him of riding at night with a busted headlight. You don't see what's coming, you just feel it. A few of these and everything fades to black." },
+            { name: "Peaches 'n' Scream", strength: 2, category: ["schnapps", "whiskey"], flavorProfile: "Sweet, Peach & Bold", recipe: ["1.5 oz Peach Schnapps", "0.5 oz Southern Comfort", "Fill a tall glass with Orange Juice"], story: "Named after a biker's girlfriend who was sweet as a peach until you crossed her, then she'd scream loud enough to shatter glass. This drink is the same. It lures you in with sweetness, then the whiskey kick reminds you who's boss." },
+            { name: "The Outlaw's Peach", strength: 2, category: ["schnapps"], flavorProfile: "Creamy & Peach", recipe: ["1 oz Peach Schnapps", "1 oz Baileys Irish Cream", "Top with Cola in a tall glass"], story: "Looks smooth and creamy, but it's got a sweet, rebellious streak. Named for a biker who'd rob you blind with a smile on his face. It goes down easy, but you'll be wondering what hit you." },
+            { name: "The Crimson Guard", strength: 2, category: ["schnapps", "gin"], flavorProfile: "Fruity, Tart & Sharp", recipe: ["1.5 oz Sloe Gin", "0.5 oz Tanqueray Gin", "Fill a tall glass with Club Soda", "Splash of Lime Juice"], story: "Named for the old guard who protect the club's colors. It's deep red like the patches, sharp like their attitude, and the gin kick reminds you they've still got plenty of fight left in them. It's a drink that commands respect." },
+            { name: "The Road Rash", strength: 2, category: ["schnapps", "whiskey"], flavorProfile: "Sweet, Sour & Fruity", recipe: ["1 oz Sloe Gin", "1 oz Southern Comfort", "0.5 oz Lemon Juice", "Fill a tall glass with Club Soda"], story: "We named this after a prospect took a spill and came in looking scraped up but proud. It's a little sweet, a little sour, and has a color like a healing wound. It's a reminder that a few scars just mean you've got a good story to tell." },
+            { name: "The Ruby Rider", strength: 1, category: ["schnapps"], flavorProfile: "Deep, Fruity & Simple", recipe: ["2 oz Sloe Gin", "Fill a tall glass with Ginger Ale"], story: "A woman who rides a deep ruby-red Indian Scout orders this. It's her signature. Simple, elegant, but with a deep, fruity complexity that takes you by surprise. It's proof that you don't have to be loud to make a statement." },
+            { name: "Cowboy's Hard Root Beer", strength: 3, category: ["whiskey", "schnapps"], flavorProfile: "Sweet, Creamy & Bold", recipe: ["1.5 oz Jameson Irish Whiskey", "1 oz Root Beer Schnapps", "0.5 oz Simple Syrup", "Top with Club Soda in a tall glass"], story: "This is Cowboy's signature drink. He'd mix it himself after a long ride, saying it had the sweetness of a memory and the kick of a cold start on a winter morning. It's a taste of the open road, straight from the man himself." },
+            { name: "Knob Creek Kentucky Smash", strength: 4, category: ["whiskey"], flavorProfile: "Strong, Sour & Sweet", recipe: ["2 oz Knob Creek", "1 oz Lemon Juice", "0.75 oz Simple Syrup", "2 dashes Orange Bitters", "Top with Club Soda in a tall glass"], story: "A rider we call 'Wrench' drinks this. He says it's like rebuilding an engine: you need sour for the challenge, sweet for the satisfaction, and a bitter kick to remember it ain't always easy. Gets the job done." },
+            { name: "The Gilded Cage", strength: 3, category: ["whiskey", "schnapps"], flavorProfile: "Rich, Smooth & Nutty", recipe: ["1.5 oz Crown Royal", "0.5 oz Amaretto", "2 dashes Angostura Bitters", "Fill a tall glass with Ginger Ale"], story: "For the rider who's got it all but still yearns for the open road. It's smooth and rich, but that ginger and spiced bitter kick is a constant reminder of the freedom that lies just beyond the horizon. Tastes like luxury with an edge of rebellion." },
+            { name: "Bulleit Frontier Punch", strength: 3, category: ["whiskey"], flavorProfile: "Fruity, Sweet & Bold", recipe: ["2 oz Bulleit Bourbon", "2 oz Orange Juice", "0.5 oz Lemon Juice", "Splash of Grenadine", "Top with Club Soda in a tall glass"], story: "A group riding cross-country stops in every year. They order a round of these to wash away the trail dust. They say it tastes like a prairie sunset—a flash of sweet color after a long, hard, spicy ride." },
+            { name: "Seagram's Stone Sour", strength: 3, category: ["whiskey"], flavorProfile: "Classic Sour & Floral Bitter", recipe: ["2 oz Seagram's 7", "1 oz Lemon Juice", "0.5 oz Simple Syrup", "Splash of Orange Juice", "2 dashes Peychaud's Bitters", "Top with Club Soda in a tall glass"], story: "Everyone knows the simple Seagram's mix. A rider named 'Gus' asked us to give it some guts. We came up with this. He says it’s like his old bike—familiar, reliable, but with a few custom modifications, like those Peychaud's, that make it hit a whole lot harder and taste like nowhere else on earth." },
+            { name: "Jim Beam Black Cherry Bomb", strength: 3, category: ["whiskey", "schnapps"], flavorProfile: "Bold, Sweet & Cherry", recipe: ["2 oz Jim Beam Bourbon", "0.5 oz Cherry Schnapps", "Fill a tall glass with Cola"], story: "This is for the new bloods who think they know it all. It starts off familiar, like a classic ride. Then that cherry kick hits and reminds them that even the old standards have a few surprises left. It’s a lesson in a glass." },
+            { name: "Southern Crossroads", strength: 2, category: ["whiskey", "schnapps"], flavorProfile: "Sweet, Fruity & Deep", recipe: ["1.5 oz Southern Comfort", "0.5 oz Sloe Gin", "Fill a tall glass with Orange Juice"], story: "A musician on a beat-up bike once asked for a drink that tasted like 'making a deal with the devil at midnight.' This is it. It’s sweet, it's deep, and it has a strange, fruity tang that makes you wonder if you made the right choice." },
+            { name: "The Bitter End", strength: 4, category: ["whiskey", "schnapps"], flavorProfile: "Bitter, Sharp & Spiced", recipe: ["1.5 oz Whiskey", "0.75 oz Campari", "2 dashes Angostura Bitters", "Fill a tall glass with Club Soda"], story: "Some rides don't have a happy ending. This drink is for those times. It's strong from the whiskey, bitter from the Campari, and spiced with the harsh reality of the road. It’s a salute to the journeys that make you, and break you." },
+            { name: "Old Fashioned", strength: 4, category: ["classics", "whiskey"], flavorProfile: "Bold, Sweet & Bitter", recipe: ["2 oz Maker's Mark", "0.5 oz Simple Syrup", "2 dashes Orange Bitters", "Cherry Garnish", "Top with Club Soda in a tall glass"], story: "Old Man Hemlock only drinks this. He says, 'You don't need a thousand new parts to make a bike run true, and you don't need a thousand ingredients for a real drink.' It’s a testament to doing things the right way, no matter how long it takes." },
+            { name: "Margarita", strength: 4, category: ["classics", "tequila", "schnapps"], flavorProfile: "Salty, Sour & Sweet", recipe: ["2 oz Jose Cuervo Silver Tequila", "1 oz Triple Sec", "1 oz Lime Juice", "2 dashes Orange Bitters", "Salt Rim", "Top with Club Soda in a tall glass"], story: "A few guys rode in from Arizona, covered in dust and looking for trouble. They ordered a round of these. By the third, the stories got wilder and the bikes got shinier. We add bitters to ours—it's the secret ingredient that makes a long, hard ride legendary." },
+            { name: "Moscow Mule", strength: 3, category: ["classics", "vodka"], flavorProfile: "Spicy Ginger & Lime", recipe: ["2 oz Ketel One Vodka", "0.5 oz Lime Juice", "2 dashes Angostura Bitters", "Fill a tall glass with Ginger Ale"], story: "A prospect once complained his bike was kicking back on him. The club president handed him one of these and said, 'Now you've got something that kicks back even harder. The bitters are an extra kick to the gut. One of 'em you'll learn to handle.' The kid learned to respect both." },
+            { name: "Gin and Tonic", strength: 2, category: ["classics", "gin"], flavorProfile: "Crisp, Bitter & Clean", recipe: ["2 oz Tanqueray Gin", "Fill a tall glass with Tonic Water"], story: "This is for the Road Captain. The guy who knows every route, every stop, and every pothole for five states. It's not flashy, but it's reliable and gets the job done right, every single time. A dash of bitters is like his signature on a map—a mark of experience." },
+            { name: "Screwdriver", strength: 2, category: ["classics", "vodka"], flavorProfile: "Simple, Sweet & Citrus", recipe: ["2 oz Stolichnaya Citros Vodka", "2 dashes Orange Bitters", "Fill a tall glass with Orange Juice"], story: "Knew a guy who swore he could fix his bike's wiring with nothing but a screwdriver and a flask of this. Don't know about the wiring, but adding bitters is like using the right tool for the job—it just works better. Sometimes the best fix is an upgrade." },
+            { name: "Whiskey Sour", strength: 3, category: ["classics", "whiskey"], flavorProfile: "Sour, Sweet & Strong", recipe: ["2 oz Jim Beam Bourbon", "1 oz Lemon Juice", "0.5 oz Simple Syrup", "2 dashes Angostura Bitters", "Top with Club Soda in a tall glass"], story: "A prospect once complained his mouth was as dry as the desert highway. We gave him this. The sour kick woke him up, the spice from the bitters reminded him of the journey, and the sweet finish promised a smooth patch of road ahead." },
+            { name: "Cuba Libre", strength: 2, category: ["classics", "rum"], flavorProfile: "Sweet, Spiced & Lime", recipe: ["2 oz Rum", "0.5 oz Lime Juice", "2 dashes Angostura Bitters", "Fill a tall glass with Cola"], story: "Every biker talks about freedom. The open road, no rules. This drink is the liquid version of that. The bitters add a touch of the unknown, for when you're planning a cross-country trip with no map, just a direction. Tastes like breaking away from the pack for good." },
+            { name: "The Oath", strength: 5, category: ["classics", "whiskey", "schnapps"], flavorProfile: "Bold & Sweet Almond", recipe: ["2 oz Bulleit Bourbon", "0.75 oz Amaretto", "Serve on the rocks"], story: "This isn't for a night on the town. This is for when two riders make a pact—a promise sealed not with a handshake, but with the burn of good bourbon and the subtle sweetness of brotherhood. It’s a drink that says more than words ever could. Simple, strong, and binding." },
+            { name: "White Russian", strength: 3, category: ["classics", "vodka", "schnapps"], flavorProfile: "Creamy, Sweet & Rich Coffee", recipe: ["2 oz Ketel One Vodka", "1 oz Kahlúa", "1 oz Baileys Irish Cream", "Top with Cola in a tall glass"], story: "We call this 'The Ghost.' A quiet rider, always in white leathers, would order one, drink it slow, and leave without a word. Never knew his name. He was just a legend that drifted in and out, smooth and mysterious, just like the drink." },
+            { name: "Long Island Iced Tea", strength: 5, category: ["classics", "vodka", "gin", "rum", "tequila", "schnapps"], flavorProfile: "Strong, Sweet & Sour", recipe: ["0.5 oz Ketel One Vodka", "0.5 oz Tanqueray Gin", "0.5 oz Rum", "0.5 oz Jose Cuervo Silver Tequila", "0.5 oz Triple Sec", "1 oz Lemon Juice", "Fill a tall glass with Cola"], story: "A guy once bet he could build an engine after drinking three of these. He didn't build an engine, but he did try to use a jukebox as a telephone and offered to trade his leather jacket for a half-eaten plate of nachos. This drink has a way of rewriting your priorities." }
         ];
 
-  const menuGrid = document.getElementById('menu-grid');
+        const menuGrid = document.getElementById('menu-grid');
         const allModals = document.querySelectorAll('.modal');
         const apiKey = ""; 
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
@@ -937,334 +469,655 @@
         let activeLogoGenerations = 0;
         const MAX_CONCURRENT_LOGOS = 4;
 
-        ];
-        cocktails.forEach((cocktail, index) => {
-            cocktail.image = drinkImages[index % drinkImages.length];
-        });
-
-        const menuGrid = document.getElementById('menu-grid');
-        const allModals = document.querySelectorAll('.modal');
-        let activeFilters = { category: 'all', flavor: null }; 
-        let hideUnavailable = false;
-        const HIDE_UNAVAILABLE_KEY = 'nomads_hide_unavailable_v1';
-
-        const titleFonts = ['Rye', 'Bangers', 'Creepster', 'Metal Mania', 'Nosifier', 'UnifrakturMaguntia'];
+        const flavorIconMap={"Sweet":"fa-candy-cane","Tart":"fa-lemon","Spicy":"fa-pepper-hot","Herbal":"fa-seedling","Creamy":"fa-cloud","Rich":"fa-mug-hot","Coffee":"fa-coffee","Floral":"fa-fan","Anise":"fa-star-of-life","Sharp":"fa-bolt","Crisp":"fa-snowflake","Clean":"fa-water","Tropical":"fa-umbrella-beach","Fruity":"fa-apple-whole","Bold":"fa-fist-raised","Smooth":"fa-wave-square","Bitter":"fa-leaf","Dark":"fa-moon","Nutty":"fa-cookie-bite","Salty":"fa-icicles","Sour":"fa-lemon","Strong":"fa-dumbbell","Simple":"fa-circle","Deep":"fa-cube","Dry":"fa-wind","Prickly":"fa-cactus","Citrus":"fa-lemon","Almond":"fa-circle-dot","Spiced":"fa-pepper-hot","Lime":"fa-lemon","Ginger":"fa-mortar-pestle","Peach":"fa-apple-whole"};
         const categoryIconMap={"signature":{class:"fa-skull",color:"text-amber-400"},"classics":{class:"fa-trophy",color:"text-yellow-500"},"whiskey":{class:"fa-whiskey-glass",color:"text-orange-400"},"vodka":{class:"fa-skull-crossbones",color:"text-blue-300"},"gin":{class:"fa-leaf",color:"text-green-400"},"rum":{class:"fa-anchor",color:"text-yellow-800"},"dogs":{class:"fa-dog",color:"text-stone-500"},"tequila":{class:"fa-hat-cowboy-side",color:"text-yellow-600"},"schnapps":{class:"fa-mortar-pestle",color:"text-purple-400"}};
-        const flavorInfoMap = { "Sweet": { icon: "fa-candy-cane", color: "text-pink-300" }, "Tart": { icon: "fa-lemon", color: "text-yellow-300" }, "Spicy": { icon: "fa-pepper-hot", color: "text-red-500" }, "Herbal": { icon: "fa-seedling", color: "text-lime-400" }, "Creamy": { icon: "fa-cloud", color: "text-slate-200" }, "Rich": { icon: "fa-mug-hot", color: "text-amber-800" }, "Coffee": { icon: "fa-coffee", color: "text-yellow-900" }, "Floral": { icon: "fa-fan", color: "text-purple-400" }, "Anise": { icon: "fa-star-of-life", color: "text-sky-300" }, "Sharp": { icon: "fa-bolt", color: "text-yellow-400" }, "Crisp": { icon: "fa-snowflake", color: "text-cyan-300" }, "Clean": { icon: "fa-water", color: "text-blue-400" }, "Bold": { icon: "fa-fist-raised", color: "text-red-700" }, "Bitter": { icon: "fa-leaf", color: "text-stone-500" }, "Dark": { icon: "fa-moon", color: "text-indigo-400" }, "Salty": { icon: "fa-icicles", color: "text-sky-200" }, "Sour": { icon: "fa-lemon", color: "text-lime-300" }, "Strong": { icon: "fa-dumbbell", color: "text-gray-500" }, "Spiced": { icon: "fa-pepper-hot", color: "text-orange-500" }, "Lime": { icon: "fa-lemon", color: "text-lime-400" }, "Ginger": { icon: "fa-mortar-pestle", color: "text-fuchsia-400" }, "Peach": { icon: "fa-apple-whole", color: "text-orange-400" }, "Raspberry": { icon: "fa-circle", color: "text-rose-500" }, "Cranberry": { icon: "fa-circle", color: "text-red-600" }, "Fruity": { icon: "fa-apple-whole", color: "text-red-400"}, "Citrus": { icon: "fa-lemon", color: "text-yellow-400"}, "Nutty": { icon: "fa-cookie-bite", color: "text-yellow-800"}, "Bubbly": { icon: "fa-wine-glass", color: "text-purple-300"}, "Berry": { icon: "fa-leaf", color: "text-red-500"}, "Grapefruit": { icon: "fa-lemon", color: "text-pink-400"}, "Mint": { icon: "fa-leaf", color: "text-green-500"} };
-        
-        function getIngredientInfo(ingredientName) {
-            const lowerIng = ingredientName.toLowerCase();
-            if (lowerIng.includes('vodka')) return { icon: 'fas fa-skull-crossbones', color: 'text-blue-300' };
-            if (['whiskey', 'bourbon', 'comfort', 'cognac'].some(s => lowerIng.includes(s))) return { icon: 'fas fa-whiskey-glass', color: 'text-orange-400' };
-            if (lowerIng.includes('gin')) return { icon: 'fas fa-leaf', color: 'text-green-400' };
-            if (lowerIng.includes('rum')) return { icon: 'fas fa-anchor', color: 'text-yellow-800' };
-            if (lowerIng.includes('tequila')) return { icon: 'fas fa-hat-cowboy-side', color: 'text-yellow-600' };
-            if (['schnapps', 'pucker', 'jäger', 'liqueur', 'irish cream', 'pernod', 'kahlúa', 'st-germain', 'triple sec', 'amaretto', 'campari', 'chambord'].some(l => lowerIng.includes(l))) return { icon: 'fas fa-mortar-pestle', color: 'text-purple-400' };
-            if (lowerIng.includes('bitters')) return { icon: 'fas fa-tint', color: 'text-red-500' };
-            if (lowerIng.includes('orange')) return { icon: 'fas fa-lemon', color: 'text-orange-500' };
-            if (['lime', 'lemon'].some(l => lowerIng.includes(l))) return { icon: 'fas fa-lemon', color: 'text-yellow-300' };
-            if (lowerIng.includes('cranberry')) return { icon: 'fas fa-lemon', color: 'text-red-400' };
-            if (['soda', 'tonic', 'ale', 'cola', 'champagne', 'vermouth'].some(m => lowerIng.includes(m))) return { icon: 'fas fa-faucet', color: 'text-gray-400' };
-            return { icon: 'fas fa-circle-question', color: 'text-gray-400' };
+
+        function generateFlavorIcons(flavorProfile) {
+            const flavors = [...new Set(flavorProfile.split(/, | & /))];
+            return `<div class="flavor-icons">${flavors.map(flavor => { const baseFlavor = flavor.split(' ')[0]; const iconClass = flavorIconMap[baseFlavor] || flavorIconMap[flavor] || 'fa-question-circle'; return iconClass ? `<i class="fas ${iconClass}" title="${flavor}"></i>` : ''; }).join('')}</div>`;
         }
-        
+
+        function generateCategoryIcons(categories) {
+            return `<div class="category-icons">${categories.map(category => { const icon = categoryIconMap[category]; return icon ? `<i class="fas ${icon.class} ${icon.color}" title="${category.charAt(0).toUpperCase() + category.slice(1)}"></i>` : ''; }).join('')}</div>`;
+        }
+
+        function generateStrengthMeter(strength) {
+            let meterHtml = `<div class="strength-meter" title="Strength: ${strength} of 5">`;
+            for (let i = 1; i <= 5; i++) { meterHtml += `<i class="fas fa-skull ${i <= strength ? 'filled' : 'empty'}"></i>`; }
+            return meterHtml + '</div>';
+        }
+
+        function getIconForIngredient(ingredient) {
+            const lowerIng = ingredient.toLowerCase();
+            if (/(whiskey|bourbon|southern comfort|seagram's|knob creek|jameson|crown royal|bulleit|jim beam|maker's mark)/.test(lowerIng)) return 'fas fa-whiskey-glass';
+            if (/(vodka|grey goose|ketel one|stolichnaya)/.test(lowerIng)) return 'fa-solid fa-bottle-droplet';
+            if (/(rum|kraken|captain morgan)/.test(lowerIng)) return 'fas fa-anchor';
+            if (/(gin)/.test(lowerIng)) return 'fas fa-leaf';
+            if (/(tequila)/.test(lowerIng)) return 'fas fa-hat-cowboy-side';
+            if (/(juice|orange|pineapple|lime|lemon|cranberry)/.test(lowerIng)) return 'fas fa-lemon';
+            if (/(soda|tonic|cola|club|ginger ale)/.test(lowerIng)) return 'fas fa-glass-water';
+            if (/(bitters)/.test(lowerIng)) return 'fas fa-eye-dropper';
+            if (/(schnapps|pucker|liqueur|amaretto|jägermeister|baileys|triple sec|st-germain|curacao|kahlúa|pernod|campari)/.test(lowerIng)) return 'fas fa-mortar-pestle';
+            if (/(syrup|grenadine)/.test(lowerIng)) return 'fas fa-vial';
+            if (/(rim)/.test(lowerIng)) return 'fas fa-circle-notch';
+            return 'fas fa-cube'; // Default icon
+        }
+
+        function getColorForIngredient(ingredient) {
+            const lowerIng = ingredient.toLowerCase();
+            if (/(whiskey|bourbon|southern comfort|seagram's|knob creek|jameson|crown royal|bulleit|jim beam|maker's mark)/.test(lowerIng)) return 'text-orange-400';
+            if (/(vodka|grey goose|ketel one|stolichnaya)/.test(lowerIng)) return 'text-blue-300';
+            if (/(rum|kraken|captain morgan)/.test(lowerIng)) return 'text-yellow-800';
+            if (/(gin)/.test(lowerIng)) return 'text-green-400';
+            if (/(tequila)/.test(lowerIng)) return 'text-yellow-600';
+            if (/(juice|orange|pineapple|lime|lemon|cranberry)/.test(lowerIng)) return 'text-yellow-400';
+            if (/(soda|tonic|cola|club|ginger ale)/.test(lowerIng)) return 'text-gray-400';
+            if (/(bitters)/.test(lowerIng)) return 'text-red-400';
+            if (/(schnapps|pucker|liqueur|amaretto|jägermeister|baileys|triple sec|st-germain|curacao|kahlúa|pernod|campari)/.test(lowerIng)) return 'text-purple-400';
+            if (/(syrup|grenadine)/.test(lowerIng)) return 'text-pink-400';
+            if (/(rim)/.test(lowerIng)) return 'text-gray-200';
+            return 'text-gray-500'; // Default color
+        }
+
+
         function displayMenuItems(items) {
             items.sort((a, b) => a.name.localeCompare(b.name));
-            menuGrid.innerHTML = items.length === 0 ? `<div class="text-center text-gray-400 italic w-full self-center">No drinks match the current filters.</div>` : items.map((item, index) => {
-                const titleFont = titleFonts[index % titleFonts.length];
-
+            if (items.length === 0) {
+                menuGrid.innerHTML = `<div class="text-center text-gray-400 italic w-full">No drinks match the current filters.</div>`;
+                return;
+            }
+            menuGrid.innerHTML = items.map(item => {
+                const flavorIcons = generateFlavorIcons(item.flavorProfile);
+                const strengthMeter = generateStrengthMeter(item.strength);
+                const categoryIcons = generateCategoryIcons(item.category);
                 const recipeHtml = item.recipe.map(ing => {
-                    const ingInfo = getIngredientInfo(ing.name);
-                    return `<li class="flex items-center text-sm justify-between">
-                                <div class="flex items-center">
-                                    <i class="${ingInfo.icon} ${ingInfo.color} w-6 text-center mr-2"></i>
-                                    <span>${ing.name}</span>
-                                </div>
-                                <span class="font-bold text-gray-400">${ing.amount}</span>
-                            </li>`;
+                    const iconClass = getIconForIngredient(ing);
+                    const iconColor = getColorForIngredient(ing);
+                    return `<li class="flex items-center"><i class="${iconClass} ${iconColor} w-6 text-center mr-2"></i><span>${ing}</span></li>`;
                 }).join('');
-                
-                const reviewsHtml = item.reviews.map(review => `
-                    <div class="review-quote">
-                        <p class="font-handwriting text-lg text-gray-300 mb-1 leading-tight">"${review.text}"</p>
-                        <p class="text-right font-handwriting text-base text-gray-400 opacity-80">- ${review.reviewer}</p>
-                    </div>`).join('');
-                
-                const isAvailable = isCocktailMakeable(item);
-                const unavailableClass = isAvailable ? '' : 'is-unavailable';
-                
-                const nameColorClass = getIngredientInfo(item.recipe[0].name).color;
-                const backTitleHtml = `<h3 class="text-2xl ${nameColorClass} text-center" style="font-family: 'Rye', cursive; line-height: 1.2; text-shadow: 1px 1px 0 #000;">${item.name}</h3>`;
-
 
                 return `
-                    <div data-name="${item.name}" class="drink-card ${unavailableClass}">
+                    <div data-name="${item.name}" data-flavor="${item.flavorProfile}" data-category="${item.category.join(' ')}" class="drink-card">
                         <div class="drink-card-inner">
-                            <div class="drink-card-front p-4" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('${item.image}'); background-size: cover; background-position: center;">
-                                <div class="flex-shrink-0 text-center mb-2">
-                                     <h3 class="text-3xl text-white" style="font-family: '${titleFont}', cursive; line-height: 1.2; text-shadow: 2px 2px 0px rgba(0,0,0,0.7), 0 0 15px rgba(0,0,0,1);">${item.name}</h3>
+                            <div class="drink-card-front">
+                                <div class="drink-card-logo-area">
+                                    <div class="drink-card-title-container" data-logo-name="${item.name}"><div class="title-loader"></div></div>
                                 </div>
-                                <div class="flex-grow overflow-y-auto min-h-0 bg-black/40 p-3 rounded-lg border border-gray-700/50">
-                                    <h4 class="font-black-ops text-amber-500 font-bold mb-2 text-sm uppercase tracking-wider">Recipe Specs:</h4>
-                                    <ul class="recipe-list text-gray-200 space-y-2">${recipeHtml}</ul>
-                                </div>
-                                <div class="flex-shrink-0 text-center text-xs text-gray-400 mt-2 font-rye">
-                                    Click for Story & Notes
+                                <div class="p-4 flex-grow flex flex-col justify-around">
+                                    <h3 class="text-2xl text-amber-400 font-rye text-center">${item.name}</h3>
+                                     <div class="my-3 flex justify-between items-center w-full px-2 sm:px-4">
+                                        <div class="card-icon-group">${categoryIcons}${flavorIcons}</div>
+                                        ${strengthMeter}
+                                    </div>
+                                    <ul class="recipe-list text-base text-gray-300 space-y-2 w-full px-4">${recipeHtml}</ul>
                                 </div>
                             </div>
                             <div class="drink-card-back">
-                                <div class="overflow-y-auto h-full p-4">
-                                     <div class="mb-4">${backTitleHtml}</div>
-                                    <div class="bg-black/20 p-3 rounded-md border border-gray-700 mb-4">
-                                        <h4 class="font-black-ops text-amber-500 font-bold mb-2 text-sm uppercase tracking-wider">Logbook Entry:</h4>
-                                        <p class="font-handwriting text-lg text-gray-300 leading-tight">"${item.story}"</p>
-                                    </div>
-                                    <h4 class="font-black-ops text-amber-500 font-bold mb-2 mt-4 text-sm uppercase tracking-wider">Field Notes:</h4>
-                                    ${reviewsHtml}
+                                <h3 class="text-2xl text-white mb-2 text-center">${item.name}</h3>
+                                <h4 class="text-amber-500 font-bold mb-1 mt-4">The Story:</h4>
+                                <p class="text-gray-400 italic text-sm">"${item.story}"</p>
+                                <div class="drink-image-container mt-4" data-drink-image-name="${item.name}">
+                                    <div class="title-loader mx-auto"></div>
                                 </div>
                             </div>
                         </div>
                     </div>`;
             }).join('');
-            setupCardGlowObserver();
+            setupIntersectionObserver();
         }
 
-        function openModal(modal) { modal.classList.remove('hidden'); setTimeout(() => modal.classList.remove('opacity-0'), 10); renderDrinkFinderResults(); }
+        function openModal(modal) { modal.classList.remove('hidden'); setTimeout(() => modal.classList.remove('opacity-0'), 10); }
         function closeModal(modal) { modal.classList.add('opacity-0'); setTimeout(() => modal.classList.add('hidden'), 300); }
+
+        async function callGeminiAPI(payload, retries = 3, delay = 1000) {
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    
+                    const result = await response.json();
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                    if (text) return text;
+                    throw new Error("Invalid response structure from API.");
+
+                } catch (error) {
+                    console.error(`API call attempt ${i + 1} failed:`, error);
+                    if (i < retries - 1) {
+                        await new Promise(res => setTimeout(res, delay * Math.pow(2, i)));
+                    } else {
+                        return null; 
+                    }
+                }
+            }
+        }
         
-        function clearAllFilters() {
-            activeFilters = { category: 'all', flavor: null };
-            document.querySelectorAll('#category-filter-nav .filter-btn').forEach(btn => btn.classList.remove('active-filter'));
-            document.querySelector('#category-filter-nav .filter-btn[data-category="all"]').classList.add('active-filter');
-            document.querySelectorAll('#flavor-filter-nav .flavor-filter-btn').forEach(btn => btn.classList.remove('active-filter'));
-            applyAllFilters();
+        async function generateAndPlaceLogo(drinkName) {
+            const container = document.querySelector(`.drink-card-title-container[data-logo-name="${drinkName}"]`);
+            if (!container || container.querySelector('img') || container.querySelector('h3')) return;
+            if (generatedLogosCache[drinkName]) {
+                container.innerHTML = `<img src="${generatedLogosCache[drinkName]}" alt="${drinkName} logo" class="drink-card-logo">`;
+                return;
+            }
+            const imagePrompt = `A gritty, distressed, cool biker-style logo for a drink called "${drinkName}". The logo is on a dark, textured background. The text is the main focus, using a bold, worn-out font. No realistic glass or liquid.`;
+            const payload = {
+                contents: [{ parts: [{ text: imagePrompt }] }],
+                generationConfig: { responseModalities: ['TEXT', 'IMAGE'] }
+            };
+            
+            try {
+                const response = await fetch(imageApiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const result = await response.json();
+                const base64Data = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData)?.inlineData?.data;
+                if (base64Data) {
+                    const imageUrl = `data:image/png;base64,${base64Data}`;
+                    generatedLogosCache[drinkName] = imageUrl;
+                    container.innerHTML = `<img src="${imageUrl}" alt="${drinkName} logo" class="drink-card-logo">`;
+                } else { throw new Error("No image data in API response."); }
+            } catch (error) {
+                console.error(`Logo generation failed for ${drinkName}:`, error);
+                container.innerHTML = `<div class="flex items-center justify-center p-2"><h3 class="drink-card-title-fallback">${drinkName}</h3><button class="retry-logo-btn" data-retry-name="${drinkName}" title="Retry logo generation"><i class="fas fa-sync-alt"></i></button></div>`;
+            }
+        }
+
+        async function generateAndPlaceDrinkImage(drinkName) {
+            const container = document.querySelector(`.drink-image-container[data-drink-image-name="${drinkName}"]`);
+            if (!container || container.querySelector('img')) return;
+            if (generatedDrinkImagesCache[drinkName]) {
+                container.innerHTML = `<img src="${generatedDrinkImagesCache[drinkName]}" alt="Image of ${drinkName}" class="w-full h-auto rounded-md object-cover">`;
+                return;
+            }
+
+            const imagePrompt = `A high-quality, photorealistic image of a cocktail named '${drinkName}', served in an appropriate glass, garnished correctly. The drink is on a rustic wooden bar top in a dimly lit, moody biker bar setting.`;
+            const payload = {
+                contents: [{ parts: [{ text: imagePrompt }] }],
+                generationConfig: { responseModalities: ['TEXT', 'IMAGE'] }
+            };
+
+            try {
+                const response = await fetch(imageApiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const result = await response.json();
+                const base64Data = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData)?.inlineData?.data;
+                if (base64Data) {
+                    const imageUrl = `data:image/png;base64,${base64Data}`;
+                    generatedDrinkImagesCache[drinkName] = imageUrl;
+                    container.innerHTML = `<img src="${imageUrl}" alt="Image of ${drinkName}" class="w-full h-auto rounded-md object-cover">`;
+                } else { throw new Error("No image data in API response."); }
+            } catch (error) {
+                console.error(`Drink image generation failed for ${drinkName}:`, error);
+                container.innerHTML = `<p class="text-xs text-center text-red-400 italic">Could not conjure an image for this drink.</p>`;
+            }
+        }
+
+        async function processLogoQueue() {
+            while (activeLogoGenerations < MAX_CONCURRENT_LOGOS && logoGenerationQueue.length > 0) {
+                activeLogoGenerations++;
+                const drinkName = logoGenerationQueue.shift();
+
+                (async () => {
+                    try {
+                        await generateAndPlaceLogo(drinkName);
+                    } catch (e) {
+                        console.error(`Error processing logo for ${drinkName} from queue:`, e);
+                    } finally {
+                        activeLogoGenerations--;
+                        processLogoQueue();
+                    }
+                })();
+            }
+        }
+
+        function enqueueLogoGeneration(drinkName) {
+            const container = document.querySelector(`.drink-card-title-container[data-logo-name="${drinkName}"]`);
+            if (!logoGenerationQueue.includes(drinkName) && !generatedLogosCache[drinkName] && container && container.querySelector('.title-loader')) {
+                logoGenerationQueue.push(drinkName);
+            }
+            processLogoQueue();
+        }
+
+        function generateLogosForVisibleCards() {
+            document.querySelectorAll('#menu-grid .drink-card .drink-card-title-container').forEach(container => {
+                if (container.querySelector('.title-loader')) {
+                    enqueueLogoGeneration(container.dataset.logoName);
+                }
+            });
+        }
+
+        async function generateHeaderLogo() {
+            const container = document.getElementById('header-logo-container');
+            const CACHE_KEY = 'nomads_header_logo_v4';
+            const cachedLogo = sessionStorage.getItem(CACHE_KEY);
+
+            if (cachedLogo) {
+                container.innerHTML = `<img src="${cachedLogo}" alt="Nomads Logo" class="max-h-full max-w-full object-contain">`;
+                return;
+            }
+
+            const imagePrompt = "An ultra-wide 21:9 aspect ratio panoramic cinematic banner logo for a biker bar called 'NOMADS'. The design is gritty and distressed. In the center, a chrome skull with flaming exhaust pipes extending horizontally to the left and right. The text 'NOMADS' is in a bold, worn-out font, stretched across the banner. The entire logo is on a dark, textured, rusty metal background.";
+            const payload = {
+                contents: [{ parts: [{ text: imagePrompt }] }],
+                generationConfig: { responseModalities: ['TEXT', 'IMAGE'] }
+            };
+            
+            try {
+                const response = await fetch(imageApiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const result = await response.json();
+                const base64Data = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData)?.inlineData?.data;
+                if (base64Data) {
+                    const imageUrl = `data:image/png;base64,${base64Data}`;
+                    sessionStorage.setItem(CACHE_KEY, imageUrl);
+                    container.innerHTML = `<img src="${imageUrl}" alt="Nomads Logo" class="max-h-full max-w-full object-contain">`;
+                } else {
+                    throw new Error("No image data in API response for header logo.");
+                }
+            } catch (error) {
+                console.error('Header logo generation failed:', error);
+                container.innerHTML = `<h1 class="text-5xl sm:text-6xl md:text-7xl font-bold uppercase py-1 !shadow-none !border-none !bg-transparent"><span class="text-amber-400 font-rye">NOMADS</span></h1>`; // Fallback to old title style
+            }
         }
 
         function applyAllFilters() {
             let filtered = [...cocktails];
-            if (activeFilters.category !== 'all') {
-                filtered = filtered.filter(item => item.category.includes(activeFilters.category));
-            }
-            if (activeFilters.flavor) {
-                filtered = filtered.filter(item => item.flavorProfile.split(/&|,/).map(f => f.trim()).includes(activeFilters.flavor));
-            }
+            if (activeFilters.categories.size > 0) { filtered = filtered.filter(drink => [...activeFilters.categories].some(cat => drink.category.includes(cat))); }
+            if (activeFilters.flavors.size > 0) { filtered = filtered.filter(drink => [...activeFilters.flavors].every(flav => drink.flavorProfile.includes(flav))); }
             displayMenuItems(filtered);
             updateFilterStatus();
+            generateLogosForVisibleCards();
         }
 
         function updateFilterStatus() {
             const filterStatus = document.getElementById('filter-status');
-            const filtersApplied = [];
-            if(activeFilters.category !== 'all') filtersApplied.push(`Category: <strong>${activeFilters.category}</strong>`);
-            if(activeFilters.flavor) filtersApplied.push(`Flavor: <strong>${activeFilters.flavor}</strong>`);
-            filterStatus.innerHTML = filtersApplied.length > 0 ? `<div class="inline-block bg-gray-900/50 border border-amber-600 rounded-lg px-3 py-1 text-xs">Filtering by: ${filtersApplied.join(' & ')}</div>` : '';
+            let filtersApplied = [];
+
+            if(activeFilters.categories.size > 0) {
+                const categories = [...activeFilters.categories].map(c => `<strong>${c}</strong>`).join(', ');
+                filtersApplied.push(`Categories: ${categories}`);
+            }
+            if(activeFilters.flavors.size > 0) {
+                const flavors = [...activeFilters.flavors].map(f => `<strong>${f}</strong>`).join(', ');
+                filtersApplied.push(`Flavors: ${flavors}`);
+            }
+
+            if(filtersApplied.length > 0){
+                filterStatus.innerHTML = `<div class="inline-block bg-gray-900/50 border border-amber-600 rounded-lg px-4 py-2 text-sm">
+                                <span class="text-gray-400">Filtering by: </span> ${filtersApplied.join(' &bull; ')}
+                                <button id="clear-all-filters" class="ml-4 text-red-500 hover:text-red-400 font-bold transition-colors">&times; Clear All</button>
+                              </div>`;
+                document.getElementById('clear-all-filters').addEventListener('click', () => {
+                    activeFilters.categories.clear();
+                    activeFilters.flavors.clear();
+                    document.querySelectorAll('#category-filter-nav .filter-btn, #flavor-filter-nav .flavor-filter-btn').forEach(btn => btn.classList.remove('active-filter'));
+                    document.querySelector('#category-filter-nav .filter-btn[data-category="all"]').classList.add('active-filter');
+                    applyAllFilters();
+                });
+            } else {
+                filterStatus.innerHTML = '';
+            }
         }
         
-        let cardObserver;
-        function setupCardGlowObserver() {
-            if (cardObserver) cardObserver.disconnect();
-            cardObserver = new IntersectionObserver((entries) => {
+        let observer;
+        function setupIntersectionObserver() {
+            if (observer) observer.disconnect();
+            
+            const options = { root: menuGrid, rootMargin: '0px', threshold: 0.6 };
+            
+            observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting && !entry.target.classList.contains('is-unavailable')) {
-                        document.querySelectorAll('.is-active-card').forEach(c => c.classList.remove('is-active-card'));
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.is-active-card').forEach(card => card.classList.remove('is-active-card'));
                         entry.target.classList.add('is-active-card');
                     }
                 });
-            }, { root: menuGrid, rootMargin: '0px', threshold: 0.6 });
-            document.querySelectorAll('#menu-grid .drink-card').forEach(card => cardObserver.observe(card));
-        }
-        
-        function initializeApp() {
-            initializeBarStock(); 
-            displayMenuItems(cocktails);
-            const allFlavors = new Set(cocktails.flatMap(c => c.flavorProfile.split(/&|,/).map(f => f.trim())));
-            const flavorFilterNav = document.getElementById('flavor-filter-nav');
-            [...allFlavors].sort().forEach(flavor => {
-                const btn = document.createElement('button');
-                btn.className = 'flavor-filter-btn';
-                btn.dataset.flavor = flavor;
-                const info = flavorInfoMap[flavor] || { icon: 'fa-question-circle' };
-                btn.innerHTML = `<i class="fas ${info.icon} mr-2"></i>${flavor}`;
-                flavorFilterNav.appendChild(btn);
-            });
-        
-            document.getElementById('category-filter-nav').addEventListener('click', (e) => {
-                const target = e.target.closest('.filter-btn');
-                if (!target || !target.dataset.category) return;
-                activeFilters.category = (activeFilters.category === target.dataset.category && target.dataset.category !== 'all') ? 'all' : target.dataset.category;
-                document.querySelectorAll('#category-filter-nav .filter-btn').forEach(btn => btn.classList.toggle('active-filter', btn.dataset.category === activeFilters.category));
-                applyAllFilters();
-            });
+            }, options);
 
-            document.getElementById('flavor-filter-nav').addEventListener('click', e => {
-                const target = e.target.closest('.flavor-filter-btn');
-                if (!target || !target.dataset.flavor) return;
-                if (activeFilters.flavor === target.dataset.flavor) {
-                    activeFilters.flavor = null;
-                    target.classList.remove('active-filter');
+            document.querySelectorAll('#menu-grid .drink-card').forEach(card => observer.observe(card));
+        }
+
+        // --- Event Listeners & Initial Load ---
+        displayMenuItems(cocktails);
+        generateLogosForVisibleCards();
+        generateHeaderLogo();
+
+        document.getElementById('category-filter-nav').addEventListener('click', (e) => {
+            const button = e.target.closest('.filter-btn');
+            if (button) {
+                const category = button.dataset.category;
+                const allButton = document.querySelector('.filter-btn[data-category="all"]');
+
+                if (category === 'all') {
+                    activeFilters.categories.clear();
+                    document.querySelectorAll('#category-filter-nav .filter-btn').forEach(btn => btn.classList.remove('active-filter'));
+                    allButton.classList.add('active-filter');
                 } else {
-                    document.querySelectorAll('#flavor-filter-nav .flavor-filter-btn').forEach(btn => btn.classList.remove('active-filter'));
-                    target.classList.add('active-filter');
-                    activeFilters.flavor = target.dataset.flavor;
+                    if (activeFilters.categories.has(category)) {
+                        activeFilters.categories.delete(category);
+                        button.classList.remove('active-filter');
+                    } else {
+                        activeFilters.categories.add(category);
+                        button.classList.add('active-filter');
+                    }
+                    
+                    if (activeFilters.categories.size > 0) {
+                        allButton.classList.remove('active-filter');
+                    } else {
+                        allButton.classList.add('active-filter');
+                    }
                 }
                 applyAllFilters();
-            });
-
-            menuGrid.addEventListener('click', e => {
-                const card = e.target.closest('.drink-card');
-                if (card) {
-                    card.querySelectorAll('.overflow-y-auto').forEach(el => el.scrollTop = 0);
-                    card.classList.toggle('is-flipped');
-                }
-            });
-
-            document.getElementById('arrow-right').addEventListener('click', () => menuGrid.scrollBy({ left: (menuGrid.querySelector('.drink-card')?.offsetWidth || 300) + 16, behavior: 'smooth' }));
-            document.getElementById('arrow-left').addEventListener('click', () => menuGrid.scrollBy({ left: -((menuGrid.querySelector('.drink-card')?.offsetWidth || 300) + 16), behavior: 'smooth' }));
-            document.getElementById('bar-stock-btn').addEventListener('click', () => openModal(document.getElementById('bar-stock-modal')));
-            document.getElementById('reset-stock-btn').addEventListener('click', resetBarStock);
-            allModals.forEach(modal => modal.addEventListener('click', e => { if (e.target === modal || e.target.closest('.close-modal-btn')) closeModal(modal); }));
-
-            document.getElementById('clear-filters-btn').addEventListener('click', clearAllFilters);
-
-            const hideUnavailableToggle = document.getElementById('hide-unavailable-toggle');
-            if (storageAvailable) {
-                const savedPref = localStorage.getItem(HIDE_UNAVAILABLE_KEY);
-                hideUnavailable = savedPref === 'true';
-                hideUnavailableToggle.checked = hideUnavailable;
-                if (hideUnavailable) menuGrid.classList.add('hide-unavailable');
             }
-            hideUnavailableToggle.addEventListener('change', () => {
-                hideUnavailable = hideUnavailableToggle.checked;
-                menuGrid.classList.toggle('hide-unavailable', hideUnavailable);
-                if (storageAvailable) localStorage.setItem(HIDE_UNAVAILABLE_KEY, hideUnavailable);
-            });
-        }
-
-        // --- ROBUST BAR STOCK LOGIC ---
-        let barStock = {};
-        const STOCK_STORAGE_KEY = 'nomads_bar_stock_v3';
-        function isLocalStorageAvailable() { try { const x = '__storage_test__'; localStorage.setItem(x, x); localStorage.removeItem(x); return true; } catch(e) { return false; } }
-        const storageAvailable = isLocalStorageAvailable();
-        function saveStock(stockData) { if (storageAvailable) try { localStorage.setItem(STOCK_STORAGE_KEY, JSON.stringify(stockData)); } catch (e) { console.error("Failed to save stock", e); } }
-        function loadStock() { if (!storageAvailable) return {}; try { const rawData = localStorage.getItem(STOCK_STORAGE_KEY); if (rawData) { const parsed = JSON.parse(rawData); if (typeof parsed === 'object' && parsed !== null) return parsed; } } catch (e) { if(storageAvailable) try { localStorage.removeItem(STOCK_STORAGE_KEY); } catch(r_e) {} } return {}; }
+        });
         
-        function initializeBarStock() {
-            barStock = loadStock();
-            const allIngredients = new Set(cocktails.flatMap(c => c.recipe.map(ing => ing.name)));
-            let hasChanged = false;
-            allIngredients.forEach(ingName => { if (barStock[ingName] === undefined) { barStock[ingName] = true; hasChanged = true; } });
-            if (hasChanged) saveStock(barStock);
-            renderBarStockModal();
-        }
-
-        function categorizeIngredient(ing) { const l = ing.toLowerCase(); if (['vodka','gin','whiskey','rum','tequila', 'cognac'].some(s=>l.includes(s))) return 'Spirits'; if (['schnapps','liqueur','kahlúa','pernod','st-germain', 'amaretto', 'campari', 'chambord'].some(s=>l.includes(s))) return 'Liqueurs'; if (['juice','soda','tonic','ale','cola','syrup', 'champagne', 'vermouth'].some(s=>l.includes(s))) return 'Mixers'; return 'Other'; }
-        
-        function renderBarStockModal() {
-            const inStockEl = document.getElementById('in-stock-lists');
-            const outOfStockEl = document.getElementById('out-of-stock-lists');
-            inStockEl.innerHTML = ''; outOfStockEl.innerHTML = '';
-            const categorized = {};
-            for (const ing in barStock) { const cat = categorizeIngredient(ing); if (!categorized[cat]) categorized[cat] = []; categorized[cat].push(ing); }
-            const renderCategory = (container, catName, ings) => {
-                if (ings.length === 0) return;
-                const btnHTML = ings.sort().map(ing => `
-                    <button data-ingredient="${ing}" class="stock-button text-xs bg-gray-700 hover:bg-gray-600 text-white py-1 px-3 rounded-full transition-colors">
-                        ${ing}
-                        <i class="fas fa-search search-icon" title="Find drinks with ${ing}"></i>
-                    </button>
-                `).join('');
-                container.innerHTML += `<div class="mb-4"><h3 class="text-lg font-condensed text-amber-500 border-b border-gray-600 mb-2 pb-1">${catName}</h3><div class="flex flex-wrap gap-2">${btnHTML}</div></div>`;
-            };
-            Object.keys(categorized).sort().forEach(cat => { renderCategory(inStockEl, cat, categorized[cat].filter(i => barStock[i])); renderCategory(outOfStockEl, cat, categorized[cat].filter(i => !barStock[i])); });
-        }
-        function toggleStockStatus(ingredient) { if(!ingredient) return; barStock[ingredient] = !barStock[ingredient]; saveStock(barStock); renderBarStockModal(); applyAllFilters(); }
-        function resetBarStock() { Object.keys(barStock).forEach(ing => barStock[ing] = true); saveStock(barStock); renderBarStockModal(); applyAllFilters(); const btn = document.getElementById('reset-stock-btn'); btn.textContent = 'Stock Reset!'; btn.classList.add('text-green-400'); setTimeout(() => { btn.textContent = 'Reset Stock'; btn.classList.remove('text-green-400'); }, 1500); }
-        function isCocktailMakeable(cocktail) { return cocktail.recipe.every(ing => barStock[ing.name]); }
-        
-        // --- DRINK FINDER LOGIC ---
-        function renderDrinkFinderResults() {
-            const resultsContainer = document.getElementById('drink-finder-results');
-            const searchInput = document.getElementById('drink-finder-input');
-            const searchTerm = searchInput.value.toLowerCase();
-
-            const makeableDrinks = cocktails.filter(isCocktailMakeable);
-            const filteredDrinks = makeableDrinks.filter(drink => {
-                if (searchTerm === '') return true;
-                const nameMatch = drink.name.toLowerCase().includes(searchTerm);
-                const ingredientMatch = drink.recipe.some(ing => ing.name.toLowerCase().includes(searchTerm));
-                return nameMatch || ingredientMatch;
-            });
-            
-            if (filteredDrinks.length === 0) {
-                resultsContainer.innerHTML = `<p class="text-gray-500 italic text-sm text-center py-2">No makeable drinks match your search.</p>`;
-                return;
+        document.getElementById('flavor-filter-nav').addEventListener('click', (e) => {
+             const button = e.target.closest('.flavor-filter-btn');
+            if (button) {
+                const flavor = button.dataset.flavor;
+                if(activeFilters.flavors.has(flavor)) {
+                    activeFilters.flavors.delete(flavor);
+                    button.classList.remove('active-filter');
+                } else {
+                    activeFilters.flavors.add(flavor);
+                    button.classList.add('active-filter');
+                }
+                applyAllFilters();
             }
-
-            resultsContainer.innerHTML = filteredDrinks
-                .map(drink => {
-                    const ingredientsHtml = drink.recipe.map(ing => {
-                        const ingInfo = getIngredientInfo(ing.name);
-                        return `<li class="flex items-center text-xs text-gray-400"><i class="${ingInfo.icon} ${ingInfo.color} w-4 text-center mr-1.5"></i> ${ing.name}</li>`;
-                    }).join('');
-
-                    return `
-                    <button data-drink-name="${drink.name}" class="drink-finder-item">
-                        <h4 class="drink-finder-item-title">${drink.name}</h4>
-                        <ul class="drink-finder-item-ingredients">
-                            ${ingredientsHtml}
-                        </ul>
-                    </button>`;
-                })
-                .join('');
-        }
-        
-        function goToDrink(drinkName) {
-            closeModal(document.getElementById('bar-stock-modal'));
-            activeFilters = { category: 'all', flavor: null };
-            document.querySelectorAll('#category-filter-nav .filter-btn, #flavor-filter-nav .flavor-filter-btn').forEach(btn => btn.classList.remove('active-filter'));
-            document.querySelector('#category-filter-nav .filter-btn[data-category="all"]').classList.add('active-filter');
-            applyAllFilters();
-
-            setTimeout(() => {
-                const card = menuGrid.querySelector(`.drink-card[data-name="${drinkName}"]`);
-                if (card) {
-                    card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                    setTimeout(() => card.classList.add('is-active-card'), 500); 
-                }
-            }, 100);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeApp();
-            document.getElementById('drink-finder-input').addEventListener('input', renderDrinkFinderResults);
-            
-            document.getElementById('drink-finder-results').addEventListener('click', e => {
-                const target = e.target.closest('.drink-finder-item');
-                if (target && target.dataset.drinkName) {
-                    goToDrink(target.dataset.drinkName);
-                }
-            });
-
-            document.getElementById('bar-stock-content').addEventListener('click', e => {
-                const searchIcon = e.target.closest('.search-icon');
-                const stockButton = e.target.closest('.stock-button');
-
-                if (searchIcon) {
-                    e.stopPropagation(); // Prevent the button's toggle action from firing
-                    const ingredient = stockButton.dataset.ingredient;
-                    const searchInput = document.getElementById('drink-finder-input');
-                    searchInput.value = ingredient;
-                    searchInput.dispatchEvent(new Event('input', { bubbles: true }));
-                    document.getElementById('drink-finder-section').scrollIntoView({ behavior: 'smooth' });
-                } else if (stockButton) {
-                    const ingredient = stockButton.dataset.ingredient;
-                    toggleStockStatus(ingredient);
-                }
-            });
         });
 
+        menuGrid.addEventListener('click', (e) => {
+             const card = e.target.closest('.drink-card');
+             if (e.target.closest('.retry-logo-btn')) {
+                e.stopPropagation();
+                const retryBtn = e.target.closest('.retry-logo-btn');
+                const drinkName = retryBtn.dataset.retryName;
+                const container = retryBtn.closest('.drink-card-title-container');
+                if (container) {
+                    container.innerHTML = '<div class="title-loader"></div>';
+                    enqueueLogoGeneration(drinkName);
+                }
+            } else if (card) {
+                card.classList.toggle('is-flipped');
+                if (card.classList.contains('is-flipped')) {
+                    const drinkName = card.dataset.name;
+                    generateAndPlaceDrinkImage(drinkName); 
+                }
+            }
+        });
+
+        document.getElementById('arrow-right').addEventListener('click', () => {
+            const cardWidth = menuGrid.querySelector('.drink-card').offsetWidth;
+            const gap = parseInt(window.getComputedStyle(menuGrid).gap);
+            menuGrid.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
+        });
+
+        document.getElementById('arrow-left').addEventListener('click', () => {
+            const cardWidth = menuGrid.querySelector('.drink-card').offsetWidth;
+            const gap = parseInt(window.getComputedStyle(menuGrid).gap);
+            menuGrid.scrollBy({ left: -(cardWidth + gap), behavior: 'smooth' });
+        });
+
+        allModals.forEach(modal => { modal.addEventListener('click', (e) => { if (e.target === modal || e.target.closest('.close-modal-btn')) closeModal(modal); }); });
+        
+        function populateFlavorFilters() {
+             const flavorNav = document.getElementById('flavor-filter-nav');
+            let allFlavors = new Set();
+            cocktails.forEach(c => {
+                const flavors = c.flavorProfile.split(/, | & /);
+                flavors.forEach(f => {
+                    const baseFlavor = f.split(' ')[0];
+                    if (flavorIconMap[baseFlavor] || flavorIconMap[f]) {
+                       allFlavors.add(baseFlavor);
+                    }
+                });
+            });
+
+            let buttonsHTML = '';
+            [...allFlavors].sort().forEach(flavor => {
+                const iconClass = flavorIconMap[flavor] || 'fa-question-circle';
+                 buttonsHTML += `<button data-flavor="${flavor}" class="flavor-filter-btn"><i class="fas ${iconClass} mr-2"></i>${flavor}</button>`;
+            });
+            flavorNav.innerHTML = buttonsHTML;
+        }
+        populateFlavorFilters();
+        
+        // --- Bar Stock, Dice Roll, and Gemini features...
+        const barStockContent = document.getElementById('bar-stock-content');
+        const barStockToggle = document.getElementById('bar-stock-toggle');
+        const OUT_OF_STOCK_KEY = 'nomads_out_of_stock';
+        function cleanIngredientName(raw) {
+            if (!raw) return '';
+            let cleaned = raw.trim();
+            cleaned = cleaned.replace(/^(?:fill a tall glass with|top with|fill with|splash of|splash|dash of|dash|\d+(?:\.\d+)?\s?(?:oz|dashes))\s+/i, '').replace(/\s+in a tall glass$/i, '');
+            return cleaned.replace(/\b\w/g, l => l.toUpperCase());
+        }
+        function getOutOfStockItems() {
+            const stored = localStorage.getItem(OUT_OF_STOCK_KEY);
+            return stored ? new Set(JSON.parse(stored)) : new Set();
+        }
+        function saveOutOfStockItems(itemsSet) {
+            localStorage.setItem(OUT_OF_STOCK_KEY, JSON.stringify(Array.from(itemsSet)));
+        }
+        function renderBarStock() {
+            const outOfStockItems = getOutOfStockItems();
+            const allIngredients = {};
+            
+            const categorizeIngredient = (name) => {
+                const lowerName = name.toLowerCase();
+                if (/\b(whiskey|bourbon|southern comfort|seagram's 7|knob creek|jameson|crown royal|bulleit|jim beam|maker's mark)\b/.test(lowerName)) return 'Whiskeys & Bourbons';
+                if (/\b(vodka|grey goose|ketel one|stolichnaya)\b/.test(lowerName)) return 'Vodka';
+                if (/\b(rum)\b/.test(lowerName)) return 'Rum';
+                if (/\b(gin)\b/.test(lowerName)) return 'Gin & Sloe Gin';
+                if (/\b(tequila)\b/.test(lowerName)) return 'Tequila';
+                if (/\b(schnapps|pucker|goldschläger|liqueur|amaretto|jägermeister|baileys|triple sec|st-germain|blue curacao|kahlúa|pernod|campari|sloe gin)\b/.test(lowerName)) return 'Liqueurs & Schnapps';
+                if (/\b(juice|soda|tonic|cola|lime|club soda|ginger ale|sour mix|cranberry)\b/.test(lowerName)) return 'Juices & Mixers';
+                if (/\b(syrup|bitters|grenadine)\b/.test(lowerName)) return 'Syrups & Bitters';
+                if (/\b(rim|garnish|twist|peel|cherry|rocks)\b/.test(lowerName)) return 'Garnishes';
+                return 'Juices & Mixers'; 
+            };
+
+            cocktails.forEach(c => c.recipe.forEach(raw => {
+                const cleanedName = cleanIngredientName(raw);
+                if (cleanedName) {
+                    const category = categorizeIngredient(cleanedName);
+                    if (!allIngredients[category]) allIngredients[category] = new Set();
+                    allIngredients[category].add(cleanedName);
+                }
+            }));
+
+            const inStockCategorized = {};
+            const outOfStockCategorized = {};
+
+            Object.keys(allIngredients).sort().forEach(category => {
+                Array.from(allIngredients[category]).sort().forEach(item => {
+                    if (outOfStockItems.has(item)) {
+                        if (!outOfStockCategorized[category]) outOfStockCategorized[category] = [];
+                        outOfStockCategorized[category].push(item);
+                    } else {
+                        if (!inStockCategorized[category]) inStockCategorized[category] = [];
+                        inStockCategorized[category].push(item);
+                    }
+                });
+            });
+
+            const generateHtmlForList = (categorizedItems) => {
+                let html = '';
+                Object.keys(categorizedItems).sort().forEach(category => {
+                    html += `<h3 class="text-lg text-amber-500 font-bold mt-4 mb-2">${category}</h3><div class="flex flex-wrap gap-2">`;
+                    categorizedItems[category].forEach(item => {
+                        const isOutOfStock = outOfStockItems.has(item);
+                        html += `<button data-ingredient="${item}" class="ingredient-btn ${isOutOfStock ? 'out-of-stock' : ''} text-sm bg-gray-700 hover:bg-amber-700 text-gray-200 py-1 px-3 rounded-md transition-colors duration-200">${item}</button>`;
+                    });
+                    html += `</div>`;
+                });
+                return html || '<p class="text-gray-500 italic">Nothing to see here.</p>';
+            };
+
+            document.getElementById('in-stock-lists').innerHTML = generateHtmlForList(inStockCategorized);
+            document.getElementById('out-of-stock-lists').innerHTML = generateHtmlForList(outOfStockCategorized);
+        }
+        barStockToggle.addEventListener('click', () => {
+            barStockToggle.classList.toggle('on');
+            renderBarStock(); // Initial render when modal opens
+            openModal(document.getElementById('bar-stock-modal'));
+            
+            const barStockModal = document.getElementById('bar-stock-modal');
+            const observer = new MutationObserver(() => {
+                if (barStockModal.classList.contains('hidden')) {
+                    barStockToggle.classList.remove('on');
+                    observer.disconnect();
+                }
+            });
+            observer.observe(barStockModal, { attributes: true, attributeFilter: ['class'] });
+        });
+        barStockContent.addEventListener('click', e => {
+            const ingredientBtn = e.target.closest('.ingredient-btn');
+            if (ingredientBtn) {
+                const ingredientName = ingredientBtn.dataset.ingredient;
+                const outOfStockItems = getOutOfStockItems();
+                if (outOfStockItems.has(ingredientName)) {
+                    outOfStockItems.delete(ingredientName);
+                } else {
+                    outOfStockItems.add(ingredientName);
+                }
+                saveOutOfStockItems(outOfStockItems);
+                renderBarStock(); // Re-render the lists to reflect the change
+            }
+        });
+        const diceRollerContent = document.getElementById('dice-roller-content');
+        const suggestDrinkModal = document.getElementById('suggest-drink-modal');
+        const suggestDrinkToggle = document.getElementById('suggest-drink-toggle');
+
+        const performDiceRoll = () => {
+            diceRollerContent.innerHTML = `<div id="dice-animation" class="flex justify-center gap-6 text-6xl text-white my-8"><i id="die1" class="fas fa-dice-one rolling-die"></i><i id="die2" class="fas fa-dice-six rolling-die"></i></div><p class="text-amber-500">Rolling...</p>`;
+            const dice = ['one', 'two', 'three', 'four', 'five', 'six'];
+            const die1 = document.getElementById('die1');
+            const die2 = document.getElementById('die2');
+            const rollInterval = setInterval(() => {
+                die1.className = `fas fa-dice-${dice[Math.floor(Math.random() * 6)]} rolling-die`;
+                die2.className = `fas fa-dice-${dice[Math.floor(Math.random() * 6)]} rolling-die`;
+            }, 100);
+
+            setTimeout(() => {
+                clearInterval(rollInterval);
+                die1.classList.remove('rolling-die');
+                die2.classList.remove('rolling-die');
+                const chosenDrink = cocktails[Math.floor(Math.random() * cocktails.length)];
+                diceRollerContent.innerHTML = `<p class="text-center text-gray-400 mb-4">The dice have spoken...</p><div class="p-4 border border-amber-600 rounded-lg bg-gray-900/50 text-left"><h3 class="text-2xl text-white">${chosenDrink.name}</h3>${generateFlavorIcons(chosenDrink.flavorProfile)}${generateStrengthMeter(chosenDrink.strength)}</div><div class="flex flex-col sm:flex-row gap-4 mt-6"><button id="view-on-menu-btn" data-drink-name="${chosenDrink.name}" class="flex-1 font-condensed uppercase tracking-wider font-bold py-2 px-4 rounded-md bg-gray-600 text-gray-200 hover:bg-gray-500 transition-colors duration-300">View on Menu</button><button id="roll-again-btn" class="flex-1 font-condensed uppercase tracking-wider font-bold py-2 px-4 rounded-md bg-amber-700 text-gray-200 hover:bg-amber-600 transition-colors duration-300">Roll Again</button></div>`;
+                document.getElementById('roll-again-btn').addEventListener('click', performDiceRoll);
+                document.getElementById('view-on-menu-btn').addEventListener('click', (e) => {
+                    const drinkName = e.currentTarget.dataset.drinkName;
+                    closeModal(suggestDrinkModal);
+
+                    const allFilterButton = document.querySelector('.filter-btn[data-category="all"]');
+                    if (allFilterButton && !allFilterButton.classList.contains('active-filter')) {
+                        allFilterButton.click();
+                    }
+
+                    setTimeout(() => {
+                        const card = document.querySelector(`.drink-card[data-name="${drinkName}"]`);
+                        if (card) {
+                            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            card.classList.add('is-active-card');
+                        }
+                    }, 150);
+                });
+            }, 2000);
+        };
+        suggestDrinkToggle.addEventListener('click', () => {
+            suggestDrinkToggle.classList.toggle('on');
+            openModal(suggestDrinkModal);
+            performDiceRoll();
+
+            const observer = new MutationObserver(() => {
+                if (suggestDrinkModal.classList.contains('hidden')) {
+                    suggestDrinkToggle.classList.remove('on');
+                    observer.disconnect();
+                }
+            });
+            observer.observe(suggestDrinkModal, { attributes: true, attributeFilter: ['class'] });
+        });
+        const createDrinkModal = document.getElementById('create-drink-modal');
+        const storyModal = document.getElementById('story-modal');
+        const showStoryLink = document.getElementById('show-story-link');
+        const geminiDrinkBuilder = document.getElementById('gemini-drink-builder');
+        const geminiDrinkOutput = document.getElementById('gemini-drink-output');
+        let geminiFormState = {};
+
+        const resetAndRenderGeminiForm = () => {
+            geminiFormState = { step: 1, spirit: null, profile: null, vibe: null };
+            renderGeminiStep();
+        };
+        
+        const renderGeminiStep = () => {
+            geminiDrinkOutput.innerHTML = '';
+            let content = '';
+            switch (geminiFormState.step) {
+                case 1: content = `<p class="text-gray-400 mb-1 text-center font-bold">Step 1 of 3</p><p class="text-lg text-white mb-4 text-center">First, what's your poison? Pick a base spirit.</p><div class="grid grid-cols-2 md:grid-cols-3 gap-4"><button data-value="Whiskey" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-amber-700">Whiskey</button><button data-value="Vodka" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-blue-700">Vodka</button><button data-value="Rum" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-orange-800">Rum</button><button data-value="Gin" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-green-700">Gin</button><button data-value="Tequila" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-yellow-700">Tequila</button><button data-value="Surprise Me" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-purple-700">Surprise Me</button></div>`; break;
+                case 2: content = `<p class="text-gray-400 mb-1 text-center font-bold">Step 2 of 3</p><p class="text-lg text-white mb-4 text-center">What kind of ride are you looking for?</p><div class="grid grid-cols-2 md:grid-cols-3 gap-4"><button data-value="Sweet" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-pink-600">Sweet</button><button data-value="Sour" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-lime-600">Sour</button><button data-value="Spicy" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-red-600">Spicy</button><button data-value="Herbal" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-green-800">Herbal</button><button data-value="Smoky" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-gray-500">Smoky</button><button data-value="No Preference" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-purple-700">No Preference</button></div>`; break;
+                case 3: content = `<p class="text-gray-400 mb-1 text-center font-bold">Step 3 of 3</p><p class="text-lg text-white mb-4 text-center">Finally, what's the vibe?</p><div class="grid grid-cols-2 md:grid-cols-3 gap-4"><button data-value="Desert Highway at Dusk" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-orange-600">Desert Highway</button><button data-value="Smoky Backroom Poker Game" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-slate-600">Poker Game</button><button data-value="Summer Thunderstorm" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-indigo-600">Thunderstorm</button><button data-value="Worn Leather Jacket" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-stone-700">Leather Jacket</button><button data-value="Polished Chrome" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-sky-400">Polished Chrome</button><button data-value="A Risky Bet" class="gemini-choice-btn choice-btn p-4 rounded-md bg-gray-700 hover:bg-red-800">A Risky Bet</button></div>`; break;
+                default: forgeTheLegend(); break;
+            }
+            geminiDrinkBuilder.innerHTML = content;
+        }
+
+        const forgeTheLegend = async () => {
+            geminiDrinkBuilder.innerHTML = '';
+            geminiDrinkOutput.innerHTML = `<div class="text-center"><p class="text-lg text-amber-500">Forging a new legend...</p><div class="loader"></div></div>`;
+            const systemPrompt = `You are the grizzled, creative bartender at a rugged biker bar called "NOMADS 11". Your task is to invent a new cocktail based on a customer's request. You must respond ONLY with a JSON object. The JSON object must have four keys: "name" (a cool, biker-themed name), "flavorProfile" (a short, descriptive flavor profile like "Sweet & Smoky"), "recipe" (an array of strings, each being an ingredient with measurements), and "story" (a short, evocative backstory for the drink, fitting the biker bar theme, about 1-3 sentences long). The response must be in the specified JSON format and nothing else.`;
+            const userQuery = `Invent a new cocktail. Base Spirit: ${geminiFormState.spirit}. Flavor Profile: ${geminiFormState.profile}. Vibe: ${geminiFormState.vibe}. Make the recipe sound plausible for a well-stocked bar.`;
+            const payload = { contents: [{ parts: [{ text: userQuery }] }], systemInstruction: { parts: [{ text: systemPrompt }] }, generationConfig: { responseMimeType: "application/json" } };
+            const resultText = await callGeminiAPI(payload);
+            if (resultText) {
+                try {
+                    const drink = JSON.parse(resultText);
+                    const recipeHtml = drink.recipe.map(ing => `<li>${ing}</li>`).join('');
+                    geminiDrinkOutput.innerHTML = `<div class="border border-amber-600 p-4 rounded-lg bg-gray-900/50"><h3 class="text-3xl text-white mb-2">${drink.name}</h3><p class="text-amber-400 italic mb-4">${drink.flavorProfile}</p><h4 class="text-amber-500 font-bold mb-1">Recipe:</h4><ul class="recipe-list text-sm text-gray-300 mb-4">${recipeHtml}</ul><h4 class="text-amber-500 font-bold mb-1 mt-6">The Story:</h4><p class="text-gray-300 italic">"${drink.story}"</p></div><button id="reset-gemini-btn" class="mt-4 w-full font-condensed uppercase tracking-wider font-bold py-2 px-4 rounded-md bg-gray-600 text-gray-200 hover:bg-gray-500 transition-colors duration-300">Create Another</button>`;
+                    document.getElementById('reset-gemini-btn').addEventListener('click', resetAndRenderGeminiForm);
+                } catch (e) {
+                    console.error("Failed to parse JSON from Gemini:", e);
+                    geminiDrinkOutput.innerHTML = `<p class="text-red-500 text-center">The spirits are angry. Couldn't forge the legend. Please try again.</p><button id="reset-gemini-btn" class="mt-4 w-full font-condensed uppercase tracking-wider font-bold py-2 px-4 rounded-md bg-gray-600 text-gray-200 hover:bg-gray-500 transition-colors duration-300">Try Again</button>`;
+                    document.getElementById('reset-gemini-btn').addEventListener('click', resetAndRenderGeminiForm);
+                }
+            } else {
+                geminiDrinkOutput.innerHTML = `<p class="text-red-500 text-center">The lines are down. Couldn't get a signal to the great beyond. Please try again.</p><button id="reset-gemini-btn" class="mt-4 w-full font-condensed uppercase tracking-wider font-bold py-2 px-4 rounded-md bg-gray-600 text-gray-200 hover:bg-gray-500 transition-colors duration-300">Try Again</button>`;
+                document.getElementById('reset-gemini-btn').addEventListener('click', resetAndRenderGeminiForm);
+            }
+        };
+
+        showStoryLink.addEventListener('click', () => {
+            openModal(storyModal);
+        });
+        
+        storyModal.addEventListener('click', (e) => {
+            if (e.target.closest('#create-drink-btn')) {
+                closeModal(storyModal);
+                 setTimeout(() => {
+                    resetAndRenderGeminiForm();
+                    openModal(createDrinkModal);
+                }, 200);
+            }
+        });
+
+        geminiDrinkBuilder.addEventListener('click', (e) => {
+            const target = e.target.closest('.gemini-choice-btn');
+            if (!target) return;
+
+            const value = target.dataset.value;
+            switch (geminiFormState.step) {
+                case 1: geminiFormState.spirit = value; break;
+                case 2: geminiFormState.profile = value; break;
+                case 3: geminiFormState.vibe = value; break;
+            }
+            geminiFormState.step++;
+            renderGeminiStep();
+        });
     </script>
 </body>
 </html>
-
 
