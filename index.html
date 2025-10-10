@@ -26,6 +26,559 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
+      
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1a110a; /* Dark wood fallback */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('https://www.transparenttextures.com/patterns/worn-dots.png');
+            background-attachment: fixed;
+        }
+        
+        h2, h3 {
+            font-family: 'Black Ops One', cursive;
+            text-shadow: 1px 1px 0 #000, 2px 2px 0 #333;
+            letter-spacing: 0.05em;
+        }
+        .drink-card h3, .modal h2, #gemini-drink-output h3 {
+            font-family: 'Rye', cursive;
+            text-shadow: 2px 2px 0 #000;
+            letter-spacing: normal;
+        }
+        
+        .drink-card-logo-area {
+            position: relative;
+            min-height: 240px;
+            background-color: #111827;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-top-left-radius: 0.375rem;
+            border-top-right-radius: 0.375rem;
+        }
+        .drink-card-title-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .title-loader {
+            border: 3px solid #4b5563;
+            border-top: 3px solid #f59e0b;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        .drink-card-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .drink-card-title-fallback {
+            font-family: 'Rye', cursive;
+            text-shadow: 2px 2px 0 #000;
+            font-size: 2rem;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+        .retry-logo-btn {
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.5rem;
+            margin-left: 0.5rem;
+            transition: all 0.2s ease-in-out;
+        }
+        .retry-logo-btn:hover {
+            color: #f59e0b;
+            transform: rotate(90deg);
+        }
+        
+        .card-icon-group {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        .category-icons {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .category-icons i {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        .font-condensed { font-family: 'Roboto Condensed', sans-serif; }
+        .font-rye { font-family: 'Rye', cursive; line-height: 1.6; }
+        .font-black-ops { font-family: 'Black Ops One', cursive; }
+
+        .recipe-list { list-style: disc; margin-left: 1.5rem; line-height: 1.4; }
+        .modal { transition: opacity 0.3s ease-in-out; }
+        
+        /* --- STYLES FOR FLIP CARDS & "POP" --- */
+        .drink-card {
+            perspective: 1000px;
+            background-color: transparent;
+            min-height: 480px; /* Increased height */
+            cursor: pointer;
+        }
+        .drink-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 10px 20px rgba(0,0,0,0.7);
+            border-radius: 0.375rem; /* rounded-md */
+        }
+        .drink-card.is-flipped .drink-card-inner {
+            transform: rotateY(180deg);
+        }
+        .drink-card-front, .drink-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 0.375rem; /* rounded-md */
+            background-color: #1f2937;
+            border: 1px solid #4b5563;
+        }
+        .drink-card-front {
+            display: flex;
+            flex-direction: column;
+        }
+        .drink-card-back {
+            transform: rotateY(180deg);
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        .drink-card.is-active-card .drink-card-inner {
+             box-shadow: 0 0 15px 4px #f59e0b, 0 10px 20px rgba(0,0,0,0.7); /* amber-500 glow */
+        }
+        .drink-card-front .recipe-list { list-style: none; padding-left: 0; }
+        
+        .drink-image-container {
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 0.375rem;
+        }
+
+        /* --- Scroll Snap for Drink Cards --- */
+        #menu-grid {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-padding: 1rem;
+            -webkit-overflow-scrolling: touch;
+            padding: 1rem;
+            scrollbar-width: none; /* Firefox */
+        }
+        #menu-grid::-webkit-scrollbar { 
+            display: none; /* Safari and Chrome */
+        }
+        
+        #menu-grid > .drink-card { flex: 0 0 90%; scroll-snap-align: center; }
+        @media (min-width: 768px) { #menu-grid > .drink-card { flex-basis: 45%; } }
+        @media (min-width: 1024px) { #menu-grid > .drink-card { flex-basis: 31%; } }
+
+        /* --- Gemini & UI Button Styles --- */
+        .choice-btn, .gemini-btn { transition: all 0.2s ease-in-out; }
+        .choice-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.4); }
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #4F46E5; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes ride { 0%, 100% { transform: translateY(0) rotate(-10deg); } 50% { transform: translateY(-3px) rotate(-5deg); } }
+        @keyframes roll { 0% { transform: rotate(0deg) scale(1); } 100% { transform: rotate(360deg) scale(1); } }
+        .rolling-die { animation: roll 0.4s linear infinite; }
+
+        /* --- Filter Button Styles --- */
+        .filter-btn, .flavor-filter-btn {
+            font-family: 'Roboto Condensed', sans-serif; font-weight: 700; text-transform: uppercase; background-color: #1a202c; border: 2px solid #111827;
+            border-bottom-color: #4a5568; color: #a0aec0; padding: 0.5rem 1rem; border-radius: 0.375rem;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.6), 0 1px 1px rgba(255,255,255,0.1); transition: all 0.15s ease-out; flex-shrink: 0;
+        }
+        .filter-btn:hover, .flavor-filter-btn:hover { background-color: #2d3748; color: #e2e8f0; }
+        .filter-btn.active-filter, .flavor-filter-btn.active-filter {
+            background-color: #f59e0b; color: #1a202c; border-color: #dd6b20; border-top-color: #f6ad55;
+            transform: translateY(1px); box-shadow: inset 0 3px 6px rgba(0,0,0,0.4); text-shadow: 0 1px 1px rgba(255,255,255,0.2);
+        }
+        .filter-btn.active-filter i, .flavor-filter-btn.active-filter i { color: #1a202c !important; }
+        .filter-btn i, .flavor-filter-btn i { transition: color 0.15s ease-out; }
+
+        /* --- Toggle Switch Styles --- */
+        .toggle-text { font-family: 'Black Ops One', cursive; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; letter-spacing: 1px; position: absolute; left: 0; right: 0; text-align: right; padding-right: 12px; pointer-events: none; z-index: 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); transition: color 0.2s ease-in-out; }
+        .toggle-switch.on .toggle-text { color: #f59e0b; }
+        .toggle-switch { width: 160px; height: 44px; background-image: linear-gradient(to top, #1a202c, #2d3748); border-radius: 6px; padding: 4px; cursor: pointer; border: 2px solid #111827; border-bottom-color: #4a5568; box-shadow: inset 0 2px 4px rgba(0,0,0,0.6), 0 1px 1px rgba(255,255,255,0.1); position: relative; display: flex; align-items: center; justify-content: flex-start; }
+        .toggle-switch .toggle-nub { width: 32px; height: 32px; border-radius: 4px; background-image: linear-gradient(to top, #6b7280, #e5e7eb, #6b7280); box-shadow: 0 2px 4px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.2); transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55); display: flex; align-items: center; justify-content: center; position: relative; z-index: 10; }
+        .toggle-switch.on .toggle-nub { transform: translateX(120px); }
+        .toggle-switch .toggle-nub i { font-size: 1rem; color: #1a202c; text-shadow: 0 1px 0 rgba(255,255,255,0.2); transition: transform 0.2s ease-in-out; }
+        #bar-stock-toggle.on .toggle-nub i { animation: ride 0.5s ease-in-out infinite; }
+        #suggest-drink-toggle.on .toggle-nub i { animation: roll 0.4s linear; }
+
+        #create-drink-btn { background-image: linear-gradient(to top, #000000, #1f2d37); border: 1px solid #000; text-shadow: 1px 1px 2px rgba(0,0,0,0.6); box-shadow: inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -2px 3px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.5); transition: all 0.2s ease-in-out; }
+        #create-drink-btn:hover { background-image: linear-gradient(to top, #1f2d37, #4b5563); transform: translateY(-2px); box-shadow: inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -2px 3px rgba(0,0,0,0.6), 0 4px 6px rgba(0,0,0,0.5); }
+        
+        #show-story-link { font-family: 'Rye', cursive; color: #f59e0b; cursor: pointer; transition: all 0.2s ease-in-out; text-shadow: 1px 1px 2px #000; font-size: 1rem; line-height: 1; }
+        #show-story-link:hover { color: #fcd34d; transform: scale(1.05); }
+
+        /* --- UPDATED HEADER PATCH STYLE --- */
+        .header-patch {
+            background-image: linear-gradient(to top, #111827, #2c3547);
+            border-radius: 1rem;
+            padding: 1rem;
+            margin: 0 auto;
+            max-width: 900px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.7), inset 0 0 15px rgba(0,0,0,0.8), inset 0 2px 2px rgba(255,255,255,0.1);
+            position: relative;
+            border: 2px solid;
+            border-image-slice: 1;
+            border-image-source: linear-gradient(to bottom, #6b7280, #4b5563);
+        }
+        
+        .sticky-filter-bar { position: sticky; bottom: 0; z-index: 40; background-color: #111827; background-image: linear-gradient(to top, rgba(17, 24, 39, 1) 50%, rgba(17, 24, 39, 0.9)); box-shadow: 0 -10px 20px rgba(0,0,0,0.5); border-top: 2px solid #374151; }
+        #category-filter-nav, #flavor-filter-nav { display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; padding: 0.5rem 1rem; }
+        #flavor-filter-nav { border-bottom: 1px solid #374151; padding-top: 0.25rem; padding-bottom: 0.25rem; }
+        #category-filter-nav::-webkit-scrollbar, #flavor-filter-nav::-webkit-scrollbar { display: none; }
+        #category-filter-nav, #flavor-filter-nav { -ms-overflow-style: none; scrollbar-width: none; }
+        footer { padding-bottom: 120px; }
+
+        .ingredient-btn.out-of-stock { opacity: 0.5; background-color: #374151; text-decoration: line-through; }
+        .ingredient-btn.out-of-stock:hover { background-color: #4b5563; }
+
+        /* --- STRENGTH METER & FLAVOR ICONS --- */
+        .strength-meter, .flavor-icons { display: flex; justify-content: center; gap: 0.5rem; }
+        .flavor-icons { height: 20px; }
+        .strength-meter i, .flavor-icons i { font-size: 1.25rem; }
+        .strength-meter .filled { color: #f59e0b; text-shadow: 0 0 5px #f59e0b; }
+        .strength-meter .empty { color: #4b5563; opacity: 0.7; }
+        .flavor-icons i { transition: transform 0.2s ease-in-out; }
+        .flavor-icons i:hover { transform: scale(1.2); }
+        .fa-candy-cane{color:#ffb8c1}.fa-lemon{color:#fde047}.fa-pepper-hot{color:#ef4444}.fa-seedling{color:#84cc16}.fa-cloud{color:#f1f5f9}.fa-mug-hot{color:#854d0e}.fa-coffee{color:#a16207}.fa-fan{color:#a855f7}.fa-star-of-life{color:#7dd3fc}.fa-bolt{color:#facc15}.fa-snowflake{color:#67e8f9}.fa-water{color:#38bdf8}.fa-umbrella-beach{color:#f97316}.fa-apple-whole{color:#dc2626}.fa-fist-raised{color:#b91c1c}.fa-wave-square{color:#60a5fa}.fa-leaf{color:#57534e}.fa-moon{color:#4338ca}.fa-cookie-bite{color:#d4a373}.fa-icicles{color:#e0f2fe}.fa-dumbbell{color:#6b7280}.fa-circle{color:#d1d5db}.fa-cube{color:#3730a3}.fa-wind{color:#9ca3af}.fa-cactus{color:#85a23d}.fa-circle-dot{color:#fed7aa}.fa-mortar-pestle{color:#c084fc}
+
+        /* --- Navigation Arrows --- */
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(17, 24, 39, 0.5);
+            color: #d1d5db;
+            border: 2px solid #4b5563;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 35;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-arrow:hover {
+            background-color: rgba(245, 158, 11, 0.8);
+            color: #111827;
+            border-color: #f59e0b;
+        }
+        #arrow-left { left: 10px; }
+        #arrow-right { right: 10px; }
+        @media (min-width: 1280px) {
+            #arrow-left { left: calc(50vw - 600px); }
+            #arrow-right { right: calc(50vw - 600px); }
+        }
+<style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1a110a; /* Dark wood fallback */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('https://www.transparenttextures.com/patterns/worn-dots.png');
+            background-attachment: fixed;
+        }
+        
+        h2, h3 {
+            font-family: 'Black Ops One', cursive;
+            text-shadow: 1px 1px 0 #000, 2px 2px 0 #333;
+            letter-spacing: 0.05em;
+        }
+        .drink-card h3, .modal h2, #gemini-drink-output h3 {
+            font-family: 'Rye', cursive;
+            text-shadow: 2px 2px 0 #000;
+            letter-spacing: normal;
+        }
+        
+        .drink-card-logo-area {
+            position: relative;
+            min-height: 240px;
+            background-color: #111827;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-top-left-radius: 0.375rem;
+            border-top-right-radius: 0.375rem;
+        }
+        .drink-card-title-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .title-loader {
+            border: 3px solid #4b5563;
+            border-top: 3px solid #f59e0b;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        .drink-card-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .drink-card-title-fallback {
+            font-family: 'Rye', cursive;
+            text-shadow: 2px 2px 0 #000;
+            font-size: 2rem;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+        .retry-logo-btn {
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.5rem;
+            margin-left: 0.5rem;
+            transition: all 0.2s ease-in-out;
+        }
+        .retry-logo-btn:hover {
+            color: #f59e0b;
+            transform: rotate(90deg);
+        }
+        
+        .card-icon-group {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        .category-icons {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .category-icons i {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        .font-condensed { font-family: 'Roboto Condensed', sans-serif; }
+        .font-rye { font-family: 'Rye', cursive; line-height: 1.6; }
+        .font-black-ops { font-family: 'Black Ops One', cursive; }
+
+        .recipe-list { list-style: disc; margin-left: 1.5rem; line-height: 1.4; }
+        .modal { transition: opacity 0.3s ease-in-out; }
+        
+        /* --- STYLES FOR FLIP CARDS & "POP" --- */
+        .drink-card {
+            perspective: 1000px;
+            background-color: transparent;
+            min-height: 480px; /* Increased height */
+            cursor: pointer;
+        }
+        .drink-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 10px 20px rgba(0,0,0,0.7);
+            border-radius: 0.375rem; /* rounded-md */
+        }
+        .drink-card.is-flipped .drink-card-inner {
+            transform: rotateY(180deg);
+        }
+        .drink-card-front, .drink-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 0.375rem; /* rounded-md */
+            background-color: #1f2937;
+            border: 1px solid #4b5563;
+        }
+        .drink-card-front {
+            display: flex;
+            flex-direction: column;
+        }
+        .drink-card-back {
+            transform: rotateY(180deg);
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        .drink-card.is-active-card .drink-card-inner {
+             box-shadow: 0 0 15px 4px #f59e0b, 0 10px 20px rgba(0,0,0,0.7); /* amber-500 glow */
+        }
+        .drink-card-front .recipe-list { list-style: none; padding-left: 0; }
+        
+        .drink-image-container {
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 0.375rem;
+        }
+
+        /* --- Scroll Snap for Drink Cards --- */
+        #menu-grid {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-padding: 1rem;
+            -webkit-overflow-scrolling: touch;
+            padding: 1rem;
+            scrollbar-width: none; /* Firefox */
+        }
+        #menu-grid::-webkit-scrollbar { 
+            display: none; /* Safari and Chrome */
+        }
+        
+        #menu-grid > .drink-card { flex: 0 0 90%; scroll-snap-align: center; }
+        @media (min-width: 768px) { #menu-grid > .drink-card { flex-basis: 45%; } }
+        @media (min-width: 1024px) { #menu-grid > .drink-card { flex-basis: 31%; } }
+
+        /* --- Gemini & UI Button Styles --- */
+        .choice-btn, .gemini-btn { transition: all 0.2s ease-in-out; }
+        .choice-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.4); }
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #4F46E5; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes ride { 0%, 100% { transform: translateY(0) rotate(-10deg); } 50% { transform: translateY(-3px) rotate(-5deg); } }
+        @keyframes roll { 0% { transform: rotate(0deg) scale(1); } 100% { transform: rotate(360deg) scale(1); } }
+        .rolling-die { animation: roll 0.4s linear infinite; }
+
+        /* --- Filter Button Styles --- */
+        .filter-btn, .flavor-filter-btn {
+            font-family: 'Roboto Condensed', sans-serif; font-weight: 700; text-transform: uppercase; background-color: #1a202c; border: 2px solid #111827;
+            border-bottom-color: #4a5568; color: #a0aec0; padding: 0.5rem 1rem; border-radius: 0.375rem;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.6), 0 1px 1px rgba(255,255,255,0.1); transition: all 0.15s ease-out; flex-shrink: 0;
+        }
+        .filter-btn:hover, .flavor-filter-btn:hover { background-color: #2d3748; color: #e2e8f0; }
+        .filter-btn.active-filter, .flavor-filter-btn.active-filter {
+            background-color: #f59e0b; color: #1a202c; border-color: #dd6b20; border-top-color: #f6ad55;
+            transform: translateY(1px); box-shadow: inset 0 3px 6px rgba(0,0,0,0.4); text-shadow: 0 1px 1px rgba(255,255,255,0.2);
+        }
+        .filter-btn.active-filter i, .flavor-filter-btn.active-filter i { color: #1a202c !important; }
+        .filter-btn i, .flavor-filter-btn i { transition: color 0.15s ease-out; }
+
+        /* --- Toggle Switch Styles --- */
+        .toggle-text { font-family: 'Black Ops One', cursive; font-size: 0.8rem; text-transform: uppercase; color: #a0aec0; letter-spacing: 1px; position: absolute; left: 0; right: 0; text-align: right; padding-right: 12px; pointer-events: none; z-index: 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); transition: color 0.2s ease-in-out; }
+        .toggle-switch.on .toggle-text { color: #f59e0b; }
+        .toggle-switch { width: 160px; height: 44px; background-image: linear-gradient(to top, #1a202c, #2d3748); border-radius: 6px; padding: 4px; cursor: pointer; border: 2px solid #111827; border-bottom-color: #4a5568; box-shadow: inset 0 2px 4px rgba(0,0,0,0.6), 0 1px 1px rgba(255,255,255,0.1); position: relative; display: flex; align-items: center; justify-content: flex-start; }
+        .toggle-switch .toggle-nub { width: 32px; height: 32px; border-radius: 4px; background-image: linear-gradient(to top, #6b7280, #e5e7eb, #6b7280); box-shadow: 0 2px 4px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.2); transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55); display: flex; align-items: center; justify-content: center; position: relative; z-index: 10; }
+        .toggle-switch.on .toggle-nub { transform: translateX(120px); }
+        .toggle-switch .toggle-nub i { font-size: 1rem; color: #1a202c; text-shadow: 0 1px 0 rgba(255,255,255,0.2); transition: transform 0.2s ease-in-out; }
+        #bar-stock-toggle.on .toggle-nub i { animation: ride 0.5s ease-in-out infinite; }
+        #suggest-drink-toggle.on .toggle-nub i { animation: roll 0.4s linear; }
+
+        #create-drink-btn { background-image: linear-gradient(to top, #000000, #1f2d37); border: 1px solid #000; text-shadow: 1px 1px 2px rgba(0,0,0,0.6); box-shadow: inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -2px 3px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.5); transition: all 0.2s ease-in-out; }
+        #create-drink-btn:hover { background-image: linear-gradient(to top, #1f2d37, #4b5563); transform: translateY(-2px); box-shadow: inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -2px 3px rgba(0,0,0,0.6), 0 4px 6px rgba(0,0,0,0.5); }
+        
+        #show-story-link { font-family: 'Rye', cursive; color: #f59e0b; cursor: pointer; transition: all 0.2s ease-in-out; text-shadow: 1px 1px 2px #000; font-size: 1rem; line-height: 1; }
+        #show-story-link:hover { color: #fcd34d; transform: scale(1.05); }
+
+        /* --- UPDATED HEADER PATCH STYLE --- */
+        .header-patch {
+            background-image: linear-gradient(to top, #111827, #2c3547);
+            border-radius: 1rem;
+            padding: 1rem;
+            margin: 0 auto;
+            max-width: 900px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.7), inset 0 0 15px rgba(0,0,0,0.8), inset 0 2px 2px rgba(255,255,255,0.1);
+            position: relative;
+            border: 2px solid;
+            border-image-slice: 1;
+            border-image-source: linear-gradient(to bottom, #6b7280, #4b5563);
+        }
+        
+        .sticky-filter-bar { position: sticky; bottom: 0; z-index: 40; background-color: #111827; background-image: linear-gradient(to top, rgba(17, 24, 39, 1) 50%, rgba(17, 24, 39, 0.9)); box-shadow: 0 -10px 20px rgba(0,0,0,0.5); border-top: 2px solid #374151; }
+        #category-filter-nav, #flavor-filter-nav { display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; padding: 0.5rem 1rem; }
+        #flavor-filter-nav { border-bottom: 1px solid #374151; padding-top: 0.25rem; padding-bottom: 0.25rem; }
+        #category-filter-nav::-webkit-scrollbar, #flavor-filter-nav::-webkit-scrollbar { display: none; }
+        #category-filter-nav, #flavor-filter-nav { -ms-overflow-style: none; scrollbar-width: none; }
+        footer { padding-bottom: 120px; }
+
+        .ingredient-btn.out-of-stock { opacity: 0.5; background-color: #374151; text-decoration: line-through; }
+        .ingredient-btn.out-of-stock:hover { background-color: #4b5563; }
+
+        /* --- STRENGTH METER & FLAVOR ICONS --- */
+        .strength-meter, .flavor-icons { display: flex; justify-content: center; gap: 0.5rem; }
+        .flavor-icons { height: 20px; }
+        .strength-meter i, .flavor-icons i { font-size: 1.25rem; }
+        .strength-meter .filled { color: #f59e0b; text-shadow: 0 0 5px #f59e0b; }
+        .strength-meter .empty { color: #4b5563; opacity: 0.7; }
+        .flavor-icons i { transition: transform 0.2s ease-in-out; }
+        .flavor-icons i:hover { transform: scale(1.2); }
+        .fa-candy-cane{color:#ffb8c1}.fa-lemon{color:#fde047}.fa-pepper-hot{color:#ef4444}.fa-seedling{color:#84cc16}.fa-cloud{color:#f1f5f9}.fa-mug-hot{color:#854d0e}.fa-coffee{color:#a16207}.fa-fan{color:#a855f7}.fa-star-of-life{color:#7dd3fc}.fa-bolt{color:#facc15}.fa-snowflake{color:#67e8f9}.fa-water{color:#38bdf8}.fa-umbrella-beach{color:#f97316}.fa-apple-whole{color:#dc2626}.fa-fist-raised{color:#b91c1c}.fa-wave-square{color:#60a5fa}.fa-leaf{color:#57534e}.fa-moon{color:#4338ca}.fa-cookie-bite{color:#d4a373}.fa-icicles{color:#e0f2fe}.fa-dumbbell{color:#6b7280}.fa-circle{color:#d1d5db}.fa-cube{color:#3730a3}.fa-wind{color:#9ca3af}.fa-cactus{color:#85a23d}.fa-circle-dot{color:#fed7aa}.fa-mortar-pestle{color:#c084fc}
+
+        /* --- Navigation Arrows --- */
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(17, 24, 39, 0.5);
+            color: #d1d5db;
+            border: 2px solid #4b5563;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 35;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-arrow:hover {
+            background-color: rgba(245, 158, 11, 0.8);
+            color: #111827;
+            border-color: #f59e0b;
+        }
+        #arrow-left { left: 10px; }
+        #arrow-right { right: 10px; }
+        @media (min-width: 1280px) {
+            #arrow-left { left: calc(50vw - 600px); }
+            #arrow-right { right: calc(50vw - 600px); }
+        }
+
+    </style>
+    
         html, body {
             height: 100%;
             overflow: hidden; /* Prevent body from scrolling */
