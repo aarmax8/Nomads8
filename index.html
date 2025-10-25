@@ -47,19 +47,16 @@
         
         header {
             flex-shrink: 0; /* Prevent header from shrinking */
-            /* ADDED: z-index to stay on top of card glow */
             position: relative;
-            z-index: 10;
-            /* REMOVED: The padding-top below was pushing the content down. */
-            /* padding-top: env(safe-area-inset-top); */
+            /* CHANGE: Z-index moved behind cards (15) */
+            z-index: 5; 
         }
         
         main {
             flex-grow: 1; /* Allow main content to grow and fill space */
-            /* REMOVED: overflow: hidden; -- This lets the glow escape */
             position: relative; /* Needed for the menu grid */
-            /* ADDED: z-index to sit behind header/footer but allow glow to escape */
-            z-index: 1; 
+            /* CHANGE: Z-index moved in front of header/footer (5) */
+            z-index: 15; 
         }
 
         #header-logo-container {
@@ -67,15 +64,7 @@
             overflow: hidden; /* To contain the glint */
             /* ADJUSTED: Reduced min-height slightly, while keeping status bar clearance */
             min-height: 210px;
-
-            /* REMOVED: Fallback for desktop preview. 
-               This was just to simulate the effect.
-            */
-            /* padding-top: 44px; */
             
-            /* This is the real code for the device. 
-               It will override the 44px above if the device supports it.
-            */
             padding-top: env(safe-area-inset-top);
             
             /* Background image with gradient overlay */
@@ -276,6 +265,7 @@
         }
         
         .card-hook-tagline {
+            /* REMOVED: PUSH-TO-BOTTOM LOGIC */
             text-align: center; 
             font-size: 1.25rem; /* Made it bigger */
             line-height: 1.4;
@@ -284,11 +274,10 @@
             padding: 0.75rem 1.5rem; /* Reduced vertical padding */
             font-family: 'Cinzel', serif; /* Cleaner font */
             letter-spacing: 0.03em; 
-            flex-shrink: 0;
+            flex-shrink: 0; /* Keep it from shrinking */
             background: transparent; /* Clean background */
             border-top: 1px solid rgba(255, 255, 255, 0.1); /* Clean border */
-            font-style: normal; /* Removed italic */
-            margin-top: auto; /* Pushes it to the bottom of the flex content area */
+            /* Removed margin-top: auto; */
         }
         
         /* === END CARD FRONT REDESIGN === */
@@ -303,29 +292,57 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Pushes content to the bottom */
+            /* CHANGE: Push content to top, allowing the content to fill the area */
+            justify-content: flex-start; 
             
             --bg-image: none;
             background-image: 
-                /* Gradient Overlays -- MODIFIED for better text visibility */
-                linear-gradient(to bottom, rgba(17,17,17,0.8) 0%, transparent 15%), 
-                linear-gradient(to top, rgba(17,17,17,1) 0%, rgba(17,17,17,0.9) 25%, transparent 70%),
-                /* Actual Image */
+                /* NEW LAYER 1 (Turquoise & Dark Fade): Darker and fades out quickly from top */
+                linear-gradient(to bottom, 
+                    rgba(17, 17, 17, 1) 0%, 
+                    rgba(45, 212, 191, 0.25) 30%, 
+                    transparent 60%
+                ),
+                /* Layer 2 (Bottom Dark Fade): Polish over the image anchor */
+                linear-gradient(to top, rgba(17,17,17,0.5) 0%, transparent 10%),
+                /* Layer 3: The Actual Image */
                 var(--bg-image);
 
-            background-position: center, center, top;
+            /* UPDATED: Total of 3 layers */
+            background-position: center, center, bottom;
             background-repeat: no-repeat;
             background-size: 100% 100%, 100% 100%, cover;
         }
+        
+        /* NEW HEADER: For the flipped card title, replacing the old footer placement */
+        .card-header-back {
+             padding: 0.75rem 1.25rem;
+            background: rgba(0,0,0,0.5);
+            border-bottom: 2px double rgba(133, 77, 14, 0.5);
+            font-style: normal;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: #f59e0b;
+            text-shadow: 0 0 8px rgba(245, 158, 11, 0.7);
+            z-index: 2;
+            flex-shrink: 0;
+        }
 
         .card-back-content {
-            padding: 0 1.25rem 1rem;
-            flex-grow: 0; /* Don't let it grow, just take space it needs */
+            padding: 1rem 1.25rem; /* Increased top padding */
+            flex-grow: 1; /* Allow it to take up available space */
             display: flex; flex-direction: column;
             overflow-y: auto;
-            max-height: 50%; /* Content takes up bottom half at most */
+            /* Removed max-height restriction */
             position: relative;
             z-index: 2;
+            /* IMPROVED TEXT VISIBILITY */
+            color: #f3f4f6; /* Lighter gray/white */
+            text-shadow: 1px 1px 4px rgba(0,0,0,1); /* Stronger shadow */
         }
 
         .story-text {
@@ -334,8 +351,7 @@
             text-align: justify;
             font-size: 1.15rem;
             line-height: 1.5;
-            color: #e5e7eb; /* Brightened text for contrast */
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8); /* Stronger shadow */
+            /* Removed inline color/shadow override, relies on parent (.card-back-content) for style */
         }
 
         .card-back-content::-webkit-scrollbar { width: 4px; }
@@ -350,22 +366,7 @@
          .no-image {
             background-image: none; /* No overlay if no image */
          }
-        .card-footer-back {
-             padding: 0.75rem;
-            background: rgba(0,0,0,0.3);
-            border-top: 2px double rgba(133, 77, 14, 0.5);
-            font-style: normal;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 60px;
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            color: #f59e0b;
-            text-shadow: 0 0 8px rgba(245, 158, 11, 0.7);
-            z-index: 2; /* Ensure it's above the overlay */
-            flex-shrink: 0; /* Prevent footer from shrinking */
-        }
+        /* REMOVED .card-footer-back - it is now .card-header-back */
 
 
         /* --- FAVORITES STYLES (MODIFIED) --- */
@@ -505,6 +506,10 @@
 
         /* --- NEW BRIGHTER MODAL STYLES --- */
         .modal-panel {
+            /* FIX: Set max-height to leave generous space at top and especially bottom 
+               (Approx. 12rem/192px of total screen height free space) */
+            max-height: calc(100vh - 12rem); 
+            
             background-image: radial-gradient(circle at top, rgba(41, 37, 36, 0.4), rgba(28, 25, 23, 0.7)), url('https://www.transparenttextures.com/patterns/leather.png');
             border: 2px solid #f59e0b;
             box-shadow: 0 0 30px rgba(245, 158, 11, 0.3), inset 0 0 20px rgba(245, 158, 11, 0.15);
@@ -769,11 +774,28 @@
             transform: rotate(225deg); 
         }
 
-        /* --- Footer Bar Styles --- */
+        /* --- NEW STYLES: Navigation Button Overlay --- */
+        #nav-controls-overlay {
+            position: fixed; /* Fixed positioning to float over other elements */
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100; /* Highest priority to ensure buttons are clickable */
+            padding: 0.75rem 1rem;
+            /* Use padding calc to correctly float buttons above iOS home indicator area */
+            padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* Ensure the overlay is transparent, relying on the FOOTER for the background color/blur */
+            background: transparent; 
+        }
+
+        /* --- Footer Bar Styles (now primarily background/spacing) --- */
         footer {
             flex-shrink: 0;
             padding: 0.75rem 1rem;
-            /* MODIFIED: Pushes content up from the home indicator area on iOS */
+            /* Keep padding to reserve space in the flex column layout */
             padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
             background-color: rgba(0,0,0,0.5); 
             background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://raw.githubusercontent.com/aarmax8/Nomads/ac96a3e89384bc4f8a4feefe4af617c47d901a0e/panoback1.jpg');
@@ -782,11 +804,11 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            /* CHANGE: Removed display: flex and block/flex properties, as content is gone. */
+            display: block; 
             position: relative;
-            z-index: 10;
+            /* CHANGE: Z-index moved behind cards (15) */
+            z-index: 5; 
         }
         
         /* --- Splash Screen Styles --- */
@@ -851,10 +873,9 @@
             <!-- Grid for drink cards -->
             <div id="menu-grid"></div>
         </main>
-
         
-        <!-- Main application footer -->
-        <footer id="app-footer">
+        <!-- NEW: NAVIGATION CONTROLS OVERLAY -->
+        <div id="nav-controls-overlay">
             <button id="scroll-prev-btn" class="floating-action-btn-left" title="Scroll Left">
                 <i class="fas fa-angles-left"></i>
             </button>
@@ -873,7 +894,7 @@
             </button>
 
             
-            <!-- Container for the floating action button menu -->
+            <!-- Floating menu container moved here -->
             <div id="floating-menu-container" class="flex-shrink-0">
                 
                 <!-- Hidden menu items -->
@@ -899,20 +920,28 @@
                     <i class="fas fa-times icon-close"></i>
                 </button>
             </div>
+        </div>
+
+        
+        <!-- Main application footer (now just the background bar and space holder) -->
+        <footer id="app-footer">
+            <!-- Content moved to #nav-controls-overlay -->
         </footer>
     </div>
 
     
     <!-- Favorites Modal -->
     <div id="favorites-modal" class="modal fixed inset-0 bg-black/60 flex items-center justify-center p-4 hidden opacity-0 z-50">
-        <div class="modal-panel rounded-2xl shadow-2xl w-full max-w-2xl max-h-[95vh] flex flex-col">
+        <!-- MODIFIED: max-h-[95vh] replaced with calculated max-height for better clearance -->
+        <div class="modal-panel rounded-2xl shadow-2xl w-full max-w-2xl max-h-[calc(100vh-12rem)] flex flex-col">
             <div class="modal-header p-6 flex-shrink-0">
                 <div class="flex justify-between items-center">
                     <h2 class="text-3xl text-amber-400 font-cinzel tracking-wider">Favorites</h2>
                     <button id="close-favorites-btn" class="text-gray-400 hover:text-white text-3xl">&times;</button>
                 </div>
             </div>
-            <div id="favorites-list-container" class="p-6 text-gray-300 overflow-y-auto">
+            <!-- ADDED: flex-grow class to make content scrollable in the remaining space -->
+            <div id="favorites-list-container" class="p-6 text-gray-300 overflow-y-auto flex-grow">
                 <!-- Favorite items will be rendered here by JS -->
             </div>
         </div>
@@ -920,18 +949,21 @@
 
     <!-- Bar Stock Modal -->
     <div id="bar-stock-modal" class="modal fixed inset-0 bg-black/60 flex items-center justify-center p-4 hidden opacity-0 z-50">
-        <div class="modal-panel rounded-2xl shadow-2xl w-full max-w-2xl max-h-[95vh] flex flex-col">
+        <!-- MODIFIED: max-h-[95vh] replaced with calculated max-height for better clearance -->
+        <div class="modal-panel rounded-2xl shadow-2xl w-full max-w-2xl max-h-[calc(100vh-12rem)] flex flex-col">
             <div class="modal-header p-6 flex justify-between items-center flex-shrink-0">
                 <h2 class="text-3xl text-amber-400 font-cinzel tracking-wider">Bar Stock</h2>
                 <button id="close-stock-btn" class="text-gray-400 hover:text-white text-3xl">&times;</button>
             </div>
-            <div id="bar-stock-content" class="p-6 text-gray-300 overflow-y-auto"></div>
+            <!-- ADDED: flex-grow class to make content scrollable in the remaining space -->
+            <div id="bar-stock-content" class="p-6 text-gray-300 overflow-y-auto flex-grow"></div>
         </div>
     </div>
     
     <!-- Filter Modal -->
     <div id="filter-modal" class="modal fixed inset-0 bg-black/60 flex items-center justify-center p-4 hidden opacity-0 z-50">
-        <div class="modal-panel rounded-2xl shadow-2xl w-full max-w-2xl max-h-[95vh] flex flex-col">
+        <!-- MODIFIED: max-h-[95vh] replaced with calculated max-height for better clearance -->
+        <div class="modal-panel rounded-2xl shadow-2xl w-full max-w-2xl max-h-[calc(100vh-12rem)] flex flex-col">
             <div class="modal-header p-6 flex-shrink-0">
                 <div class="flex justify-between items-center">
                     <h2 class="text-3xl text-amber-400 font-cinzel tracking-wider">Browse The Deck</h2>
@@ -939,8 +971,9 @@
                 </div>
                 <p class="text-gray-400 mt-2" id="filter-modal-subtitle">Select filters to find your drink.</p>
             </div>
-            <div id="filter-modal-content" class="p-6 text-gray-300 overflow-y-auto"></div>
-             <div class="p-4 border-t border-white/10 flex justify-end gap-4">
+            <!-- ADDED: flex-grow class to make content scrollable in the remaining space -->
+            <div id="filter-modal-content" class="p-6 text-gray-300 overflow-y-auto flex-grow"></div>
+             <div class="p-4 border-t border-white/10 flex justify-end gap-4 flex-shrink-0">
                 <button id="reset-filters-btn" class="py-2 px-6 rounded-lg bg-transparent border border-gray-500 hover:bg-gray-700 text-white font-bold transition-colors">Reset</button>
                 <button id="apply-filters-btn" class="py-2 px-6 rounded-lg bg-amber-600 hover:bg-amber-500 text-black font-bold transition-colors">Show Drinks</button>
             </div>
@@ -969,7 +1002,14 @@
                 { name: "Blacktop Sunset", flavorProfile: "Smooth Irish whiskey and sweet Southern Comfort are brightened by lime and spiced ginger.", recipe: ["1 oz Jameson Irish Whiskey", "1 oz Southern Comfort", "0.5 oz Lime Juice", "2 dashes Angostura Bitters", "Fill a tall glass with Ginger Soda"], story: "This is the color of the bruise our prospect got after he mistook a puddle for a pothole and tried to 'bunny hop' it. The sunset that evening was almost as beautiful as his failure.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/192b194c611aafb0934b83ec0cd7474c.jpg", cardHook: "To the potholes you can't see." },
                 { name: "Elderflower Nomad", flavorProfile: "Delicate elderflower and botanical gin meet a hint of lavender and rosemary.", recipe: ["1.5 oz Tanqueray Gin", "0.75 oz St-Germain", "0.5 oz Lime Juice", "2 dashes Rosemary Lavender Bitters", "Top with Club Soda in a tall glass"], story: "We sent 'Tiny' to get gin. He came back with this flowery stuff and said it would 'expand our horizons.' We expanded his list of chores instead. Turns out, the joke's on us. This stuff is good. Don't tell him.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/1bf52dfc1aad553db68333418c40d848.jpg", cardHook: "Even a nomad can be sophisticated." },
                 { name: "Grim Reaper", flavorProfile: "A dark and potent combination of herbal Jägermeister and spiced black rum.", recipe: ["1.5 oz Jägermeister", "1 oz Kraken Black Spiced Rum", "Fill with Cola"], story: "The first guy who drank this said he saw the Grim Reaper, who apparently asked for a sip. We told the Reaper to get lost. He's not welcome here. The drink, however, is.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/1f512d08cccf12ad8dc389d42f5fcceb.jpg", cardHook: "For nights you'd rather forget." },
-                { name: "Apparition", flavorProfile: "Clean vodka and floral St-Germain are lifted by the bright spice of ginger.", recipe: ["2 oz Ketel One Vodka", "0.75 oz St-Germain", "0.5 oz Lime Juice", "Fill a tall glass with Ginger Soda"], story: "Gus drinks three of these and claims he can see through walls. All he's ever seen is the inside of the men's room, which is punishment enough for the rest of us who have to hear about it.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c4502907599bf6a90ecaf84a18fc47b/frontend/206S17.jpg", cardHook: "To the spirits that haunt the bar." },
+                { 
+                    name: "Apparition", 
+                    flavorProfile: "Clean vodka and floral St-Germain are lifted by the bright spice of ginger.", 
+                    recipe: ["2 oz Ketel One Vodka", "0.75 oz St-Germain", "0.5 oz Lime Juice", "Fill a tall glass with Ginger Soda"], 
+                    story: "Gus drinks three of these and claims he can see through walls. All he's ever seen is the inside of the men's room, which is punishment enough for the rest of us who have to hear about it.", 
+                    image: "https://raw.githubusercontent.com/aarmax8/Nomads/1437d292004819d9c63535c2640d75fabd110422/frontend/af6e2eb912193594dcd36d644ed6dfee.jpg", 
+                    cardHook: "To the spirits that haunt the bar." 
+                },
                 { name: "Rusty Nail", flavorProfile: "A timeless and potent blend of smoky Scotch whisky sweetened by the honeyed, herbal spice of Drambuie.", recipe: ["2 oz Johnnie Walker Red Label", "1 oz Drambuie", "Serve on the rocks", "Lemon Twist Garnish"], story: "This is what you drink when you've made a deal you know you'll regret. Like trading your bike for a 'guaranteed' winning lottery ticket. Ask Jimmy how that went. Actually, don't. He's still sensitive about it.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/271d97ccf4324f5c3e3d7ec301c4fcc8.jpg", cardHook: "Every deal has its price." },
                 { name: "Mechanic", flavorProfile: "A blast of bright citrus and sweet orange liqueur, carried by a wave of sour mix.", recipe: ["2 oz Stolichnaya Citros Vodka", "1 oz Blue Curacao", "2 dashes Orange Bitters", "Fill a tall glass with Sour Mix"], story: "Sal, our mechanic, calls this 'motivation.' He says the color reminds him of brand new antifreeze, which is the only thing that gets him excited. We're worried about Sal.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/39cd9a9b372af2c86cb7189c2f929463.png", cardHook: "Tastes better than degreaser. Probably." },
                 { name: "Redline Riot", flavorProfile: "Sweet cherry and sharp sour mix create a vibrant, rebellious flavor.", recipe: ["1.5 oz Ketel One Vodka", "1 oz Cherry Schnapps", "Fill a tall glass with Sour Mix", "Splash of Lime Juice"], story: "A tribute to the time we tried to see if a cherry-red '78 Sportster could actually hit the redline in first gear without exploding. It could not. This drink is less expensive to clean up.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/3a506b28b91e0e5d031cedbeca489a14.jpg", cardHook: "Here's to things we can't talk about." },
@@ -1017,7 +1057,14 @@
                 { name: "Godfather", flavorProfile: "A simple, powerful duo of bold bourbon and sweet, nutty amaretto.", recipe: ["2 oz Bulleit Bourbon", "0.75 oz Amaretto", "Serve on the rocks"], story: "This is what you drink right before you make a very serious, legally questionable promise to a group of men you probably shouldn't trust. It's strong, sweet, and tastes like brotherhood and future bad decisions.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/dbb93ea76cfc2d6585f379c8bac90910--bike-art-motorcycle-art.jpg", cardHook: "To promises you'll try to keep." },
                 { name: "White Russian", flavorProfile: "A rich and creamy classic with vodka and coffee liqueur.", recipe: ["2 oz Grey Goose Vodka", "1 oz Kahlúa", "1 oz Baileys Irish Cream"], story: "This drink is for when you just don't want to deal with anything. It's a creamy, alcoholic blanket for your problems. It doesn't solve them, but it makes them quieter.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/e5a7f5bfc3b2c200266b6df05a132e17.jpg", cardHook: "It really ties the room together." },
                 { name: "Long Island Iced Tea", flavorProfile: "A potent and deceptive blend of five different spirits with a sour, cola finish.", recipe: ["0.5 oz Grey Goose Vodka", "0.5 oz Tanqueray Gin", "0.5 oz Bacardi Rum", "0.5 oz Jose Cuervo Silver Tequila", "0.5 oz Cointreau", "1 oz Lemon Juice", "Fill a tall glass with Cola"], story: "This isn't a drink, it's a dare. It's a mix of everything that will get you into trouble, served in a glass. The only 'tea' involved is the 'T-rouble' you'll be in tomorrow.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/ed9d1453cc5561fb3049f8f6d3a7e145.jpg", cardHook: "A beautiful, delicious lie." },
-                { name: "Castaway", flavorProfile: "A complex tropical punch with spiced rum, mixed juices, and a sweet finish.", recipe: ["2 oz Captain Morgan Spiced Rum", "1 oz Pineapple Juice", "0.5 oz Orange Juice", "2 dashes Angostura Bitters", "Splash of Grenadine", "Top with Club Soda in a tall glass"], story: "For the guy who says he's 'going on a solo run' but ends up at a resort bar hitting on tourists. We all know what you're doing, Steve. At least you brought this recipe back.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/441483b6d15034c2d04abfb21566aba1.jpg", cardHook: "Here's to getting lost." },
+                { 
+                    name: "Castaway", 
+                    flavorProfile: "A complex tropical punch with spiced rum, mixed juices, and a sweet finish.", 
+                    recipe: ["2 oz Captain Morgan Spiced Rum", "1 oz Pineapple Juice", "0.5 oz Orange Juice", "2 dashes Angostura Bitters", "Splash of Grenadine", "Top with Club Soda in a tall glass"], 
+                    story: "For the guy who says he's 'going on a solo run' but ends up at a resort bar hitting on tourists. We all know what you're doing, Steve. At least you brought this recipe back.", 
+                    image: "https://raw.githubusercontent.com/aarmax8/Nomads/1437d292004819d9c63535c2640d75fabd110422/frontend/67bab4c8460e76ee5bd5fe757150ef26--bike-art-motorcycle-art.jpg", 
+                    cardHook: "Here's to getting lost." 
+                },
                 { name: "Phantom Shift", flavorProfile: "Sharp anise and botanical gin create a crisp, clean flavor with a bitter, tonic finish.", recipe: ["1 oz Pernod", "1 oz Tanqueray Gin", "0.5 oz Lime Juice", "Top with Tonic Water in a tall glass"], story: "Tastes like licorice and regret. Named for the 'phantom' expenses that keep appearing on the club's credit card. We know who's doing it. And their time is short.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/f2a6114d2d00087a3f9192fc5cc74614.jpg", cardHook: "For the gears that aren't there." },
                 { name: "Morning Haze", flavorProfile: "A bright and sharp mix of botanical gin and tropical pineapple juice.", recipe: ["2 oz Tanqueray Gin", "Fill with Pineapple Juice", "Splash of Lime Juice"], story: "For when you wake up and the world is a blurry, confusing mess. This drink is also a blurry, confusing mess, but it's a delicious one. It helps you ease into your hangover.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/il_fullxfull.1268185178_a000.webp", cardHook: "A helpful lie for a hazy morning." },
                 { name: "Nightcap", flavorProfile: "A rich, smooth, and simple pairing of creamy Baileys and nutty amaretto.", recipe: ["2 oz Baileys Irish Cream", "1 oz Amaretto", "Serve on the rocks"], story: "Don't let the name fool you. This is not a 'one and done' drink. It's a 'one and then you decide it's a good idea to call your ex' drink. You have been warned.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ECaf84a18fc47b/frontend/il_fullxfull.1315813799_ayvc.webp", cardHook: "The perfect end to the day." },
@@ -1032,7 +1079,14 @@
                 { name: "Oracle's Kiss", flavorProfile: "A sweet and floral blend of citrus vodka, elderflower, and cranberry.", recipe: ["1.5 oz Stolichnaya Citros Vodka", "0.5 oz St-Germain", "Fill with Cranberry Juice"], story: "Some lady at a carnival gave our treasurer a 'kiss for good luck.' He woke up three hours later with his wallet gone and a lingering taste of cranberry. We made this to commemorate his gullibility.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/90ba0d71f42b567f7e9a417fbd74cedfc805201e/thumbnail_IMG_7997.jpg", cardHook: "The future is sweet and flowery." }, // FIXED: Corrected https
                 
                 { name: "Twin Spar", flavorProfile: "A simple and strong pairing of smooth Canadian whiskey and spicy ginger soda.", recipe: ["2 oz Crown Royal", "Fill with Ginger Soda"], story: "Named for the only two brain cells our prospect has left. They work together, they're surprisingly strong, and they're usually fueled by whiskey. Just like this drink.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/90ba0d71f42b567f7e9a417fbd74cedfc805201e/thumbnail_IMG_7998.jpg", cardHook: "Simple, strong, and smooth." },
-                { name: "Blue Lagoon", flavorProfile: "A vibrant and refreshing citrus cocktail with a stunning blue hue.", recipe: ["1oz Stolichnaya Citros Vodka", "1 oz Blue Curacao", "Top with Sweet and Sour Mix"], story: "We saw this drink in a fancy magazine and decided to make it our own. Our version is stronger, more questionable, and is best consumed in a garage, not a poolside cabana. It's about authenticity.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/271d97ccf4324f5c3e3d7EC301c4fcc8.jpg", cardHook: "Find your oasis." }
+                { 
+                    name: "Blue Lagoon", 
+                    flavorProfile: "A vibrant and refreshing citrus cocktail with a stunning blue hue.", 
+                    recipe: ["1oz Stolichnaya Citros Vodka", "1 oz Blue Curacao", "Top with Sweet and Sour Mix"], 
+                    story: "We saw this drink in a fancy magazine and decided to make it our own. Our version is stronger, more questionable, and is best consumed in a garage, not a poolside cabana. It's about authenticity.", 
+                    image: "https://raw.githubusercontent.com/aarmax8/Nomads/1437d292004819d9c63535c2640d75fabd110422/frontend/724b49e9a385815706ed2dbc9d7ca6f3.jpg", 
+                    cardHook: "Find your oasis." 
+                }
             ];
 
             const processedCocktails = initialCocktails.map((cocktail) => {
@@ -1257,17 +1311,21 @@
                                 <div class="px-6 pt-4 text-center">
                                     <p class="text-xl mb-3 font-cinzel text-gray-300">${item.flavorProfile}</p>
                                 </div>
+                                <!-- MOVED: Tagline moved from the bottom footer area to the non-scrolling upper area -->
+                                <div class="card-hook-tagline">${item.cardHook}</div>
+                                
                                 <div class="recipe-content">
                                     <ul class="recipe-list-front">${item.recipe.map(r => { const ingName = parseIngredientName(r) || r; const ingInfo = getIngredientInfo(ingName); return `<li><i class="fas ${ingInfo.icon} ${ingInfo.colorClass}"></i><span>${r}</span></li>`; }).join('')}</ul>
                                 </div>
-                                <div class="card-hook-tagline">${item.cardHook}</div>
-                                <div class="card-footer"></div>
+                                <!-- REMOVED: Old card-footer and bottom tagline components -->
                             </div>
                             <div class="drink-card-back lazy-bg ${!item.image ? 'no-image' : ''}" ${item.image ? `data-bg="url('${item.image}')"` : ''}>
+                               <!-- MOVED: Story title moved to the top of the flipped card content -->
+                               <div class="card-header-back">The Story of ${item.name}</div>
+                               
                                <div class="card-back-content">
                                     <p class="story-text">${item.story}</p>
                                </div>
-                                <div class="card-footer-back">The Story of ${item.name}</div>
                             </div>
                         </div>
                     </div>`;
@@ -1296,12 +1354,13 @@
                             }
                         }
                         // We are done with this card, so unobserve it
-                        imageObserver.unobserve(card);
+                        // CHANGE: Changed root from menuGrid to window in observer options below
+                        imageObserver.unobserve(card); 
                     }
                 });
                 }, { 
-                    root: menuGrid, // Observe scrolling within the menu grid
-                    rootMargin: "200px" // MODIFIED: Load images when 200px from *any* edge
+                    root: null, // Use the viewport (window) as the root
+                    rootMargin: "200px" // Load images when 200px from *any* edge of the viewport
                 }); 
                 
                 // Observe the parent cards
@@ -1680,7 +1739,7 @@
             // Throttled version of updateActiveCard
             const throttledUpdateActiveCard = throttle(updateActiveCard, 150); 
             
-            // --- Listeners for Floating Action Button Menu ---
+            // --- Listeners for Floating Action Button Menu (Now in the overlay) ---
             floatingMenuToggle.addEventListener('click', () => {
                 floatingMenuToggle.classList.toggle('is-active');
                 floatingMenuItems.classList.toggle('is-visible');
