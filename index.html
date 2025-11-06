@@ -692,7 +692,7 @@
             z-index: 1000;
             background-color: #000;
             /* MODIFIED: Added fade-to-black gradient to hide the bottom edge */
-            background-image: linear-gradient(to bottom, transparent 85%, #000 95%), url('https://github.com/aarmax8/Nomads/blob/ac96a3e89384bc4f8a4feefe4af617c47d901a0e/splash.jpg?raw=true');
+            background-image: linear-gradient(to bottom, transparent 85%, #000 95%), url('https://raw.githubusercontent.com/aarmax8/Nomads/ac96a3e89384bc4f8a4feefe4af617c47d901a0e/splash.jpg?raw=true');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -1296,6 +1296,11 @@
                 if (primarySpirit === 'Liqueur/Schnapps') {
                     titleColor = '#f472b6'; // Pinkish Magenta
                 }
+                
+                // **NEW LOGIC: Force Whiskey title color**
+                if (primarySpirit === 'Whiskey & Bourbon') {
+                    titleColor = '#FF4500'; // Orange Red
+                }
 
 
                 return { ...cocktail, category: Array.from(categories), titleColor, primarySpirit };
@@ -1431,7 +1436,7 @@
             const defaultInfo = { icon: 'fa-cube', colorClass: 'text-gray-400', colorHex: '#9ca3af' };
 
             // MODIFIED: Updated colors for Whiskey/Bourbon and Liqueurs/Schnapps
-            if (['whiskey', 'bourbon', 'southern comfort', 'maker\'s mark', 'seagram\'s 7', 'knob creek', 'crown royal', 'bulleit', 'jim beam', 'johnnie walker', 'four roses', 'travellers whiskey'].some(s => lowerIng.includes(s))) return { icon: 'fa-whiskey-glass', colorClass: 'text-red-600', colorHex: '#dc2626' }; // SCARLET RED
+            if (['whiskey', 'bourbon', 'southern comfort', 'maker\'s mark', 'seagram\'s 7', 'knob creek', 'crown royal', 'bulleit', 'jim beam', 'johnnie walker', 'four roses', 'travellers whiskey'].some(s => lowerIng.includes(s))) return { icon: 'fa-whiskey-glass', colorClass: 'text-orange-500', colorHex: '#FF4500' }; // BRIGHT ORANGE (#FF4500)
             if (['vodka'].some(s => lowerIng.includes(s))) return { icon: 'fa-skull-crossbones', colorClass: 'text-blue-300', colorHex: '#93c5fd' };
             if (['gin'].some(s => lowerIng.includes(s))) return { icon: 'fa-leaf', colorClass: 'text-green-400', colorHex: '#4ade80' };
             if (['rum', 'malibu'].some(s => lowerIng.includes(s))) return { icon: 'fa-anchor', colorClass: 'text-amber-500', colorHex: '#f59e0b' };
