@@ -365,7 +365,7 @@
         
         .card-hook-tagline {
             text-align: center; 
-            /* MODIFIED: Reduced font size from 1rem to 1.125rem */
+            /* MODIFIED: Increased font size from 1rem to 1.125rem */
             font-size: 1.125rem; 
             line-height: 1.4;
             color: #2dd4bf;
@@ -562,7 +562,7 @@
             border: none;
             /* MODIFIED: iOS-style neutral gray */
             color: #8e8e93; 
-            /* MODIFIED: Removed 0.25rem (4px) of bottom padding */
+            /* MODIFIED: Removed all vertical padding to minimize bar height */
             padding: 0 0.25rem 0 0.25rem; 
             border-radius: 0.5rem;
             cursor: pointer;
@@ -575,8 +575,8 @@
             line-height: 1.2;
         }
         .footer-btn i {
-            /* MODIFIED: Made icons larger (was 1.5rem) */
-            font-size: 1.8rem; /* Icon size */
+            /* MODIFIED: Set to standard icon size */
+            font-size: 1.8rem; 
             /* MODIFIED: Reduced margin-bottom (was 0.1rem) */
             margin-bottom: 0;
             /* MODIFIED: iOS-style neutral gray */
@@ -593,14 +593,14 @@
             transform: none; 
             /* REMOVED: negative margin to pull it down */
             margin-bottom: 0; 
-            /* MODIFIED: Pushed the content up a bit to feel centered in the lower area */
-            padding-bottom: 0.5rem; 
-            padding-top: 0.5rem;
+            /* REMOVED: All vertical padding to match .footer-btn */
+            padding-bottom: 0; 
+            padding-top: 0;
             
         }
         #app-footer .footer-btn-middle i {
-            /* MODIFIED: Made icon slightly smaller to match others, but still prominent */
-            font-size: 2rem; 
+            /* MODIFIED: Set to standard icon size */
+            font-size: 1.8rem; 
         }
         
         /* REMOVED: Old .footer-btn.is-active-filter and #footer-favorites-btn.is-active */
@@ -640,7 +640,7 @@
 
         /* --- Footer --- */
         #app-footer {
-            /* MODIFIED: Reduced top padding (was 0.25rem) */
+            /* MODIFIED: Removed vertical padding */
             padding: 0 0;
             /* MODIFIED: Set explicit height. The padding-bottom will push content up from the notch. */
             height: calc(50px + env(safe-area-inset-bottom));
@@ -659,8 +659,8 @@
             
             display: flex;
             justify-content: space-evenly; /* MODIFIED: Evenly space all buttons */
-            /* MODIFIED: Changed from 'flex-end' to 'center' to center content vertically */
-            align-items: center; 
+            /* MODIFIED: Set to flex-end to push content down and maximize vertical space efficiency */
+            align-items: flex-end; 
             
             /* ADDED: Center the footer bar to match the main content */
             width: 100%;
@@ -834,6 +834,16 @@
             /* Overrides the third background-position (the image) to 'right' */
             background-position: center, center, right;
         }
+        
+        /* --- NEW: Left Image Focus --- */
+        .drink-card[data-name="Kraken's Grip"] .drink-card-back,
+        .drink-card[data-name="Mamie Taylor"] .drink-card-back,
+        .drink-card[data-name="Rusty Blade"] .drink-card-back,
+        .drink-card[data-name="Spiced Rum Buck"] .drink-card-back,
+        .drink-card[data-name="Whiskey Highball"] .drink-card-back {
+            /* Sets the third position (the image) to left */
+            background-position: center, center, left;
+        }
 
     </style>
 </head>
@@ -995,7 +1005,7 @@
                 { name: "Shirley Temple", flavorProfile: "The classic sweet and spicy ginger soda, kissed with a touch of cherry.", recipe: ["Fill a tall glass with Ginger Soda", "Splash of Grenadine", "Cherry on Top"], story: "Our biggest, meanest member, Crusher, orders this. Not for his kid. For himself. He says it 'calms his inner rage.' You WILL NOT make fun of him. You WILL tell him it's a very manly drink. Your safety depends on it.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/90ba0d71f42b567f7e9a417fbd74cedfc805201e/thumbnail_IMG_7989.jpg", cardHook: "The toughest drink in the bar." }, 
                 
                 // 8: Dark 'n' Stormy
-                { name: "Dark 'n' Stormy", flavorProfile: "Deep, dark spiced rum with a bite of lime and a spicy ginger finish.", recipe: ["2 oz Kraken Black Spiced Rum", "0.5 oz Lime Juice", "2 dashes Angostura Bitters", "Fill a tall glass with Ginger Soda"], story: "We dared our prospect to ride through a tornado warning. He came back an hour later, clothes torn, hair standing on end, and holding a bottle of Kraken he 'found.' This drink is our best guess as to what happened.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/19071808632f94b0b81d595f74f700f0.jpg", cardHook: "To making bad weather worse." },
+                { name: "Dark 'n' Stormy", flavorProfile: "Deep, dark spiced rum with a bite of lime and a spicy ginger finish.", recipe: ["2 oz Kraken Black Spiced Rum", "0.5 oz Lime Juice", "2 dashes Angostura Bitters", "Fill a tall glass with Ginger Soda"], story: "We dared our prospect to ride through a tornado warning. He came back an hour later, clothes torn, hair standing on end, and holding a bottle of Kraken he 'found.' This drink is our best guess as to what happened.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c4500290759bf6a90ecaf84a18fc47b/frontend/19071808632f94b0b81d595f74f700f0.jpg", cardHook: "To making bad weather worse." },
                 
                 // 9: Kraken's Grip - **UPDATED LINK**
                 { name: "Kraken's Grip", flavorProfile: "Dark rum and sweet almond create a rich, cola-based concoction.", recipe: ["1.5 oz Kraken Black Spiced Rum", "1 oz Amaretto", "Fill a tall glass with Cola"], story: "After two of these, you'll have a death grip on the bar and the questionable belief that you can arm-wrestle a sea monster. You can't. Ask Fingers, he's got the scars to prove it.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/c7fd6a017b5f1a4a26d81720d989dd1cccfca51c/mannart14.jpg", cardHook: "It'll get a hold on you." },
@@ -1192,7 +1202,7 @@
                         .replace(/https\.raw/i, "https://raw");
                 }
                 
-                // --- APPLYING NEW IMAGE LINKS ---
+                // --- APPLYING NEW IMAGE LINKS (Ensuring latest images are used) ---
                 if (cocktail.name === "Negroni") {
                     cocktail.image = "https://raw.githubusercontent.com/aarmax8/Nomads/c8d1eb3f9af90ec4f55951765f680513fe3bf164/mannart8.jpg";
                 } else if (cocktail.name === "Poinsettia") {
@@ -1204,21 +1214,19 @@
                 } else if (cocktail.name === "Boulevardier") {
                     cocktail.image = "https://raw.githubusercontent.com/aarmax8/Nomads/8152e3c111a698e2a7f072b33b5662906e08d17d/mannart24.jpg";
                 } else if (cocktail.name === "Knob Creek Kentucky Smash") {
-                    cocktail.image = "https://raw.githubusercontent.com/aarmax8/Nomads/c7fd6a017b5f1a4a26d81720d989dd1cccfca51c/mannart22.jpg"; // **UPDATED**
+                    cocktail.image = "https://raw.githubusercontent.com/aarmax8/Nomads/c7fd6a017b5f1a4a26d81720d989dd1cccfca51c/mannart22.jpg"; 
                 } else if (cocktail.name === "Long Island Iced Tea") {
-                    // SWAPPED FROM: "https://raw.githubusercontent.com/aarmax8/Nomads/8152e3c111a698e2a7f072b33b5662906e08d17d/mannart12.jpg"
-                    cocktail.image = "https://raw.githubusercontent.com/aarmax8/Nomads/c8d1eb3f9af90ec4f55951765f680513fe3bf164/frontend/b6965a50f47b1326012bfbd8404c7c28.jpg"; // Finn's Orchard Kick original
+                    cocktail.image = "https://raw.githubusercontent.com/aarmax8/Nomads/c8d1eb3f9af90ec4f55951765f680513fe3bf164/frontend/b6965a50f47b1326012bfbd8404c7c28.jpg";
                 } else if (cocktail.name === "Between The Sheets") {
                     cocktail.image = "https://raw.githubusercontent.com/aarmax8/Nomads/c8d1eb3f9af90ec4f55951765f680513fe3bf164/frontend/64c7af61b8476938a0b6bc9e8462ef3f--motorcycle-posters-motorcycle-art.jpg";
                 } else if (cocktail.name === "Finn's Orchard Kick") {
-                    // SWAPPED FROM: "https://raw.githubusercontent.com/aarmax8/Nomads/c8d1eb3f9af90ec4f55951765f680513fe3bf164/frontend/b6965a50f47b1326012bfbd8404c7c28.jpg"
-                    cocktail.image = "https://raw.githubusercontent.com/aarmax8/Nomads/8152e3c111a698e2a7f072b33b5662906e08d17d/mannart12.jpg"; // Long Island Iced Tea original
+                    cocktail.image = "https://raw.githubusercontent.com/aarmax8/Nomads/8152e3c111a698e2a7f072b33b5662906e08d17d/mannart12.jpg";
                 } else if (cocktail.name === "Redheaded Trouble") {
                     cocktail.image = "https://raw.githubusercontent.com/aarmax8/Nomads/c8d1eb3f9af90ec4f55951765f680513fe3bf164/frontend/R.jpg";
                 } else if (cocktail.name === "Whiskey Highball") {
                     cocktail.image = "https://raw.githubusercontent.com/aarmax8/Nomads/c8d1eb3f9af90ec4f55951765f680513fe3bf164/frontend/b3ca1c20f8245c41dabb7020eb5794f7.jpg";
                 } else if (cocktail.name === "Kraken's Grip") {
-                    cocktail.image = "https://raw.githubusercontent.com/aarmax8/Nomads/c7fd6a017b5f1a4a26d81720d989dd1cccfca51c/mannart14.jpg"; // **UPDATED**
+                    cocktail.image = "https://raw.githubusercontent.com/aarmax8/Nomads/c7fd6a017b5f1a4a26d81720d989dd1cccfca51c/mannart14.jpg"; 
                 }
                 // --- END APPLYING NEW IMAGE LINKS ---
 
@@ -1282,6 +1290,13 @@
 
 
                 if (mainIngredient) titleColor = getIngredientInfo(mainIngredient).colorHex;
+
+                // FINAL LOGIC: Force title color based on primary spirit category
+                // This ensures all Liqueur-categorized drinks use the magenta color, regardless of what getIngredientInfo returned for their specific main ingredient.
+                if (primarySpirit === 'Liqueur/Schnapps') {
+                    titleColor = '#f472b6'; // Pinkish Magenta
+                }
+
 
                 return { ...cocktail, category: Array.from(categories), titleColor, primarySpirit };
             });
@@ -1415,14 +1430,15 @@
             const lowerIng = ingredientName.toLowerCase();
             const defaultInfo = { icon: 'fa-cube', colorClass: 'text-gray-400', colorHex: '#9ca3af' };
 
-            if (['whiskey', 'bourbon', 'southern comfort', 'maker\'s mark', 'seagram\'s 7', 'knob creek', 'crown royal', 'bulleit', 'jim beam', 'johnnie walker', 'four roses', 'travellers whiskey'].some(s => lowerIng.includes(s))) return { icon: 'fa-whiskey-glass', colorClass: 'text-orange-400', colorHex: '#fb923c' };
+            // MODIFIED: Updated colors for Whiskey/Bourbon and Liqueurs/Schnapps
+            if (['whiskey', 'bourbon', 'southern comfort', 'maker\'s mark', 'seagram\'s 7', 'knob creek', 'crown royal', 'bulleit', 'jim beam', 'johnnie walker', 'four roses', 'travellers whiskey'].some(s => lowerIng.includes(s))) return { icon: 'fa-whiskey-glass', colorClass: 'text-red-600', colorHex: '#dc2626' }; // SCARLET RED
             if (['vodka'].some(s => lowerIng.includes(s))) return { icon: 'fa-skull-crossbones', colorClass: 'text-blue-300', colorHex: '#93c5fd' };
             if (['gin'].some(s => lowerIng.includes(s))) return { icon: 'fa-leaf', colorClass: 'text-green-400', colorHex: '#4ade80' };
             if (['rum', 'malibu'].some(s => lowerIng.includes(s))) return { icon: 'fa-anchor', colorClass: 'text-amber-500', colorHex: '#f59e0b' };
             if (['tequila'].some(s => lowerIng.includes(s))) return { icon: 'fa-hat-cowboy-side', colorClass: 'text-amber-400', colorHex: '#fbbf24' };
             if (['brandy'].some(s => lowerIng.includes(s))) return { icon: 'fa-solid fa-wine-glass', colorClass: 'text-purple-400', colorHex: '#d8b4fe' };
             if (['prosecco'].some(s => lowerIng.includes(s))) return { icon: 'fa-solid fa-champagne-glasses', colorClass: 'text-yellow-200', colorHex: '#fef08a' }; /* ADDED */
-            if (['schnapps', 'pucker', 'drambuie', 'jägermeister', 'liqueur', 'baileys', 'pernod', 'kahlúa', 'st-germain', 'cointreau', 'amaretto', 'campari', 'blue curacao', 'aperol', 'sweet vermouth'].some(l => lowerIng.includes(l))) return { icon: 'fa-mortar-pestle', colorClass: 'text-purple-400', colorHex: '#c084fc' };
+            if (['schnapps', 'pucker', 'drambuie', 'jägermeister', 'liqueur', 'baileys', 'pernod', 'kahlúa', 'st-germain', 'cointreau', 'amaretto', 'campari', 'blue curacao', 'aperol', 'sweet vermouth'].some(l => lowerIng.includes(l))) return { icon: 'fa-mortar-pestle', colorClass: 'text-pink-500', colorHex: '#f472b6' }; // PINKISH MAGENTA
             if (lowerIng.includes('bitters')) return { icon: 'fa-eye-dropper', colorClass: 'text-red-500', colorHex: '#ef4444' };
             if (['juice', 'sour mix'].some(j => lowerIng.includes(j))) return { icon: 'fa-lemon', colorClass: 'text-yellow-400', colorHex: '#facc15' };
             
