@@ -1016,8 +1016,15 @@
                 // 11: Island Hopper
                 { name: "Island Hopper", flavorProfile: "A sweet, tropical escape with creamy coconut and bright pineapple.", recipe: ["1 oz Malibu Rum", "1 oz Bacardi Rum", "Fill with Pineapple Juice", "Splash of Lime Juice"], story: "This is for the guy who wears a Hawaiian shirt under his leather cut. He talks about riding to the keys, but we all know he's just going to the tourist trap on the pier. We humor him.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/e7b78721b45c1417e839ceb2df4a358144244771/mannart1.jpg", cardHook: "A vacation in a glass." },
                 
-                // 12: Gin Rickey
-                { name: "Gin Rickey", flavorProfile: "A clean and bracing mix of botanical gin and sharp lime, mellowed by club soda.", recipe: ["2 oz Tanqueray Gin", "1 oz Lime Juice", "Fill a tall glass with Club Soda"], story: "Tastes like taking a mountain switchback too fast. It's sharp, it makes your stomach turn, and you feel a moment of pure, blinding panic. Then it's over and you feel like a hero. A stupid, stupid hero.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/5fdd2d485722e.jpg", cardHook: "For roads that go back and forth." },
+                // 12: Gin Rickey REMOVED -> APPLETINI ADDED
+                { 
+                    name: "Appletini", 
+                    flavorProfile: "A bold, tart, and intensely green cocktail where crisp apple meets clean vodka.", 
+                    recipe: ["1 oz Sweet and Sour Mix", "1 oz Apple Pucker", "2 oz Ketel One Vodka", "Cherry on Top"], 
+                    story: "This drink is too green to be safe and too sweet to be sober. It's what the rival club drinks when they think they're being subtle. It hits hard, tastes like candy, and leaves a neon-green ring on your mustache. We call it 'The Prospect's Bane.'", 
+                    image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/5fdd2d485722e.jpg", // Reusing image from Gin Rickey
+                    cardHook: "Boldly green, deeply potent." 
+                },
                 
                 // 13: Long Haul
                 { name: "Long Haul", flavorProfile: "Crisp gin and tonic gets a complex, herbal twist from rosemary and lavender.", recipe: ["2 oz Tanqueray Gin", "0.5 oz Lime Juice", "Top with Tonic Water in a tall glass", "2 dashes Rosemary Lavender Bitters"], story: "This drink is like a 10-hour ride through Nebraska. It starts out fine, then it gets weirdly complex, then it's just... a lot. By the end, you're not sure if you like it, but you respect its commitment.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/cd94ee724b96582e3ef3f50a663b43038b8d2c77/mannart15.jpg", cardHook: "For when you're in it for the long haul." },
@@ -1152,8 +1159,15 @@
                 // 47: Phantom Shift
                 { name: "Phantom Shift", flavorProfile: "Sharp anise and botanical gin create a crisp, clean flavor with a bitter, tonic finish.", recipe: ["1oz Pernod", "1 oz Tanqueray Gin", "0.5 oz Lime Juice", "Top with Tonic Water in a tall glass"], story: "Tastes like licorice and regret. Named for the 'phantom' expenses that keep appearing on the club's credit card. We know who's doing it. And their time is short.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/f2a6114d2d00087a3f9192fc5cc74614.jpg", cardHook: "For the gears that aren't there." },
                 
-                // 48: Morning Haze - RESTORED UNIQUE IMAGE
-                { name: "Morning Haze", flavorProfile: "A bright and sharp mix of botanical gin and tropical pineapple juice.", recipe: ["2 oz Tanqueray Gin", "Fill with Pineapple Juice", "Splash of Lime Juice"], story: "For when you wake up and the world is a blurry, confusing mess. This drink is also a blurry, confusing mess, but it's a delicious one. It helps you ease into your hangover.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/il_fullxfull.1268185178_a000.webp", cardHook: "A helpful lie for a hazy morning." },
+                // 48: Morning Haze REMOVED -> DIRTY MARTINI ADDED
+                { 
+                    name: "Dirty Martini", 
+                    flavorProfile: "A crisp, savory, and potent cocktail defined by salty olive brine.", 
+                    recipe: ["1.5 oz Ketel One Vodka", "1.0 oz Dirty Martini Mix", "Green Olive Garnish"], 
+                    story: "Our version of a sophisticated classic. We keep the brine in a repurposed oil can. Tastes like a secret handshake—smooth, salty, and a little dangerous. We only serve it when 'The Diplomat' is in town.", 
+                    image: "https://raw.githubusercontent.com/aarmax8/Nomads/146cb26058c450290759bf6a90ecaf84a18fc47b/frontend/il_fullxfull.1268185178_a000.webp", // Reusing image from Morning Haze
+                    cardHook: "Shaken or stirred, never noticed." 
+                },
                 
                 // 49: Catalyst - RESTORED UNIQUE IMAGE
                 { name: "Catalyst", flavorProfile: "An energetic and tart blend of vodka, sweet and sour mix, and lime.", recipe: ["1.5 oz Grey Goose Vodka", "Fill with Sweet and Sour Mix", "Splash of Lime Juice"], story: "This drink doesn't cause problems. It's just... present when they happen. It's the catalyst for bar fights, terrible ideas, and waking up with a new tattoo. It's an agent of chaos.", image: "https://raw.githubusercontent.com/aarmax8/Nomads/90ba0d71f42b567f7e9a417fbd74cedfc805201e/thumbnail_IMG_7999.jpg", cardHook: "The start of a great story." },
@@ -1239,7 +1253,7 @@
                 if (recipeString.includes('cola') || recipeString.includes('ginger soda')) categories.add('Dinner');
                 if (recipeString.includes('baileys irish cream') || recipeString.includes('kahlúa')) categories.add('Desert');
                 
-                const hasOnlyLemonLime = (recipeString.includes('lemon juice') || recipeString.includes('lime juice')) && !recipeString.includes('orange juice') && !recipeString.includes('pineapple juice') && !recipeString.includes('cranberry juice') && !recipeString.includes('sour mix');
+                const hasOnlyLemonLime = (recipeString.includes('lemon juice') || recipeString.includes('lime juice')) && !recipeString.includes('orange juice') && !recipeString.includes('pineapple juice') && !recipeString.includes('cranberry juice') && !recipeString.includes('sweet and sour mix');
                 const hasAnySoda = recipeString.includes('club soda') || recipeString.includes('tonic water') || recipeString.includes('cola') || recipeString.includes('ginger soda');
 
                 if (categories.has('Brunch') && hasOnlyLemonLime && hasAnySoda) categories.delete('Brunch');
@@ -1365,7 +1379,7 @@
                 'Wine & Other': ['Prosecco'] /* ADDED */
             },
             'Liqueurs & Schnapps': {
-                'Fruit': ['Apple Pucker', 'Blue Curacao', 'Cherry Schnapps', 'Cointreau', 'Maraschino Liqueur', 'Peach Schnapps', 'Raspberry Schnapps', 'Triple Sec'],
+                'Fruit': ['Apple Pucker', 'Blue Curacao', 'Cherry Schnapps', 'Cointreau', 'Maraschino Liqueur', 'Peach Schnapps', 'Raspberry Schnapps', 'Triple Sec'], 
                 /* UPDATED: Added Sweet Vermouth & Aperol */
                 'Herbal & Spiced': ['Aperol', 'Campari', 'Drambuie', 'Jägermeister', 'Pernod', 'St-Germain', 'Sweet Vermouth'],
                 'Cream, Nut & Coffee': ['Amaretto', 'Baileys Irish Cream', 'Kahlúa'],
@@ -1373,9 +1387,10 @@
             },
                 'Mixers & Bitters': {
                     /* --- UPDATED: Removed 'Sour Mix' --- */
-                    'Sodas & Juices': ['Club Soda', 'Cola', 'Cranberry Juice', 'Ginger Soda', 'Lemon Juice', 'Lime Juice', 'Orange Juice', 'Pineapple Juice', 'Tonic Water', 'Sweet and Sour Mix'],
+                    'Sodas & Juices': ['Club Soda', 'Cola', 'Cranberry Juice', 'Ginger Soda', 'Lemon Juice', 'Lime Juice', 'Orange Juice', 'Pineapple Juice', 'Tonic Water', 'Sweet and Sour Mix', 'Dirty Martini Mix'], // ADDED Dirty Martini Mix
                     'Bitters': ['Angostura Bitters', 'Orange Bitters', 'Peychaud\'s Bitters', 'Rosemary Lavender Bitters'],
                     'Syrups': ['Grenadine', 'Simple Syrup', 'Passion Fruit Syrup'],
+                    'Garnish': ['Green Olives'] // ADDED Green Olives
                 },
                 /* REMOVED 'Other' category */
         };
@@ -1443,7 +1458,7 @@
             if (['tequila'].some(s => lowerIng.includes(s))) return { icon: 'fa-hat-cowboy-side', colorClass: 'text-amber-400', colorHex: '#fbbf24' };
             if (['brandy'].some(s => lowerIng.includes(s))) return { icon: 'fa-solid fa-wine-glass', colorClass: 'text-purple-400', colorHex: '#d8b4fe' };
             if (['prosecco'].some(s => lowerIng.includes(s))) return { icon: 'fa-solid fa-champagne-glasses', colorClass: 'text-yellow-200', colorHex: '#fef08a' }; /* ADDED */
-            if (['schnapps', 'pucker', 'drambuie', 'jägermeister', 'liqueur', 'baileys', 'pernod', 'kahlúa', 'st-germain', 'cointreau', 'amaretto', 'campari', 'blue curacao', 'aperol', 'sweet vermouth'].some(l => lowerIng.includes(l))) return { icon: 'fa-mortar-pestle', colorClass: 'text-pink-500', colorHex: '#f472b6' }; // PINKISH MAGENTA
+            if (['schnapps', 'pucker', 'drambuie', 'jägermeister', 'liqueur', 'baileys', 'pernod', 'kahlúa', 'st-germain', 'cointreau', 'amaretto', 'campari', 'blue curacao', 'aperol', 'sweet vermouth', 'apple pucker'].some(l => lowerIng.includes(l))) return { icon: 'fa-mortar-pestle', colorClass: 'text-pink-500', colorHex: '#f472b6' }; // PINKISH MAGENTA
             if (lowerIng.includes('bitters')) return { icon: 'fa-eye-dropper', colorClass: 'text-red-500', colorHex: '#ef4444' };
             if (['juice', 'sour mix'].some(j => lowerIng.includes(j))) return { icon: 'fa-lemon', colorClass: 'text-yellow-400', colorHex: '#facc15' };
             
@@ -1452,8 +1467,10 @@
             
             if (['syrup', 'grenadine'].some(s => lowerIng.includes(s))) return { icon: 'fa-prescription-bottle', colorClass: 'text-pink-400', colorHex: '#f472b6' };
             
-            /* ADDED: Specific icon for "on the rocks" */
+            /* ADDED: Specific icon for "on the rocks" and Martini Ingredients*/
             if (lowerIng.includes('serve on the rocks')) return { icon: 'fa-solid fa-snowflake', colorClass: 'text-cyan-300', colorHex: '#67e8f9' };
+            if (lowerIng.includes('dirty martini mix')) return { icon: 'fa-glass-water', colorClass: 'text-green-500', colorHex: '#22c55e' };
+            if (lowerIng.includes('green olives')) return { icon: 'fa-olive', colorClass: 'text-green-600', colorHex: '#16a34a' };
             
             if (lowerIng.includes('cherry on top') || lowerIng.includes('cherry garnish')) return { icon: 'fa-solid fa-circle', colorClass: 'text-red-500', colorHex: '#ef4444' };
             if (lowerIng.includes('rim')) return { icon: 'fa-solid fa-circle-notch', colorClass: 'text-gray-300', colorHex: '#d1d5db' };
